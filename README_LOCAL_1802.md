@@ -1,3 +1,0 @@
-# LabEngenhariaSuzi
-
-Teste 4
