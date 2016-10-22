@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, store, jwtHelper, TrabalhoService) {
+app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService) {
     $scope.dataFreelancerTrabalhoAndamento = {
         loading: 0,
         dados: []
