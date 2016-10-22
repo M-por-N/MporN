@@ -1,4 +1,4 @@
-app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoService) {
+app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService) {
     $scope.dataClienteCriarTrabalho = {
         loading: 0,
         dados: []
@@ -21,7 +21,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
         if(!cadastraValido()) return;
         
         $scope.dataClienteCriarTrabalho.loading += 1;
-        var resposta = TrabalhoService.cadastrarTrabalho(trabalho);
+        var resposta = TrabalhoClienteService.cadastrarTrabalho(trabalho);
             resposta.then(function(data) {
             if(data.resultado == true) {
                 $scope.dataClienteCriarTrabalho.loading -= 1;

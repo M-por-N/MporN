@@ -5,7 +5,7 @@ app.controller("FreelancerTrabalhoConcluidoController", function($scope, $locati
     };
 
     $scope.dataFreelancerTrabalhoConcluido.loading += 1;
-    TrabalhoService.getConcluido().then(function(data) {
+    TrabalhoFreelancerService.getConcluido().then(function(data) {
         if (data.trabalhos) {
             $scope.dataFreelancerTrabalhoConcluido.dados = data.trabalhos;
             $scope.dataFreelancerTrabalhoConcluido.loading -= 1;
