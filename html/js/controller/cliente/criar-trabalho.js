@@ -1,4 +1,4 @@
-app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService) {
+app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, PlanoService) {
     $scope.dataClienteCriarTrabalho = {
         loading: 0,
         dados: []
@@ -32,6 +32,16 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
             }
         });
     };
+    
+    PlanoService.getPlanos().then(function(data) {
+        if (data.planos) {
+            $scope.dataClienteCriarTrabalho.todosPlanos = data.planos;
+            $scope.dataClienteCriarTrabalho.loading -= 1;
+        } else {
+            $scope.dataClienteCriarTrabalho.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
+            $scope.dataClienteCriarTrabalho.loading -= 1;
+        }
+    });
     
     
 })
