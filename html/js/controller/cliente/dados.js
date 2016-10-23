@@ -59,7 +59,7 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         $scope.dataCliente.loading += 1;
         ClienteService.setDados($scope.dataCliente.dados).then(function(data) {
             if (data.resultado) {
-                $location.path('/cliente/disponivel');
+                $location.path('/cliente/aberto');
                 $scope.dataCliente.loading -= 1;
             } else {
                 $scope.dataCliente.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor

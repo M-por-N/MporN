@@ -25,7 +25,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
             resposta.then(function(data) {
             if(data.resultado == true) {
                 $scope.dataClienteCriarTrabalho.loading -= 1;
-                $location.path('/cliente/disponivel');
+                $location.path('/cliente/aberto');
             } else {
                 $scope.dataClienteCriarTrabalho.erro.mensagem = "Erro no Cadastro: " + data.mensagem;
                 $scope.dataClienteCriarTrabalho.loading -= 1;
