@@ -1,6 +1,6 @@
 <?php
 //implementação para teste do frontend:
-header('Content-type: application/json; charset=utf-8');
+//header('Content-type: application/json; charset=utf-8');
 
 // converto o input em json; o "@" remove a mensagem de erro (caso existir)
 $input = @json_decode(file_get_contents("php://input"));

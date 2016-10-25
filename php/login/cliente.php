@@ -1,12 +1,16 @@
 <?php
-header('Content-type: application/json; charset=utf-8');
 
+// header('Content-type: application/json; charset=utf-8'); ERRO
 use \Firebase\JWT\JWT;
 require_once("../vendor/autoload.php");
 require_once("../config.php");
+$id = $token->data->id;
+
 
 // converto o input em json; o "@" remove a mensagem de erro (caso existir)
 $input = @json_decode(file_get_contents("php://input"));
+
+
 
 if($input == null or !isset($input->login) or !isset($input->senha)) {
     echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
@@ -29,7 +33,7 @@ try{
     //TODO: verficar se o id é null
 } catch(PDOException $e){
     //TODO: receber mensagem de erro do PDO
-    echo json_encode(['resultado' => false, 'mensagem' => 'Erro no Banco de Dados']);
+    echo json_encode(['resultado' => false, 'mensagem' => "Erro ao conectar com o Banco de Dados"]);
     exit;
 }
 

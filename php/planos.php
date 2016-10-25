@@ -10,11 +10,12 @@ echo json_encode(['planos' => [
 exit;
 /**/
 
-header('Content-type: application/json; charset=utf-8');
+//header('Content-type: application/json; charset=utf-8');
 
-use \Firebase\JWT\JWT;
-require_once("vendor/autoload.php");
+//use \Firebase\JWT\JWT;
+//require_once("vendor/autoload.php");
 require_once("config.php");
+$id = $token->data->id;
 
 try{
     $pdo = new PDO($config->bd->dsn, $config->bd->user, $config->bd->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

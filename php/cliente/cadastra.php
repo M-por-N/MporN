@@ -1,7 +1,8 @@
 <?php
-header('Content-type: application/json; charset=utf-8');
+//header('Content-type: application/json; charset=utf-8');
 
 require_once("../config.php");
+$id = $token->data->id;
 
 $input = @json_decode(file_get_contents("php://input"));
 

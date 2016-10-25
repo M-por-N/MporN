@@ -6,9 +6,11 @@ app.factory('LoginService', function($http) {
     var loginGeral = function(login, senha, url) {
         return $http.post(url, {login: login, senha: senha}).then(
             function sucesso(respostaServidor) {
+                console.log(respostaServidor);
                 return respostaServidor.data;
             },
             function erro(respostaServidor) {
+                console.log('2:' + respostaServidor);
                 return {resultado : false, mensagem : "Erro ao se comunicar com a servidor"};
         });
     }
