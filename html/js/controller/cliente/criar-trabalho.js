@@ -13,6 +13,10 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
                 detalhado: {
                     requerido: false,
                     invalido: false
+                    },
+                 plano: {
+                    requerido: false,
+                    invalido: false
                     }
                 },
         loading: 0,
@@ -26,6 +30,19 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
         
         $scope.dataClienteCriarTrabalho.erro.descricao.requerido = $scope.criarTrabalhoForm.descricaoInput.$error.required === true;
         $scope.dataClienteCriarTrabalho.erro.descricao.invalido = $scope.criarTrabalhoForm.descricaoInput.$error.invalido === true;
+        $scope.dataClienteCriarTrabalho.erro.descricao.tamanho = $scope.criarTrabalhoForm.descricaoInput.$error.minlength === true; //evita undefined
+        
+        $scope.dataClienteCriarTrabalho.erro.detalhado.requerido = $scope.criarTrabalhoForm.detalhadoInput.$error.required === true;
+        $scope.dataClienteCriarTrabalho.erro.detalhado.invalido = $scope.criarTrabalhoForm.detalhadoInput.$error.invalido === true;
+        $scope.dataClienteCriarTrabalho.erro.detalhado.tamanho = $scope.criarTrabalhoForm.detalhadoInput.$error.minlength === true; //evita undefined
+        
+        $scope.dataClienteCriarTrabalho.erro.plano.requerido = $scope.criarTrabalhoForm.planoInput.$error.required === true;
+        $scope.dataClienteCriarTrabalho.erro.plano.invalido = $scope.criarTrabalhoForm.planoInput.$error.invalido === true;
+        
+        if($scope.dataClienteCriarTrabalho.data.plano === ''){
+            $scope.dataClienteCriarTrabalho.erro.plano.requerido=true;
+            return false;
+        }
         
         return $scope.criarTrabalhoForm.$valid;
     }

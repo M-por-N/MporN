@@ -24,6 +24,7 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
                 requerido: false
                 }
             },
+        senha2:null,
         dados: {}
     };    
     
@@ -32,7 +33,7 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
         $scope.dataFreelancer.erro.nome.tamanho = $scope.cadastroForm.nomeInput.$error.minlength === true; //evita undefined
         
         $scope.dataFreelancer.erro.email.requerido = $scope.cadastroForm.emailInput.$error.required === true;
-        $scope.dataFreelancer.erro.email.invalido = $scope.cadastroForm.emailInput.$error.email === true;
+        $scope.dataFreelancer.erro.email.invalido = $scope.cadastroForm.emailInput.$error.invalido === true;
         
         $scope.dataFreelancer.erro.cpfcnpj.requerido = $scope.cadastroForm.cpfcnpjInput.$error.required === true;
         $scope.dataFreelancer.erro.cpfcnpj.invalido = //se não for preenchido não verfica por validade
@@ -40,7 +41,7 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
         
         //senha não é obrigatorio
         //$scope.dataFreelancer.erro.senha.requerido = $scope.cadastroForm.senhaInput.$error.required === true;
-        //$scope.dataFreelancer.erro.senha.tamanho = $scope.cadastroForm.senhaInput.$error.minlength === true;
+        $scope.dataFreelancer.erro.senha.tamanho = $scope.cadastroForm.senhaInput.$error.minlength === true;
         
         $scope.dataFreelancer.erro.especialidade.requerido = $scope.cadastroForm.especialidadeInput.$error.required === true;
         
