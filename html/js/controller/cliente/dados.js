@@ -19,9 +19,6 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
                 requerido: false,
                 tamanho: false,
                 difere: false
-                },
-            especialidade: {
-                requerido: false
                 }
             },
         dados: {}
@@ -41,8 +38,7 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         //senha não é obrigatorio
         //$scope.dataCliente.erro.senha.requerido = $scope.cadastroForm.senhaInput.$error.required === true;
         //$scope.dataCliente.erro.senha.tamanho = $scope.cadastroForm.senhaInput.$error.minlength === true;
-        
-        $scope.dataCliente.erro.especialidade.requerido = $scope.cadastroForm.especialidadeInput.$error.required === true;
+
         
         //Verfica se as senhas são iguais, mas somente se a primeira é maior que o minimo
         if($scope.dataCliente.dados.hasOwnProperty('senha') && $scope.dataCliente.dados.senha != null && $scope.dataCliente.dados.senha != '')
@@ -60,10 +56,10 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         ClienteService.setDados($scope.dataCliente.dados).then(function(data) {
             if (data.resultado) {
                 $location.path('/cliente/aberto');
-                $scope.dataCliente.loading -= 1;
+                $scope.dataCliente.loading = 0;
             } else {
                 $scope.dataCliente.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-                $scope.dataCliente.loading -= 1;
+                $scope.dataCliente.loading = 0;
             }
         });
     }
@@ -73,19 +69,10 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         if (data) {
             $scope.dataCliente.dados = data;
             $scope.dataCliente.senha2 = $scope.dataCliente.dados.senha;
-            $scope.dataCliente.loading -= 1;
+            $scope.dataCliente.loading = 0;
         } else {
             $scope.dataCliente.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-            $scope.dataCliente.loading -= 1;
-        }
-    });
-    ClienteService.getEspecialidades().then(function(data) {
-        if (data.especialidades) {
-            $scope.dataCliente.todasEspecialidades = data.especialidades;
-            $scope.dataCliente.loading -= 1;
-        } else {
-            $scope.dataCliente.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-            $scope.dataCliente.loading -= 1;
+            $scope.dataCliente.loading = 0;
         }
     });
 })

@@ -1,7 +1,22 @@
 app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, PlanoService) {
     $scope.dataClienteCriarTrabalho = {
+        erro: {
+                mensagem: null,
+                nome: {
+                    requerido: false,
+                    tamanho: false
+                    },
+                descricao: {
+                    requerido: false,
+                    invalido: false
+                    },
+                detalhado: {
+                    requerido: false,
+                    invalido: false
+                    }
+                },
         loading: 0,
-        dados: []
+        data: {}
     };
     
     
@@ -9,14 +24,14 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
         $scope.dataClienteCriarTrabalho.erro.nome.requerido = $scope.criarTrabalhoForm.nomeInput.$error.required === true;
         $scope.dataClienteCriarTrabalho.erro.nome.tamanho = $scope.criarTrabalhoForm.nomeInput.$error.minlength === true; //evita undefined
         
-        $scope.dataClienteCriarTrabalho.erro.email.requerido = $scope.criarTrabalhoForm.descricaoInput.$error.required === true;
-        $scope.dataClienteCriarTrabalho.erro.email.invalido = $scope.criarTrabalhoForm.descricaoInput.$error.email === true;
+        $scope.dataClienteCriarTrabalho.erro.descricao.requerido = $scope.criarTrabalhoForm.descricaoInput.$error.required === true;
+        $scope.dataClienteCriarTrabalho.erro.descricao.invalido = $scope.criarTrabalhoForm.descricaoInput.$error.invalido === true;
         
         return $scope.criarTrabalhoForm.$valid;
     }
     
     
-    $scope.cadastrar = function(trabalho) {
+    $scope.criarTrabalhoDados = function(trabalho) {
         //verificações:
         if(!cadastraValido()) return;
         
@@ -36,10 +51,10 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
     PlanoService.getPlanos().then(function(data) {
         if (data.planos) {
             $scope.dataClienteCriarTrabalho.todosPlanos = data.planos;
-            $scope.dataClienteCriarTrabalho.loading -= 1;
+            $scope.dataClienteCriarTrabalho.loading = 0;
         } else {
             $scope.dataClienteCriarTrabalho.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-            $scope.dataClienteCriarTrabalho.loading -= 1;
+            $scope.dataClienteCriarTrabalho.loading = 0;
         }
     });
     

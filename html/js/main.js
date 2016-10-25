@@ -25,6 +25,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/cliente/criar-trabalho', {
         templateUrl: 'views/cliente/criar-trabalho.html',
         controller: 'ClienteCriarTrabalhoController'
+    }).when('/cliente/dados', {
+        templateUrl: 'views/cliente/dados.html',
+        controller: 'ClienteDadosController'
     }).when('/cliente/aberto', {
         templateUrl: 'views/cliente/trabalho-aberto.html',
         controller: 'ClienteTrabalhoAbertoController'

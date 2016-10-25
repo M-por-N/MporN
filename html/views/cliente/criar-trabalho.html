@@ -19,16 +19,25 @@
         <div class="form-group">
             <label for="descricaoInput" class="control-label col-md-3">Descrição Trabalho:</label>
             <div class="col-md-9" ng-class="{'has-error': dataClienteCriarTrabalho.erro.descricao.requerido || dataClienteCriarTrabalho.erro.descricao.tamanho || dataClienteCriarTrabalho.erro.descricao.difere}">
-                <input type="text" id="descricaoInput" name="descricaoInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataClienteCriarTrabalho.data.descricao">
+                <input type="text" id="descricaoInput" name="descricaoInput" class="form-control" placeholder="Descrição" required autofocus minlength="2" ng-model="dataClienteCriarTrabalho.data.descricao">
                 <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.descricao.requerido">Campo Requerido</span>
-                <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.descricao.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+                <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.descricao.tamanho">Descrição Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="detalhadoInput" class="control-label col-md-3">Detalhado Trabalho:</label>
+            <div class="col-md-9" ng-class="{'has-error': dataClienteCriarTrabalho.erro.detalhado.requerido || dataClienteCriarTrabalho.erro.detalhado.tamanho || dataClienteCriarTrabalho.erro.detalhado.difere}">
+                <textarea rows="4" cols="50" id="detalhadoInput" name="detalhadoInput" class="form-control" placeholder="Detalhado" required autofocus minlength="2" ng-model="dataClienteCriarTrabalho.data.detalhado"></textarea>
+                <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.detalhado.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.detalhado.tamanho">Detalhado Precisa ter no minimo 2 Caracteres</span>
             </div>
         </div>
         
         <div class="form-group" ng-class="{'has-error': dataClienteCriarTrabalho.erro.plano.requerido}">
                     <label for="planoInput" class="col-md-3 control-label">Planos:</label>
                     <div class="col-md-9">
-                        <select id="planoInput" name="planoInput" class="selectpicker form-control" required multiple ng-model="dataClienteCriarTrabalho.data.planos">
+                        <select id="planoInput" name="planoInput" class="selectpicker form-control" required ng-model="dataClienteCriarTrabalho.data.plano">
                             <option ng-repeat="plano in dataClienteCriarTrabalho.todosPlanos" value="{{plano.id}}">{{plano.nome}}</option>
                         </select>
                         <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.plano.requerido">Plano Requerido</span>

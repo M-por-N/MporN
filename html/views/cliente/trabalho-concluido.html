@@ -1,7 +1,7 @@
-<div ng-show="dataClienteTrabalhoAssinado.loading != 0">loading</div>
-<div ng-hide="dataClienteTrabalhoAssinado.loading != 0">
-    <div class="alert alert-danger" ng-show="dataClienteTrabalhoAssinado.erro.mensagem">
-        <span>{{dataClienteTrabalhoAssinado.erro.mensagem}}</span>
+<div ng-show="dataClienteTrabalhoConcluido.loading != 0">loading</div>
+<div ng-hide="dataClienteTrabalhoConcluido.loading != 0">
+    <div class="alert alert-danger" ng-show="dataClienteTrabalhoConcluido.erro.mensagem">
+        <span>{{dataClienteTrabalhoConcluido.erro.mensagem}}</span>
     </div>
     <div class="panel panel-default">
         <table class="table">
@@ -9,7 +9,7 @@
                 <th>Nome</th>
                 <th>Descrição</th>
             </tr>
-            <tr ng-repeat="trabalho in dataClienteTrabalhoAssinado.dados">
+            <tr ng-repeat="trabalho in dataClienteTrabalhoConcluido.dados">
                 <td>{{trabalho.nome}}</td>
                 <td>{{trabalho.descricao}}</td>
             </tr>
