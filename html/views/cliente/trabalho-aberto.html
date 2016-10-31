@@ -8,10 +8,12 @@
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Nome Plano</th>
             </tr>
             <tr ng-repeat="trabalho in dataClienteTrabalhoAberto.dados">
                 <td>{{trabalho.nome}}</td>
                 <td>{{trabalho.descricao}}</td>
+                <td>{{trabalho.trabalhoNome}}</td>
             </tr>
         </table>
     </div>

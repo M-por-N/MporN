@@ -4,15 +4,26 @@
         <span>{{dataFreelancerTrabalhoDisponivel.erro.mensagem}}</span>
     </div>
     <div class="panel panel-default">
-        <table class="table">
+        <table class="table table-condensed" style="border-collapse:collapse;">
+             <thead>
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
             </tr>
-            <tr ng-repeat="trabalho in dataFreelancerTrabalhoDisponivel.dados">
+            </thead>
+             <tbody>
+            <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoDisponivel.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
                 <td>{{trabalho.nome}}</td>
                 <td>{{trabalho.descricao}}</td>
             </tr>
+            <tr ng-repeat-end>
+                <td colspan="6" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo{{$index}}">
+                       {{trabalho.nome}}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </div>
