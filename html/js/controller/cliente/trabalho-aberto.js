@@ -1,17 +1,42 @@
-app.controller("ClienteTrabalhoAbertoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService) {
+app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService) {
     $scope.dataClienteTrabalhoAberto = {
         loading: 0,
-        dados: []
+        dados: [],
+        erro: {
+            mensagem: null
+        }
     };
 
     $scope.dataClienteTrabalhoAberto.loading += 1;
     TrabalhoClienteService.getAbertos().then(function(data) {
         if (data.trabalhos) {
             $scope.dataClienteTrabalhoAberto.dados = data.trabalhos;
-            $scope.dataClienteTrabalhoAberto.loading -= 1;
+            $scope.dataClienteTrabalhoAberto.loading = 0;
         }
         else {
             $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
         }
     });
+    
+    
+     $scope.removerTrabalho = function(id) {
+
+        $scope.dataClienteTrabalhoAberto.loading += 1;
+        
+        $scope.params = {
+            trabalho: id
+        };
+
+        var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
+        resposta.then(function(data) {
+            if (data.resultado == true) {
+
+                $window.location.reload();
+            }
+            else {
+                $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro na Associação: " + data.mensagem;
+
+            }
+        });
+    };
 })

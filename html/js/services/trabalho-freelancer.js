@@ -3,6 +3,7 @@ app.factory('TrabalhoFreelancerService', function($http) {
     var urlAndamento = "/php/freelancer/trabalho-andamento.php";
     var urlConcluido = "/php/freelancer/trabalho-concluido.php";
     var urlAltera = "/php/freelancer/altera-trabalho.php";
+    var urlConclui = "/php/freelancer/concluir-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
     
     
@@ -43,11 +44,22 @@ app.factory('TrabalhoFreelancerService', function($http) {
             });
     }
     
+    var conclui = function(modificacoes) {
+        return $http.post(urlConclui, modificacoes).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
+            });
+    }
+    
     
     return {
         getDisponiveis: getDisponiveis,
         getAndamento: getAndamento,
         getConcluido: getConcluido,
-        altera: altera
+        altera: altera,
+        conclui: conclui
     };
 });
