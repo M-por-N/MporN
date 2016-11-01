@@ -3,6 +3,7 @@ app.factory('TrabalhoClienteService', function($http) {
     var urlAssinados = "/php/cliente/trabalho-assinado.php";
     var urlConcluidos = "/php/cliente/trabalho-concluido.php";
     var urlCadastraTrabalho = "/php/cliente/criar-trabalho.php";
+    var urlRemoverTrabalho = "/php/cliente/remover-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
     
     
@@ -42,12 +43,24 @@ app.factory('TrabalhoClienteService', function($http) {
             function erro(respostaServidor) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com o servidor"};
             });
+    }
+    
+    var removerTrabalho = function(trabalho) {
+        return $http.post(urlRemoverTrabalho, trabalho).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com o servidor"};
+            });
     };
+    
     
     return {
         getAbertos: getAbertos,
         getAssinados: getAssinados,
         getConcluidos: getConcluidos,
-        cadastrarTrabalho: cadastrarTrabalho
+        cadastrarTrabalho: cadastrarTrabalho,
+        removerTrabalho: removerTrabalho
     };
 });

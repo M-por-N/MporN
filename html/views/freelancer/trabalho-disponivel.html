@@ -5,13 +5,10 @@
     </div>
     <div class="panel panel-default">
         <table class="table table-condensed" style="border-collapse:collapse;">
-             <thead>
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
             </tr>
-            </thead>
-             <tbody>
             <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoDisponivel.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
                 <td>{{trabalho.nome}}</td>
                 <td>{{trabalho.descricao}}</td>
@@ -19,11 +16,17 @@
             <tr ng-repeat-end>
                 <td colspan="6" class="hiddenRow">
                     <div class="accordian-body collapse" id="demo{{$index}}">
-                       {{trabalho.nome}}
+                        Nome do Trabalho - {{trabalho.nome}} </br>
+                        Nome do Plano - {{trabalho.planoNome}} </br>
+                        Descrição do Trabalho - {{trabalho.descricao}} </br>
+                        Nome do Cliente - {{trabalho.nomeCliente}} </br>
+                        E-mail - {{trabalho.email}} </br>
+                        </br>
+                        <button type="button" class="btn btn-primary" ng-click="associarTrabalho(trabalho.id)">Associar</button>
                     </div>
                 </td>
             </tr>
-            </tbody>
+
         </table>
     </div>
 </div>
