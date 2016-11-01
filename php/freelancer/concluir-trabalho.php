@@ -1,6 +1,5 @@
 <?php
 //header('Content-type: application/json; charset=utf-8');
-
 use \Firebase\JWT\JWT;
 require_once("../vendor/autoload.php");
 require_once("../config.php");
@@ -25,7 +24,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE trabalho SET situacao = :situacao ,';
+    $query = 'UPDATE trabalho SET situacao = :situacao';
     $query .= ' where id_freelancer= :id_freelancer ';
     $query .= ' and id = :id';
     
@@ -33,7 +32,7 @@ try{
     $stmt->bindParam(':id_freelancer',$id, PDO::PARAM_INT);
     $stmt->bindParam(':id', $trab, PDO::PARAM_INT);
     $stmt->bindParam(':situacao',$nova_situacao, PDO::PARAM_INT);
-    
+  
     $result = $stmt->execute();
     
     

@@ -17,26 +17,34 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
             $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
         }
     });
-    
-    
-     $scope.removerTrabalho = function(id) {
 
-        $scope.dataClienteTrabalhoAberto.loading += 1;
+
+    $scope.removerTrabalho = function(id) {
+
         
-        $scope.params = {
-            trabalho: id
-        };
 
-        var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
-        resposta.then(function(data) {
-            if (data.resultado == true) {
+        var r = confirm("Você deseja mesmo remover?");
 
-                $window.location.reload();
-            }
-            else {
-                $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro na Associação: " + data.mensagem;
+        if (r == true) {
+            
+            $scope.dataClienteTrabalhoAberto.loading += 1;
+            
+            $scope.params = {
+                trabalho: id
+            };
 
-            }
-        });
+            var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
+            resposta.then(function(data) {
+                if (data.resultado == true) {
+
+                    $window.location.reload();
+                }
+                else {
+                    $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro no Remover: " + data.mensagem;
+
+                }
+            });
+
+        }
     };
 })
