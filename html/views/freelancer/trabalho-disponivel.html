@@ -1,3 +1,14 @@
+<style type="text/css">
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5}
+
+th {
+    background-color: #FFB247;
+    color: white;
+}
+</style>
 <div ng-show="dataFreelancerTrabalhoDisponivel.loading != 0">loading</div>
 <div ng-hide="dataFreelancerTrabalhoDisponivel.loading != 0">
     <div class="alert alert-danger" ng-show="dataFreelancerTrabalhoDisponivel.erro.mensagem">
@@ -22,7 +33,7 @@
                         Nome do Cliente - {{trabalho.nomeCliente}} </br>
                         E-mail - {{trabalho.email}} </br>
                         </br>
-                        <button type="button" class="btn btn-primary" ng-click="associarTrabalho(trabalho.id)">Associar</button>
+                        <button type="button" class="btn btn-warning" ng-click="associarTrabalho(trabalho.id)">Associar</button>
                     </div>
                 </td>
             </tr>

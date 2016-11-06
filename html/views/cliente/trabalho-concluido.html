@@ -1,3 +1,14 @@
+<style type="text/css">
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5}
+
+th {
+    background-color: #31B0D5;
+    color: white;
+}
+</style>
 <div ng-show="dataClienteTrabalhoConcluido.loading != 0">loading</div>
 <div ng-hide="dataClienteTrabalhoConcluido.loading != 0">
     <div class="alert alert-danger" ng-show="dataClienteTrabalhoConcluido.erro.mensagem">

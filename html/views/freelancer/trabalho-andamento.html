@@ -1,3 +1,45 @@
+<style type="text/css">
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5}
+
+th {
+    background-color: #FFB247;
+    color: white;
+}
+</style>
+<div ng-show="dataFreelancerTrabalhoAndamento.loading != 0">loading</div>
+<div ng-hide="dataFreelancerTrabalhoAndamento.loading != 0">
+    <div class="alert alert-danger" ng-show="dataFreelancerTrabalhoAndamento.erro.mensagem">
+        <span>{{dataFreelancerTrabalhoAndamento.erro.mensagem}}</span>
+    </div>
+    <div class="panel panel-default">
+        <table class="table table-condensed" style="border-collapse:collapse;">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+            </tr>
+            <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoAndamento.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+                <td>{{trabalho.nome}}</td>
+                <td>{{trabalho.descricao}}</td>
+            </tr>
+            <tr ng-repeat-end>
+                <td colspan="6" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo{{$index}}">
+                        Nome do Trabalho - {{trabalho.nome}} </br>
+                        Nome do Plano - {{trabalho.planoNome}} </br>
+                        Descrição do Trabalho - {{trabalho.descricao}} </br>
+                        Nome do Cliente - {{trabalho.nomeCliente}} </br>
+                        E-mail - {{trabalho.email}} </br>
+                        </br>
+                        <button type="button" class="btn btn-primary" ng-click="concluirTrabalho(trabalho.id)">Concluir Trabalho</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 <div ng-show="dataFreelancerTrabalhoAndamento.loading != 0">loading</div>
 <div ng-hide="dataFreelancerTrabalhoAndamento.loading != 0">
     <div class="alert alert-danger" ng-show="dataFreelancerTrabalhoAndamento.erro.mensagem">
