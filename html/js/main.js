@@ -34,12 +34,18 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/cliente/assinado', {
         templateUrl: 'views/cliente/trabalho-assinado.html',
         controller: 'ClienteTrabalhoAssinadoController'
+    }).when('/cliente/analise', {
+        templateUrl: 'views/cliente/trabalho-analise.html',
+        controller: 'ClienteTrabalhoAnaliseController'
     }).when('/cliente/concluido', {
         templateUrl: 'views/cliente/trabalho-concluido.html',
         controller: 'ClienteTrabalhoConcluidoController'
     }).when('/freelancer/disponivel', {
         templateUrl: 'views/freelancer/trabalho-disponivel.html',
         controller: 'FreelancerTrabalhoDisponivelController'
+    }).when('/freelancer/analise', {
+        templateUrl: 'views/freelancer/trabalho-analise.html',
+        controller: 'FreelancerTrabalhoAnaliseController'
     }).when('/freelancer/andamento', {
         templateUrl: 'views/freelancer/trabalho-andamento.html',
         controller: 'FreelancerTrabalhoAndamentoController'

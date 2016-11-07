@@ -2,8 +2,10 @@ app.factory('TrabalhoClienteService', function($http) {
     var urAbertos = "/php/cliente/trabalho-aberto.php";
     var urlAssinados = "/php/cliente/trabalho-assinado.php";
     var urlConcluidos = "/php/cliente/trabalho-concluido.php";
+    var urlAnalise = "/php/cliente/trabalho-analise.php";
     var urlCadastraTrabalho = "/php/cliente/criar-trabalho.php";
     var urlRemoverTrabalho = "/php/cliente/remover-trabalho.php";
+    var urlConcluiTrabalho = "/php/cliente/concluir-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
     
     
@@ -35,6 +37,16 @@ app.factory('TrabalhoClienteService', function($http) {
             });
     }
     
+    var getAnalise = function(filtro) {
+        return $http.post(urlAnalise, {filtro: filtro}).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
+            });
+    }
+    
     var cadastrarTrabalho = function(trabalho) {
         return $http.post(urlCadastraTrabalho, trabalho).then(
             function sucesso(respostaServidor) {
@@ -53,14 +65,26 @@ app.factory('TrabalhoClienteService', function($http) {
             function erro(respostaServidor) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com o servidor"};
             });
-    };
+    }
+    
+    var conclui = function(trabalho) {
+        return $http.post(urlConcluiTrabalho, trabalho).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com o servidor"};
+            });
+    };;
     
     
     return {
         getAbertos: getAbertos,
         getAssinados: getAssinados,
         getConcluidos: getConcluidos,
+        getAnalise: getAnalise,
         cadastrarTrabalho: cadastrarTrabalho,
-        removerTrabalho: removerTrabalho
+        removerTrabalho: removerTrabalho,
+        conclui: conclui
     };
 });

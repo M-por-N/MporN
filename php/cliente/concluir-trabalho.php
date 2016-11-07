@@ -5,22 +5,11 @@ require_once("../vendor/autoload.php");
 require_once("../config.php");
 include("../recebe-jwt.php");
 $input = @json_decode(file_get_contents("php://input"));
+
+
 $id = $token->data->id;
-$situacao = 2;
-$nova_situacao = 3;
-
-/*Area de testes*
-    $input = array("id"=>9);
-    $input = (object) $input;
-    $id = 4;
-/**/
-
-
-if($input == null or !isset($input->id)) {
-    echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
-    exit;
-}
-
+$trab = $input->trabalho;
+$nova_situacao = $input->situacao;
 
 
 try{
@@ -29,13 +18,12 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE trabalho SET situacao = :nova_situacao WHERE id_cliente = :id_cliente AND situacao = :situacao AND id = :id';
+    $query = 'UPDATE trabalho SET situacao = :nova_situacao WHERE id_cliente = :id_cliente AND id = :id';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':nova_situacao',$nova_situacao, PDO::PARAM_INT);
     $stmt->bindParam(':id_cliente', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':situacao', $situacao, PDO::PARAM_INT);
-    $stmt->bindParam(':id', $input->id, PDO::PARAM_INT);
+    $stmt->bindParam(':id', $trab, PDO::PARAM_INT);
     
     $result = $stmt->execute();
     

@@ -37,8 +37,9 @@ th {
                         Descrição do Trabalho - {{trabalho.descricao}} </br>
                         Nome do Freelancer - {{trabalho.freelancerNome}} </br>
                         E-mail - {{trabalho.email}} </br>
+                        Situacao - {{trabalho.situacao}}</br>
                         </br>
-                        
+                        <p ng-show="trabalho.situacao == 1"><strong>Aguardando o freelancer terminar...</strong></p>
                         <button ng-show="trabalho.situacao == 2" type="button" class="btn btn-primary" ng-click="concluirTrabalho(trabalho)">Concluir Trabalho</button>
                     </div>
                 </td>

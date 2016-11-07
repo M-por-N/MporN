@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAssinadoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService) {
+app.controller("ClienteTrabalhoAssinadoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, toastr) {
     $scope.dataClienteTrabalhoAssinado = {
         loading: 0,
         dados: []
@@ -14,4 +14,5 @@ app.controller("ClienteTrabalhoAssinadoController", function($scope, $location, 
             $scope.dataClienteTrabalhoAssinado.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
         }
     });
+    
 })

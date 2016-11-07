@@ -2,6 +2,7 @@ app.factory('TrabalhoFreelancerService', function($http) {
     var urlDisponiveis = "/php/freelancer/trabalho-disponivel.php";
     var urlAndamento = "/php/freelancer/trabalho-andamento.php";
     var urlConcluido = "/php/freelancer/trabalho-concluido.php";
+    var urlAnalise = "/php/freelancer/trabalho-analise.php";
     var urlAltera = "/php/freelancer/altera-trabalho.php";
     var urlConclui = "/php/freelancer/concluir-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
@@ -25,6 +26,7 @@ app.factory('TrabalhoFreelancerService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     }
+    
     var getConcluido = function(filtro) {
         return $http.post(urlConcluido, {filtro: filtro}).then(
             function sucesso(respostaServidor) {
@@ -34,6 +36,17 @@ app.factory('TrabalhoFreelancerService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     }
+    
+    var getAnalise = function(filtro) {
+        return $http.post(urlAnalise, {filtro: filtro}).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
+            });
+    }
+    
     var altera = function(modificacoes) {
         return $http.post(urlAltera, modificacoes).then(
             function sucesso(respostaServidor) {
@@ -59,6 +72,7 @@ app.factory('TrabalhoFreelancerService', function($http) {
         getDisponiveis: getDisponiveis,
         getAndamento: getAndamento,
         getConcluido: getConcluido,
+        getAnalise: getAnalise,
         altera: altera,
         conclui: conclui
     };
