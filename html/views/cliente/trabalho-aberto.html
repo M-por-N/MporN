@@ -14,7 +14,14 @@ th {
     <div class="alert alert-danger" ng-show="dataClienteTrabalhoAberto.erro.mensagem">
         <span>{{dataClienteTrabalhoAberto.erro.mensagem}}</span>
     </div>
+    
+    
+    <p>Buscar <input type="text" ng-model="trabalho"></p>
+    
     <div class="panel panel-default">
+        
+        
+        
         <table class="table">
             <tr>
                 <th>Nome</th>
@@ -22,10 +29,10 @@ th {
                 <th>Nome Plano</th>
                 <th>Ações</th>
             </tr>
-            <tr ng-repeat="trabalho in dataClienteTrabalhoAberto.dados">
-                <td>{{trabalho.nome}}</td>
-                <td>{{trabalho.descricao}}</td>
+            <tr ng-repeat="trabalho in dataClienteTrabalhoAberto.dados | filter:trabalho">
                 <td>{{trabalho.trabalhoNome}}</td>
+                <td>{{trabalho.descricao}}</td>
+                <td>{{trabalho.planoNome}}</td>
                 <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removerTrabalho(trabalho)">
                       <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
                         </button></td>

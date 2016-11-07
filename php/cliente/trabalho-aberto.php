@@ -14,7 +14,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.id, t.nome, t.descricao, p.nome as trabalhoNome FROM trabalho t inner join planos p on t.plano=p.id  WHERE t.id_cliente = :cliente AND t.situacao = 0');
+    $stmt = $pdo->prepare('SELECT t.id, t.nome as trabalhoNome, t.descricao, p.nome as planoNome FROM trabalho t inner join planos p on t.plano=p.id  WHERE t.id_cliente = :cliente AND t.situacao = 0');
     $stmt->bindValue(':cliente', $id, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros

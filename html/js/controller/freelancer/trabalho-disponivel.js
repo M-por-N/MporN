@@ -22,29 +22,30 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
 
     $scope.associarTrabalho = function(trabalho) {
 
-     
-        
-        $scope.params = {
-            trabalho: trabalho.id,
-            situacao: 1
-        };
+        var r = confirm("Você deseja mesmo associar?");
 
-        var resposta = TrabalhoFreelancerService.altera($scope.params);
-        resposta.then(function(data) {
-            if (data.resultado == true) {
+        if (r == true) {
 
-                var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
-                $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);  
-                toastr.success("Associado com sucesso");
+            $scope.params = {
+                trabalho: trabalho.id,
+                situacao: 1
+            };
 
-            }
-            else {
-                $scope.dataFreelancerTrabalhoDisponivel.erro.mensagem = "Erro na Associação: " + data.mensagem;
-                toastr.error("Error - Favor entrar em contato");
-            }
-        });
+            var resposta = TrabalhoFreelancerService.altera($scope.params);
+            resposta.then(function(data) {
+                if (data.resultado == true) {
+
+                    var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
+                    $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);
+                    toastr.success("Associado com sucesso");
+
+                }
+                else {
+                    $scope.dataFreelancerTrabalhoDisponivel.erro.mensagem = "Erro na Associação: " + data.mensagem;
+                    toastr.error("Error - Favor entrar em contato");
+                }
+            });
+
+        }
     };
 })
-
-
-
