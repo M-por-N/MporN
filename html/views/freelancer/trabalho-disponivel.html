@@ -17,10 +17,12 @@ th {
     <div class="panel panel-default">
         <table class="table table-condensed" style="border-collapse:collapse;">
             <tr>
+                <th></th>
                 <th>Nome</th>
                 <th>Descrição</th>
             </tr>
             <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoDisponivel.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}">  <span class="glyphicon glyphicon-plus"></span></a></td>
                 <td>{{trabalho.nome}}</td>
                 <td>{{trabalho.descricao}}</td>
             </tr>
@@ -33,7 +35,7 @@ th {
                         Nome do Cliente - {{trabalho.nomeCliente}} </br>
                         E-mail - {{trabalho.email}} </br>
                         </br>
-                        <button type="button" class="btn btn-warning" ng-click="associarTrabalho(trabalho.id)">Associar</button>
+                        <button type="button" class="btn btn-warning" ng-click="associarTrabalho(trabalho)">Associar</button>
                     </div>
                 </td>
             </tr>

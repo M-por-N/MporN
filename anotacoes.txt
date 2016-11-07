@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/15453979/how-do-i-delete-an-item-or-object-from-an-array-using-ng-click
+
+http://www.w3schools.com/angular/tryit.asp?filename=try_ng_filters_input

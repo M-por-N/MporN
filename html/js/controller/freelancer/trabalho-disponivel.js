@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoDisponivelController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService) {
+app.controller("FreelancerTrabalhoDisponivelController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
     $scope.dataFreelancerTrabalhoDisponivel = {
         loading: 0,
         dados: [],
@@ -20,12 +20,12 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
         }
     });
 
-    $scope.associarTrabalho = function(id) {
+    $scope.associarTrabalho = function(trabalho) {
 
-        $scope.dataFreelancerTrabalhoDisponivel.loading += 1;
+     
         
         $scope.params = {
-            trabalho: id,
+            trabalho: trabalho.id,
             situacao: 1
         };
 
@@ -33,12 +33,18 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
         resposta.then(function(data) {
             if (data.resultado == true) {
 
-                $window.location.reload();
+                var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
+                $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);  
+                toastr.success("Associado com sucesso");
+
             }
             else {
                 $scope.dataFreelancerTrabalhoDisponivel.erro.mensagem = "Erro na Associação: " + data.mensagem;
-
+                toastr.error("Error - Favor entrar em contato");
             }
         });
     };
 })
+
+
+

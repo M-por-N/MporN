@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService) {
+app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr) {
     $scope.dataClienteTrabalhoAberto = {
         loading: 0,
         dados: [],
@@ -18,30 +18,28 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
         }
     });
 
-
-    $scope.removerTrabalho = function(id) {
-
-        
+    $scope.removerTrabalho = function(trabalho) {
 
         var r = confirm("Você deseja mesmo remover?");
 
         if (r == true) {
-            
-            $scope.dataClienteTrabalhoAberto.loading += 1;
-            
+
+
             $scope.params = {
-                trabalho: id
+                trabalho: trabalho.id
             };
 
             var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
             resposta.then(function(data) {
                 if (data.resultado == true) {
 
-                    $window.location.reload();
+                    var index = $scope.dataClienteTrabalhoAberto.dados.indexOf(trabalho);
+                    $scope.dataClienteTrabalhoAberto.dados.splice(index, 1);
+                    toastr.success("Trabalho removido com sucesso");
                 }
                 else {
                     $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro no Remover: " + data.mensagem;
-
+                    toastr.error("Error");
                 }
             });
 

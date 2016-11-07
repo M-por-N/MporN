@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService) {
+app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
     $scope.dataFreelancerTrabalhoAndamento = {
         loading: 0,
         dados: [],
@@ -19,12 +19,12 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
     });
     
     
-    $scope.concluirTrabalho = function(id) {
+    $scope.concluirTrabalho = function(trabalho) {
 
-        $scope.dataFreelancerTrabalhoAndamento.loading += 1;
+     
         
         $scope.params = {
-            trabalho: id,
+            trabalho: trabalho.id,
             situacao: 2
         };
 
@@ -32,12 +32,16 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
         resposta.then(function(data) {
             if (data.resultado == true) {
 
-                $window.location.reload();
+                var index = $scope.dataFreelancerTrabalhoAndamento.dados.indexOf(trabalho);
+                $scope.dataFreelancerTrabalhoAndamento.dados.splice(index, 1);  
+                toastr.success("Concluido com sucesso");
             }
             else {
                 $scope.dataFreelancerTrabalhoAndamento.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
-
+                toastr.error("Error");
             }
         });
     };
 })
+
+
