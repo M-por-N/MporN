@@ -17,11 +17,13 @@ th {
     <div class="panel panel-default">
         <table class="table">
             <tr>
+                <th></th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Nome Plano</th>
             </tr>
             <tr ng-repeat-start="trabalho in dataClienteTrabalhoConcluido.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}">  <span class="glyphicon glyphicon-plus"></span></a></td>
                 <td>{{trabalho.trabalhoNome}}</td>
                 <td>{{trabalho.descricao}}</td>
                 <td>{{trabalho.planoNome}}</td>
