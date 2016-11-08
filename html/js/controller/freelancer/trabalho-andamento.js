@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
+app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr, SweetAlert) {
     $scope.dataFreelancerTrabalhoAndamento = {
         loading: 0,
         dados: [],
@@ -21,29 +21,46 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
 
     $scope.concluirTrabalho = function(trabalho) {
 
-        var r = confirm("Você deseja mesmo concluir?");
+        SweetAlert.swal({
+                title: "Você tem certeza?",
+                text: "Você irá concluir o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim, concluir agora!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
 
-        if (r == true) {
+                    $scope.params = {
+                        trabalho: trabalho.id,
+                        situacao: 2
+                    };
 
-            $scope.params = {
-                trabalho: trabalho.id,
-                situacao: 2
-            };
+                    var resposta = TrabalhoFreelancerService.conclui($scope.params);
+                    resposta.then(function(data) {
+                        if (data.resultado == true) {
 
-            var resposta = TrabalhoFreelancerService.conclui($scope.params);
-            resposta.then(function(data) {
-                if (data.resultado == true) {
+                            var index = $scope.dataFreelancerTrabalhoAndamento.dados.indexOf(trabalho);
+                            $scope.dataFreelancerTrabalhoAndamento.dados.splice(index, 1);
+                            
+                            SweetAlert.swal("Concluído!");
+                            
+                            toastr.success("Concluido com sucesso");
+                        }
+                        else {
+                            $scope.dataFreelancerTrabalhoAndamento.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
+                            toastr.error("Error");
+                        }
+                    });
 
-                    var index = $scope.dataFreelancerTrabalhoAndamento.dados.indexOf(trabalho);
-                    $scope.dataFreelancerTrabalhoAndamento.dados.splice(index, 1);
-                    toastr.success("Concluido com sucesso");
                 }
                 else {
-                    $scope.dataFreelancerTrabalhoAndamento.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
-                    toastr.error("Error");
+                    SweetAlert.swal("Ok, sem concluir!");
                 }
             });
 
-        }
     };
 })

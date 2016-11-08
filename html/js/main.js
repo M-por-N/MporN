@@ -1,4 +1,4 @@
-var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr']);
+var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr', 'oitozero.ngSweetAlert']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {

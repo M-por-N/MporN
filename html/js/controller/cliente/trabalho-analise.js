@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, toastr) {
+app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert) {
     $scope.dataClienteTrabalhoAnalise = {
         loading: 0,
         dados: []
@@ -18,29 +18,44 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
     $scope.concluirTrabalho = function(trabalho) {
 
 
-        var r = confirm("Você deseja mesmo concluir?");
+        SweetAlert.swal({
+                title: "Você tem certeza?",
+                text: "Você irá concluir o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim, concluir agora!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
 
-        if (r == true) {
+                    $scope.params = {
+                        trabalho: trabalho.id,
+                        situacao: 3
+                    };
 
-            $scope.params = {
-                trabalho: trabalho.id,
-                situacao: 3
-            };
+                    var resposta = TrabalhoClienteService.conclui($scope.params);
+                    resposta.then(function(data) {
+                        if (data.resultado == true) {
 
-            var resposta = TrabalhoClienteService.conclui($scope.params);
-            resposta.then(function(data) {
-                if (data.resultado == true) {
+                            var index = $scope.dataClienteTrabalhoAnalise.dados.indexOf(trabalho);
+                            $scope.dataClienteTrabalhoAnalise.dados.splice(index, 1);
+                            
+                            SweetAlert.swal("Concluído!");
+                            toastr.success("Concluido com sucesso");
+                        }
+                        else {
+                            $scope.dataClienteTrabalhoAnalise.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
+                            toastr.error("Error");
+                        }
+                    });
 
-                    var index = $scope.dataClienteTrabalhoAnalise.dados.indexOf(trabalho);
-                    $scope.dataClienteTrabalhoAnalise.dados.splice(index, 1);
-                    toastr.success("Concluido com sucesso");
                 }
                 else {
-                    $scope.dataClienteTrabalhoAnalise.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
-                    toastr.error("Error");
+                    SweetAlert.swal("Ok, sem concluir!");
                 }
             });
-
-        }
     };
 })

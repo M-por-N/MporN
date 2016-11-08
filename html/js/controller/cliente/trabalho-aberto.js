@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr) {
+app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert) {
     $scope.dataClienteTrabalhoAberto = {
         loading: 0,
         dados: [],
@@ -20,29 +20,46 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
 
     $scope.removerTrabalho = function(trabalho) {
 
-        var r = confirm("Você deseja mesmo remover?");
+        SweetAlert.swal({
+                title: "Você tem certeza?",
+                text: "Você irá deletar o trabalho '" + trabalho.trabalhoNome + "' do sistema. Tem certeza?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim, remover agora!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
 
-        if (r == true) {
+                    $scope.params = {
+                        trabalho: trabalho.id
+                    };
 
 
-            $scope.params = {
-                trabalho: trabalho.id
-            };
+                    var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
+                    resposta.then(function(data) {
+                        if (data.resultado == true) {
 
-            var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
-            resposta.then(function(data) {
-                if (data.resultado == true) {
-
-                    var index = $scope.dataClienteTrabalhoAberto.dados.indexOf(trabalho);
-                    $scope.dataClienteTrabalhoAberto.dados.splice(index, 1);
-                    toastr.success("Trabalho removido com sucesso");
+                            var index = $scope.dataClienteTrabalhoAberto.dados.indexOf(trabalho);
+                            $scope.dataClienteTrabalhoAberto.dados.splice(index, 1);
+                            
+                            SweetAlert.swal("Apagado!");
+                            
+                            toastr.success("Trabalho removido com sucesso");
+                        }
+                        else {
+                            $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro no Remover: " + data.mensagem;
+                            toastr.error("Error");
+                        }
+                    });
+ 
                 }
                 else {
-                    $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro no Remover: " + data.mensagem;
-                    toastr.error("Error");
+                    SweetAlert.swal("Seu trabalho está salvo!");
                 }
             });
 
-        }
     };
 })
