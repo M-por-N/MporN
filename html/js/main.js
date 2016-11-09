@@ -6,6 +6,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/inicio', {
         templateUrl: 'views/inicio.html',
         controller: 'InicioController'
+    }).when('/planos', {
+        templateUrl: 'views/planos.html',
+        controller: 'PlanosController'
     }).when('/login/freelancer', {
         templateUrl: 'views/login/freelancer.html',
         controller: 'LoginFreelancerController'

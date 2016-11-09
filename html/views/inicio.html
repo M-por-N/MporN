@@ -1,23 +1,19 @@
 <center>
+  <div>
     <img src="imgs/logo-media.png" height="512" width="512"></img><br />
-    <h1>Conectando...</h1><br />
+    <h1>MporN</h1>
+
+    <p>
+      <a href="#/login/cliente">Cliente</a> 
+      <a href="#/login/freelancer">Freelancer</a>
+      <a href="#/login/admin">Admin</a>
+    </p>
     
-    <h2>Planos Disponiveis:</h21><br />
+    <p>
+       <a href="#/mporn/sobre">Sobre</a>
+      <a href="#/planos">Planos</a>
+      
+    </p>
     
-    <!-- TODO: Tela de loading -->
-    <div ng-show="dataInicio.loading != 0">Carregando...</div>
-    <div class="row" ng-hide="dataInicio.loading != 0">
-      <div ng-repeat="plano in dataInicio.planos" class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <img src="imgs/logo-media.png" alt="plano1" height="200" width="200">
-          <div class="caption">
-            <h3>{{plano.nome}}</h3>
-            <p>Valor: R${{plano.valor}}</p>
-            <p>{{plano.descricaoCurta}}</p>
-            <p><a href="#" class="btn btn-default" role="button">Detalhes</a> <!-- TODO: Mostrar uma descrição Longa -->
-            <a href="#" class="btn btn-primary" role="button">Contratar</a></p> <!-- TODO: Redirecionar para a tela de criar projeto -->
-          </div>
-        </div>
-      </div>
-    
+  </div>
 </center>
