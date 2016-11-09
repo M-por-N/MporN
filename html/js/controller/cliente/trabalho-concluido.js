@@ -4,12 +4,12 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
         dados: []
     };
 
-    var inputOptions = new Promise(function(resolve) {
+    var inputRank = new Promise(function(resolve) {
         setTimeout(function() {
             resolve({
-                '#ff0000': 'Red',
-                '#00ff00': 'Green',
-                '#0000ff': 'Blue'
+                'Ótimo': 'Ótimo',
+                'Bom': 'Bom',
+                'Ruim': 'Ruim'
             })
         }, 2000)
     });
@@ -30,23 +30,23 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
     $scope.avaliarTrabalho = function(trabalho) {
 
         SweetAlert.swal({
-            title: 'Select color',
+            title: 'Selecione o rank do freelancer',
             input: 'radio',
-            inputOptions: inputOptions,
+            inputOptions: inputRank,
             inputValidator: function(result) {
                 return new Promise(function(resolve, reject) {
                     if (result) {
                         resolve()
                     }
                     else {
-                        reject('You need to select something!')
+                        reject('Você precisar selecionar alguma coisa!')
                     }
                 })
             }
         }).then(function(result) {
             SweetAlert.swal({
                 type: 'success',
-                html: 'You selected: ' + result
+                html: 'Você selecionou: ' + result
             })
         })
     };
