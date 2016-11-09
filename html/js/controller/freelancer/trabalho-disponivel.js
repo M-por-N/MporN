@@ -23,45 +23,41 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
     $scope.associarTrabalho = function(trabalho) {
 
         SweetAlert.swal({
-                title: "Você tem certeza?",
-                text: "Você irá associar o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Sim, associar agora!",
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm) {
-                if (isConfirm) {
+            title: "Você tem certeza?",
+            text: "Você irá associar o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, associar agora!",
+            cancelButtonText: "Cancelar"
+        }).then(function() {
 
-                    $scope.params = {
-                        trabalho: trabalho.id,
-                        situacao: 1
-                    };
+            $scope.params = {
+                trabalho: trabalho.id,
+                situacao: 1
+            };
 
-                    var resposta = TrabalhoFreelancerService.altera($scope.params);
-                    resposta.then(function(data) {
-                        if (data.resultado == true) {
+            var resposta = TrabalhoFreelancerService.altera($scope.params);
+            resposta.then(function(data) {
+                if (data.resultado == true) {
 
-                            var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
-                            $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);
-                            
-                            SweetAlert.swal("Associado!", "Trabalho associado com sucesso", "success");
-                            
-                            toastr.success("Associado com sucesso");
+                    var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
+                    $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);
 
-                        }
-                        else {
-                            $scope.dataFreelancerTrabalhoDisponivel.erro.mensagem = "Erro na Associação: " + data.mensagem;
-                            toastr.error("Error - Favor entrar em contato");
-                        }
-                    });
+                    SweetAlert.swal("Associado!", "Trabalho associado com sucesso", "success");
+
+                    toastr.success("Associado com sucesso");
+
                 }
                 else {
-                    SweetAlert.swal("Ok, sem associar!");
+                    $scope.dataFreelancerTrabalhoDisponivel.erro.mensagem = "Erro na Associação: " + data.mensagem;
+                    toastr.error("Error - Favor entrar em contato");
                 }
             });
+        }, function(dismiss) {
+
+            SweetAlert.swal("Ok, sem associar!");
+
+        });
     };
 })
