@@ -25,6 +25,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Sim, concluir agora!",
+                cancelButtonText: "Cancelar",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -42,8 +43,8 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
                             var index = $scope.dataClienteTrabalhoAnalise.dados.indexOf(trabalho);
                             $scope.dataClienteTrabalhoAnalise.dados.splice(index, 1);
-                            
-                            SweetAlert.swal("Concluído!");
+
+                            SweetAlert.swal("Concluído!", "Trabalho concluído com sucesso", "success");
                             toastr.success("Concluido com sucesso");
                         }
                         else {
@@ -55,6 +56,51 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
                 }
                 else {
                     SweetAlert.swal("Ok, sem concluir!");
+                }
+            });
+    };
+
+    $scope.devolverTrabalho = function(trabalho) {
+
+        SweetAlert.swal({
+                title: "Você tem certeza?",
+                text: "Você irá devolver o trabalho '" + trabalho.trabalhoNome + "' para o freelancer. Tem certeza?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim, devolver agora!",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+
+                    $scope.params = {
+                        trabalho: trabalho.id,
+                        situacao: 1
+                    };
+
+                    var resposta = TrabalhoClienteService.devolver($scope.params);
+                    resposta.then(function(data) {
+                        if (data.resultado == true) {
+
+                            var index = $scope.dataClienteTrabalhoAnalise.dados.indexOf(trabalho);
+                            $scope.dataClienteTrabalhoAnalise.dados.splice(index, 1);
+
+                            SweetAlert.swal("Devolvido!", "Trabalho devolvido com sucesso", "success");
+                            toastr.success("Devolvido com sucesso");
+                        }
+                        else {
+                            $scope.dataClienteTrabalhoAnalise.erro.mensagem = "Erro na Conclusão: " + data.mensagem;
+                            toastr.error("Error");
+                        }
+                    });
+
+                }
+
+                else {
+                    SweetAlert.swal("Ok, sem devolver!");
                 }
             });
     };

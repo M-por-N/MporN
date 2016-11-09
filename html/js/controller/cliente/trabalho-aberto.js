@@ -27,6 +27,7 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Sim, remover agora!",
+                cancelButtonText: "Cancelar",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -45,7 +46,7 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
                             var index = $scope.dataClienteTrabalhoAberto.dados.indexOf(trabalho);
                             $scope.dataClienteTrabalhoAberto.dados.splice(index, 1);
                             
-                            SweetAlert.swal("Apagado!");
+                            SweetAlert.swal("Removido!", "Trabalho removido com sucesso.", "success");
                             
                             toastr.success("Trabalho removido com sucesso");
                         }

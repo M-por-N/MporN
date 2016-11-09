@@ -28,6 +28,7 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Sim, concluir agora!",
+                cancelButtonText: "Cancelar",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -46,7 +47,7 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
                             var index = $scope.dataFreelancerTrabalhoAndamento.dados.indexOf(trabalho);
                             $scope.dataFreelancerTrabalhoAndamento.dados.splice(index, 1);
                             
-                            SweetAlert.swal("Concluído!");
+                            SweetAlert.swal("Concluído!", "Trabalho foi concluido som sucesso", "success");
                             
                             toastr.success("Concluido com sucesso");
                         }

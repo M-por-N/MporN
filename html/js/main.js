@@ -12,6 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/login/cliente', {
         templateUrl: 'views/login/cliente.html',
         controller: 'LoginClienteController'
+    }).when('/login/admin', {
+        templateUrl: 'views/login/admin.html',
+        controller: 'LoginAdminController'
     }).when('/cadastro/freelancer', {
         templateUrl: 'views/cadastro/freelancer.html',
         controller: 'CadastroFreelancerController'
@@ -55,6 +58,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/freelancer/dados', {
         templateUrl: 'views/freelancer/dados.html',
         controller: 'FreelancerDadosController'
+    }).when('/mporn/sobre', {
+        templateUrl: 'views/mporn/sobre.html',
+        controller: 'SobreController'
     }).otherwise({
         redirectTo: '/'
     });

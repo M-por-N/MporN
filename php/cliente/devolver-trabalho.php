@@ -4,11 +4,12 @@ use \Firebase\JWT\JWT;
 require_once("../vendor/autoload.php");
 require_once("../config.php");
 include("../recebe-jwt.php");
-
-
 $input = @json_decode(file_get_contents("php://input"));
 
+
 $id = $token->data->id;
+$trab = $input->trabalho;
+$nova_situacao = $input->situacao;
 
 
 try{
@@ -17,16 +18,16 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-  
-    $sql = "DELETE FROM trabalho where id = :id and id_cliente = :id_cliente ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
-    $stmt->bindValue(':id', $input->trabalho, PDO::PARAM_INT);
+    $query = 'UPDATE trabalho SET situacao = :nova_situacao WHERE id_cliente = :id_cliente AND id = :id';
     
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':nova_situacao',$nova_situacao, PDO::PARAM_INT);
+    $stmt->bindParam(':id_cliente', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':id', $trab, PDO::PARAM_INT);
     
     $result = $stmt->execute();
     
-    //$stmt->commit();
+   
     
     if(!$result){
         //TODO: Enviar a mensagem de erro retornada pelo PDO
@@ -37,10 +38,10 @@ try{
     }
     
 } catch (PDOException $e) {
-    //TODO: Enviar a mensagem de erro retornada pelo PDO
-    echo json_encode(['resultado' => false, 'mensagem' => 'Erro no Banco de Dados']);
+        //TODO: Enviar a mensagem de erro retornada pelo PDO
+        echo json_encode(['resultado' => false, 'mensagem' => "Não foi possivel alterar a situação do trabalho"]);
 }
 
-$conn = null;
+$pdo = null;
 
 exit;

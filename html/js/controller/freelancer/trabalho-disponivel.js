@@ -29,6 +29,7 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Sim, associar agora!",
+                cancelButtonText: "Cancelar",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -47,7 +48,7 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
                             var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
                             $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);
                             
-                            SweetAlert.swal("Associado!");
+                            SweetAlert.swal("Associado!", "Trabalho associado com sucesso", "success");
                             
                             toastr.success("Associado com sucesso");
 

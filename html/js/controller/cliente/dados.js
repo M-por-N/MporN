@@ -1,4 +1,4 @@
-app.controller("ClienteDadosController", function($scope, $location, store, jwtHelper, ClienteService) {
+app.controller("ClienteDadosController", function($scope, $location, store, jwtHelper, ClienteService, toastr) {
     $scope.dataCliente = {
         loading: 0,
         erro: {
@@ -63,6 +63,7 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         ClienteService.setDados($scope.dataCliente.dados).then(function(data) {
             if (data.resultado) {
                 $location.path('/cliente/aberto');
+                toastr.success("Dados alterados com sucesso!");
                 $scope.dataCliente.loading = 0;
             } else {
                 $scope.dataCliente.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
