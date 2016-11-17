@@ -18,7 +18,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE trabalho SET situacao = :nova_situacao WHERE id_cliente = :id_cliente AND id = :id';
+    $query = 'UPDATE trabalho SET id_situacao = :nova_situacao WHERE id_cliente = :id_cliente AND id = :id';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':nova_situacao',$nova_situacao, PDO::PARAM_INT);

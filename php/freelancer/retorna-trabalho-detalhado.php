@@ -26,7 +26,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT id, nome, plano, descricao,detalhado from trabalho where id_freelancer = :id_freelancer AND id = :id');
+    $stmt = $pdo->prepare('SELECT id, nome, id_plano, descricao,detalhado from trabalho where id_freelancer = :id_freelancer AND id = :id');
     $stmt->bindValue(':id_freelancer', $id, PDO::PARAM_INT);
     $stmt->bindValue(':id',$input->id,PDO::PARAM_INT);
     $stmt->execute();

@@ -31,7 +31,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
                     $scope.params = {
                         trabalho: trabalho.id,
-                        situacao: 3
+                        situacao: 4
                     };
 
                     var resposta = TrabalhoClienteService.conclui($scope.params);
@@ -72,7 +72,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
             $scope.params = {
                 trabalho: trabalho.id,
-                situacao: 1
+                situacao: 2
             };
 
             var resposta = TrabalhoClienteService.devolver($scope.params);

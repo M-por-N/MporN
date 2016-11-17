@@ -32,7 +32,7 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
         }).then(function() {
             $scope.params = {
                 trabalho: trabalho.id,
-                situacao: 2
+                situacao: 3
             };
 
             var resposta = TrabalhoFreelancerService.conclui($scope.params);

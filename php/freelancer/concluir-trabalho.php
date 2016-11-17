@@ -24,7 +24,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE trabalho SET situacao = :situacao';
+    $query = 'UPDATE trabalho SET id_situacao = :situacao';
     $query .= ' where id_freelancer= :id_freelancer ';
     $query .= ' and id = :id';
     

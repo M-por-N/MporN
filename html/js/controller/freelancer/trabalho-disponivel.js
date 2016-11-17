@@ -34,7 +34,7 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
 
             $scope.params = {
                 trabalho: trabalho.id,
-                situacao: 1
+                situacao: 2
             };
 
             var resposta = TrabalhoFreelancerService.altera($scope.params);
