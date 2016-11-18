@@ -7,16 +7,26 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
         }
     };
 
-    $scope.dataClienteTrabalhoAberto.loading += 1;
-    TrabalhoClienteService.getAbertos().then(function(data) {
-        if (data.trabalhos) {
-            $scope.dataClienteTrabalhoAberto.dados = data.trabalhos;
-            $scope.dataClienteTrabalhoAberto.loading = 0;
-        }
-        else {
-            $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-        }
-    });
+
+    $scope.pesquisarAberto = function() {
+
+        $scope.filtro = {
+            situacao: 1
+        };
+
+        $scope.dataClienteTrabalhoAberto.loading += 1;
+        TrabalhoClienteService.getTrabalhos($scope.filtro).then(function(data) {
+            if (data.trabalhos) {
+                $scope.dataClienteTrabalhoAberto.dados = data.trabalhos;
+                $scope.dataClienteTrabalhoAberto.loading -= 1;
+            }
+            else {
+                $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
+            }
+        });
+    };
+    
+    $scope.pesquisarAberto();
 
     $scope.removerTrabalho = function(trabalho) {
 

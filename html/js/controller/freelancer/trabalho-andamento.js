@@ -7,16 +7,25 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
         }
     };
 
-    $scope.dataFreelancerTrabalhoAndamento.loading += 1;
-    TrabalhoFreelancerService.getAndamento().then(function(data) {
-        if (data.trabalhos) {
-            $scope.dataFreelancerTrabalhoAndamento.dados = data.trabalhos
-            $scope.dataFreelancerTrabalhoAndamento.loading = 0;
-        }
-        else {
-            $scope.dataFreelancerTrabalhoAndamento.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-        }
-    });
+    $scope.pesquisarAndamento = function() {
+
+        $scope.filtro = {
+            situacao: 2
+        };
+
+        $scope.dataFreelancerTrabalhoAndamento.loading += 1;
+        TrabalhoFreelancerService.getTrabalhos($scope.filtro).then(function(data) {
+            if (data.trabalhos) {
+                $scope.dataFreelancerTrabalhoAndamento.dados = data.trabalhos;
+                $scope.dataFreelancerTrabalhoAndamento.loading -= 1;
+            }
+            else {
+                $scope.dataFreelancerTrabalhoAndamento.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
+            }
+        });
+    };
+
+    $scope.pesquisarAndamento();
 
 
     $scope.concluirTrabalho = function(trabalho) {

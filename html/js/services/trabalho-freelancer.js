@@ -1,8 +1,6 @@
 app.factory('TrabalhoFreelancerService', function($http) {
     var urlDisponiveis = "/php/freelancer/trabalho-disponivel.php";
-    var urlAndamento = "/php/freelancer/trabalho-andamento.php";
-    var urlConcluido = "/php/freelancer/trabalho-concluido.php";
-    var urlAnalise = "/php/freelancer/trabalho-analise.php";
+    var urlTrabalhos = "/php/freelancer/retorna-trabalho.php";
     var urlAltera = "/php/freelancer/altera-trabalho.php";
     var urlConclui = "/php/freelancer/concluir-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
@@ -17,28 +15,11 @@ app.factory('TrabalhoFreelancerService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     }
-    var getAndamento = function(filtro) {
-        return $http.post(urlAndamento, {filtro: filtro}).then(
-            function sucesso(respostaServidor) {
-                return respostaServidor.data;
-            },
-            function erro(respostaServidor) {
-                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
-            });
-    }
     
-    var getConcluido = function(filtro) {
-        return $http.post(urlConcluido, {filtro: filtro}).then(
-            function sucesso(respostaServidor) {
-                return respostaServidor.data;
-            },
-            function erro(respostaServidor) {
-                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
-            });
-    }
     
-    var getAnalise = function(filtro) {
-        return $http.post(urlAnalise, {filtro: filtro}).then(
+    
+    var getTrabalhos = function(filtro) {
+        return $http.post(urlTrabalhos, filtro).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -70,9 +51,7 @@ app.factory('TrabalhoFreelancerService', function($http) {
     
     return {
         getDisponiveis: getDisponiveis,
-        getAndamento: getAndamento,
-        getConcluido: getConcluido,
-        getAnalise: getAnalise,
+        getTrabalhos: getTrabalhos,
         altera: altera,
         conclui: conclui
     };

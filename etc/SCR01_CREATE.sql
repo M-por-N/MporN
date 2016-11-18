@@ -1,3 +1,5 @@
+use mporn;
+
 -- CREATE FREELANCER_ESPECIALIDADE
 DROP TABLE IF EXISTS freelancer_especialidade;
 
@@ -16,15 +18,18 @@ DROP TABLE IF EXISTS trabalho;
 CREATE TABLE trabalho (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   nome varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  id_plano int(10) unsigned NOT NULL,
   descricao varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  detalhado varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  id_plano int(10) unsigned NOT NULL,
   id_cliente int(10) unsigned NOT NULL,
   id_freelancer int(10) unsigned DEFAULT NULL,
   id_situacao int(10) unsigned NOT NULL,
-  detalhado varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  id_avaliacao int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (id),
   KEY id_cliente (id_cliente),
-  KEY id_freelancer (id_freelancer)
+  KEY id_freelancer (id_freelancer),
+  KEY id_plano (id_plano),
+  KEY id_avaliacao (id_avaliacao)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -88,8 +93,14 @@ CREATE TABLE situacao (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+-- CREATE AVALIACAO
+DROP TABLE IF EXISTS avaliacao;
 
-
+CREATE TABLE avaliacao (
+ id int(10) unsigned NOT NULL AUTO_INCREMENT,
+ descricao varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+ PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 

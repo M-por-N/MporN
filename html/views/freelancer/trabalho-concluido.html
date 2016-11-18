@@ -24,19 +24,21 @@ th {
             <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoConcluido.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle"
                 ng-init="trabalho.isOpen = false" ng-click="trabalho.isOpen = !trabalho.isOpen">
                 <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}">  <span class="glyphicon glyphicon-plus"></span></a></td>
-                <td>{{trabalho.nome}}</td>
+                <td>{{trabalho.trabalhoNome}}</td>
                 <td>{{trabalho.descricao}}</td>
             </tr>
             <tr ng-repeat-end>
                 <td ng-if="trabalho.isOpen" colspan="6" class="hiddenRow">
                     <div class="accordian-body collapse" id="demo{{$index}}">
-                        Nome do Trabalho - {{trabalho.nome}} </br>
+                        Nome do Trabalho - {{trabalho.trabalhoNome}} </br>
                         Nome do Plano - {{trabalho.planoNome}} </br>
                         Descrição do Trabalho - {{trabalho.descricao}} </br>
-                        Nome do Cliente - {{trabalho.nomeCliente}} </br>
+                        Nome do Cliente - {{trabalho.clienteNome}} </br>
                         E-mail - {{trabalho.email}} </br>
+                        Situacao - {{trabalho.situacaoNome}} </br>
                         </br>
-                    
+                        <p ng-show="trabalho.avaliacaoNome != null"><strong>Avaliação - {{trabalho.avaliacaoNome}}</strong></p>
+                        <p ng-show="trabalho.avaliacaoNome == null"><strong>Aguardando avaliação...</strong></p>
                     </div>
                 </td>
             </tr>

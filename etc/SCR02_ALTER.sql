@@ -1,3 +1,5 @@
+use mporn;
+
 -- Chave estrangeira de freelancer
 ALTER TABLE freelancer_especialidade
     ADD CONSTRAINT freelancer_especialidade_ibfk_1 FOREIGN KEY (id_freelancer) REFERENCES freelancer (id) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -18,6 +20,10 @@ ALTER TABLE trabalho
 ALTER TABLE trabalho
     ADD CONSTRAINT trabalho_ibfk_3 FOREIGN KEY (id_plano) REFERENCES plano (id) ON DELETE CASCADE ON UPDATE CASCADE;
     
--- Chave estrangeira de plano    
+-- Chave estrangeira de situacao    
 ALTER TABLE trabalho
     ADD CONSTRAINT trabalho_ibfk_4 FOREIGN KEY (id_situacao) REFERENCES situacao (id) ON DELETE CASCADE ON UPDATE CASCADE;
+    
+-- Chave estrangeira de avaliacao   
+ALTER TABLE trabalho
+    ADD CONSTRAINT trabalho_ibfk_5 FOREIGN KEY (id_avaliacao) REFERENCES avaliacao (id) ON DELETE CASCADE ON UPDATE CASCADE;

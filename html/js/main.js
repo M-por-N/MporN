@@ -24,6 +24,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/cadastro/cliente', {
         templateUrl: 'views/cadastro/cliente.html',
         controller: 'CadastroClienteController'
+    }).when('/cadastro/admin', {
+        templateUrl: 'views/cadastro/admin.html',
+        controller: 'CadastroAdminController'
     }).when('/freelancer', {
         redirectTo: '/freelancer/disponivel'
     }).when('/cliente', {

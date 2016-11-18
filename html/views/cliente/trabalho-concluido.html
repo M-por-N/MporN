@@ -37,9 +37,10 @@ th {
                         Descrição do Trabalho - {{trabalho.descricao}} </br>
                         Nome do Freelancer - {{trabalho.freelancerNome}} </br>
                         E-mail - {{trabalho.email}} </br>
-                        Situacao - {{trabalho.situacao}}</br>
+                        Situacao - {{trabalho.situacaoNome}}</br>
                         </br>
-                        <button type="button" class="btn btn-primary" ng-click="avaliarTrabalho(trabalho)">Avaliar Trabalho</button>
+                        <p ng-show="trabalho.avaliacaoNome != null">Avaliação - {{trabalho.avaliacaoNome}}</p>
+                        <button type="button" ng-show="trabalho.avaliacaoNome == null" class="btn btn-primary" ng-click="avaliarTrabalho(trabalho)">Avaliar Trabalho</button>
                     </div>
                 </td>
             </tr>
