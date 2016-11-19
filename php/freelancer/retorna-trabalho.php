@@ -22,10 +22,10 @@ try{
                            left join freelancer f on t.id_freelancer = f.id 
                            left join avaliacao a on t.id_avaliacao = a.id
                            inner join situacao s on t.id_situacao = s.id
-                           WHERE t.id_cliente = :cliente 
+                           WHERE t.id_freelancer = :freelancer 
                            AND t.id_situacao in (:situacao)
                            order by t.id_situacao desc');
-    $stmt->bindValue(':cliente', $id, PDO::PARAM_INT);
+    $stmt->bindValue(':freelancer', $id, PDO::PARAM_INT);
     $stmt->bindValue(':situacao', $situacao, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros

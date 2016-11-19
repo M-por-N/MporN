@@ -1,4 +1,4 @@
-app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, PlanoService) {
+app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, PlanoService, toastr) {
     $scope.dataClienteCriarTrabalho = {
         erro: {
                 mensagem: null,
@@ -58,6 +58,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
             if(data.resultado == true) {
                 $scope.dataClienteCriarTrabalho.loading -= 1;
                 $location.path('/cliente/aberto');
+                toastr.success("Trabalho criado com sucesso!");
             } else {
                 $scope.dataClienteCriarTrabalho.erro.mensagem = "Erro no Cadastro: " + data.mensagem;
                 $scope.dataClienteCriarTrabalho.loading -= 1;

@@ -12,6 +12,7 @@
         <li ng-class="{'active' : isTelaAtiva('/freelancer/analise')}"><a ng-href="#/freelancer/analise">Em análise</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/concluido')}"><a ng-href="#/freelancer/concluido">Trabalhos Concluídos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/dados')}"><a ng-href="#/freelancer/dados">Alterar Info</a></li>
+        
       </ul>
       
       <ul class="nav navbar-nav" ng-show="getTelaAtiva().startsWith('/cliente/')">
@@ -21,10 +22,14 @@
         <li ng-class="{'active' : isTelaAtiva('/cliente/analise')}"><a ng-href="#/cliente/analise">Em análise</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/concluido')}"><a ng-href="#/cliente/concluido">Trabalho Concluido</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/dados')}"><a ng-href="#/cliente/dados">Alterar Info</a></li>
-        
+    
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
+        
+        <li  ng-hide="getTelaAtiva().startsWith('/freelancer/') || getTelaAtiva().startsWith('/cliente/') || getTelaAtiva().startsWith('/admin/')" ng-class="{'active' : isTelaAtiva('/planos')}"><a ng-href="#/planos">Planos</a></li>
+         <li  ng-hide="getTelaAtiva().startsWith('/freelancer/') || getTelaAtiva().startsWith('/cliente/') || getTelaAtiva().startsWith('/admin/')" ng-class="{'active' : isTelaAtiva('/mporn/sobre')}"><a ng-href="#/mporn/sobre">Sobre</a></li>
+       
         <!-- TODO: colocar em class "active" quando estiver em sua pagina -->
         <li class="dropdown" ng-class="{open: dataBarraSuperior.dropDownLogin}"
           ng-hide="getTelaAtiva().startsWith('/freelancer/') || getTelaAtiva().startsWith('/cliente/') || getTelaAtiva().startsWith('/admin/')"

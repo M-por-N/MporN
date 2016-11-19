@@ -1,4 +1,4 @@
-app.controller("FreelancerDadosController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService, FreelancerService, EspecialidadeService) {
+app.controller("FreelancerDadosController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService, FreelancerService, EspecialidadeService, toastr) {
     $scope.dataFreelancer = {
         loading: 0,
         erro: {
@@ -61,6 +61,7 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
         FreelancerService.setDados($scope.dataFreelancer.dados).then(function(data) {
             if (data.resultado) {
                 $location.path('/freelancer/disponivel');
+                toastr.success("Dados alterados com sucesso!");
                 $scope.dataFreelancer.loading -= 1;
             } else {
                 $scope.dataFreelancer.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor

@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoDisponivelController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
+app.controller("FreelancerTrabalhoDisponivelController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr, SweetAlert) {
     $scope.dataFreelancerTrabalhoDisponivel = {
         loading: 0,
         dados: [],
@@ -22,13 +22,19 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
 
     $scope.associarTrabalho = function(trabalho) {
 
-        var r = confirm("Você deseja mesmo associar?");
-
-        if (r == true) {
+        SweetAlert.swal({
+            title: "Você tem certeza?",
+            text: "Você irá associar o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, associar agora!",
+            cancelButtonText: "Cancelar"
+        }).then(function() {
 
             $scope.params = {
                 trabalho: trabalho.id,
-                situacao: 1
+                situacao: 2
             };
 
             var resposta = TrabalhoFreelancerService.altera($scope.params);
@@ -37,6 +43,9 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
 
                     var index = $scope.dataFreelancerTrabalhoDisponivel.dados.indexOf(trabalho);
                     $scope.dataFreelancerTrabalhoDisponivel.dados.splice(index, 1);
+
+                    SweetAlert.swal("Associado!", "Trabalho associado com sucesso", "success");
+
                     toastr.success("Associado com sucesso");
 
                 }
@@ -45,7 +54,10 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
                     toastr.error("Error - Favor entrar em contato");
                 }
             });
+        }, function(dismiss) {
 
-        }
+            SweetAlert.swal("Ok, sem associar!");
+
+        });
     };
 })

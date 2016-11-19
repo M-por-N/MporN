@@ -1,0 +1,1 @@
+angular.forEach(lista, function(item) { outralista.push({ nome: item.nome, valor: item.valor }) }

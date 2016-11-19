@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
+app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr, SweetAlert) {
     $scope.dataFreelancerTrabalhoAndamento = {
         loading: 0,
         dados: [],
@@ -7,27 +7,41 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
         }
     };
 
-    $scope.dataFreelancerTrabalhoAndamento.loading += 1;
-    TrabalhoFreelancerService.getAndamento().then(function(data) {
-        if (data.trabalhos) {
-            $scope.dataFreelancerTrabalhoAndamento.dados = data.trabalhos
-            $scope.dataFreelancerTrabalhoAndamento.loading = 0;
-        }
-        else {
-            $scope.dataFreelancerTrabalhoAndamento.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-        }
-    });
+    $scope.pesquisarAndamento = function() {
+
+        $scope.filtro = {
+            situacao: 2
+        };
+
+        $scope.dataFreelancerTrabalhoAndamento.loading += 1;
+        TrabalhoFreelancerService.getTrabalhos($scope.filtro).then(function(data) {
+            if (data.trabalhos) {
+                $scope.dataFreelancerTrabalhoAndamento.dados = data.trabalhos;
+                $scope.dataFreelancerTrabalhoAndamento.loading -= 1;
+            }
+            else {
+                $scope.dataFreelancerTrabalhoAndamento.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
+            }
+        });
+    };
+
+    $scope.pesquisarAndamento();
 
 
     $scope.concluirTrabalho = function(trabalho) {
 
-        var r = confirm("Você deseja mesmo concluir?");
-
-        if (r == true) {
-
+        SweetAlert.swal({
+            title: "Você tem certeza?",
+            text: "Você irá concluir o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, concluir agora!",
+            cancelButtonText: "Cancelar"
+        }).then(function() {
             $scope.params = {
                 trabalho: trabalho.id,
-                situacao: 2
+                situacao: 3
             };
 
             var resposta = TrabalhoFreelancerService.conclui($scope.params);
@@ -36,6 +50,9 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
 
                     var index = $scope.dataFreelancerTrabalhoAndamento.dados.indexOf(trabalho);
                     $scope.dataFreelancerTrabalhoAndamento.dados.splice(index, 1);
+
+                    SweetAlert.swal("Concluído!", "Trabalho foi concluido som sucesso", "success");
+
                     toastr.success("Concluido com sucesso");
                 }
                 else {
@@ -44,6 +61,11 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
                 }
             });
 
-        }
+        }, function(dismiss) {
+
+            SweetAlert.swal("Ok, sem concluir!");
+
+        });
+
     };
 })

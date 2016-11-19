@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr) {
+app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert) {
     $scope.dataClienteTrabalhoAberto = {
         loading: 0,
         dados: [],
@@ -7,27 +7,44 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
         }
     };
 
-    $scope.dataClienteTrabalhoAberto.loading += 1;
-    TrabalhoClienteService.getAbertos().then(function(data) {
-        if (data.trabalhos) {
-            $scope.dataClienteTrabalhoAberto.dados = data.trabalhos;
-            $scope.dataClienteTrabalhoAberto.loading = 0;
-        }
-        else {
-            $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
-        }
-    });
+
+    $scope.pesquisarAberto = function() {
+
+        $scope.filtro = {
+            situacao: 1
+        };
+
+        $scope.dataClienteTrabalhoAberto.loading += 1;
+        TrabalhoClienteService.getTrabalhos($scope.filtro).then(function(data) {
+            if (data.trabalhos) {
+                $scope.dataClienteTrabalhoAberto.dados = data.trabalhos;
+                $scope.dataClienteTrabalhoAberto.loading -= 1;
+            }
+            else {
+                $scope.dataClienteTrabalhoAberto.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
+            }
+        });
+    };
+    
+    $scope.pesquisarAberto();
 
     $scope.removerTrabalho = function(trabalho) {
 
-        var r = confirm("Você deseja mesmo remover?");
-
-        if (r == true) {
+        SweetAlert.swal({
+            title: "Você tem certeza?",
+            text: "Você irá deletar o trabalho '" + trabalho.trabalhoNome + "' do sistema. Tem certeza?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, remover agora!",
+            cancelButtonText: "Cancelar"
+        }).then(function() {
 
 
             $scope.params = {
                 trabalho: trabalho.id
             };
+
 
             var resposta = TrabalhoClienteService.removerTrabalho($scope.params);
             resposta.then(function(data) {
@@ -35,6 +52,9 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
 
                     var index = $scope.dataClienteTrabalhoAberto.dados.indexOf(trabalho);
                     $scope.dataClienteTrabalhoAberto.dados.splice(index, 1);
+
+                    SweetAlert.swal("Removido!", "Trabalho removido com sucesso.", "success");
+
                     toastr.success("Trabalho removido com sucesso");
                 }
                 else {
@@ -43,6 +63,11 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
                 }
             });
 
-        }
+        }, function(dismiss) {
+
+            SweetAlert.swal("Seu trabalho está salvo!");
+
+        });
+
     };
 })

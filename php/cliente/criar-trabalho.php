@@ -29,7 +29,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'INSERT INTO trabalho (nome, plano, descricao, id_cliente, detalhado) VALUES (:nome, :plano, :descricao, :id_cliente, :detalhado)';
+    $query = 'INSERT INTO trabalho (nome, id_plano, descricao, id_cliente, id_situacao, detalhado) VALUES (:nome, :plano, :descricao, :id_cliente, 1, :detalhado)';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':nome',$input->nome, PDO::PARAM_STR);

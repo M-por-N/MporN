@@ -1,4 +1,4 @@
-var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr']);
+var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr', 'ngSweetAlert']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
@@ -6,18 +6,27 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/inicio', {
         templateUrl: 'views/inicio.html',
         controller: 'InicioController'
+    }).when('/planos', {
+        templateUrl: 'views/planos.html',
+        controller: 'PlanosController'
     }).when('/login/freelancer', {
         templateUrl: 'views/login/freelancer.html',
         controller: 'LoginFreelancerController'
     }).when('/login/cliente', {
         templateUrl: 'views/login/cliente.html',
         controller: 'LoginClienteController'
+    }).when('/login/admin', {
+        templateUrl: 'views/login/admin.html',
+        controller: 'LoginAdminController'
     }).when('/cadastro/freelancer', {
         templateUrl: 'views/cadastro/freelancer.html',
         controller: 'CadastroFreelancerController'
     }).when('/cadastro/cliente', {
         templateUrl: 'views/cadastro/cliente.html',
         controller: 'CadastroClienteController'
+    }).when('/cadastro/admin', {
+        templateUrl: 'views/cadastro/admin.html',
+        controller: 'CadastroAdminController'
     }).when('/freelancer', {
         redirectTo: '/freelancer/disponivel'
     }).when('/cliente', {
@@ -55,6 +64,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/freelancer/dados', {
         templateUrl: 'views/freelancer/dados.html',
         controller: 'FreelancerDadosController'
+    }).when('/mporn/sobre', {
+        templateUrl: 'views/mporn/sobre.html',
+        controller: 'SobreController'
     }).otherwise({
         redirectTo: '/'
     });

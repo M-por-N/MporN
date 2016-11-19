@@ -18,14 +18,27 @@
     
     
     <!-- AngularJS -->
+    <!-- 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script> 
+    -->
+    <script type="text/javascript" src="js/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/bower_components/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/bower_components/angular/angular-storage.js"></script>
+    <script type="text/javascript" src="js/bower_components/angular/angular-jwt.js"></script> 
+    
     
     <!-- Toastr -->
     <link rel="stylesheet" href="toastr/angular-toastr.css">
     <script src="toastr/angular-toastr.tpls.js"></script>
+    
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="css/sweet-alert.css">
+    <script type="text/javascript" src="js/bower_components/sweetalert/sweet-alert.min.js"></script> 
+    <script type="text/javascript" src="js/bower_components/sweetalert/SweetAlert.min.js"></script> 
+    
     
     <!-- Validação de CPF/CNPJ -->
     <script type="text/javascript" src="js/bower_components/cpf_cnpj/build/cpf.js"></script>
@@ -39,6 +52,7 @@
     <!-- Arquivos AngularJS -->
     <script type="text/javascript" src="js/main.js"></script>
     
+    <script type="text/javascript" src="js/services/admin.js"></script>
     <script type="text/javascript" src="js/services/login.js"></script>
     <script type="text/javascript" src="js/services/plano.js"></script>
     <script type="text/javascript" src="js/services/freelancer.js"></script>
@@ -51,12 +65,15 @@
     <script type="text/javascript" src="js/barra-superior.js"></script>
     
     <script type="text/javascript" src="js/inicio.js"></script>
+    <script type="text/javascript" src="js/planos.js"></script>
     
     <script type="text/javascript" src="js/controller/login/freelancer.js"></script>
     <script type="text/javascript" src="js/controller/login/cliente.js"></script>
+    <script type="text/javascript" src="js/controller/login/admin.js"></script>
 
     <script type="text/javascript" src="js/controller/cadastro/freelancer.js"></script>
     <script type="text/javascript" src="js/controller/cadastro/cliente.js"></script>
+    <script type="text/javascript" src="js/controller/cadastro/admin.js"></script>
     
     <script type="text/javascript" src="js/controller/freelancer/dados.js"></script>
     <script type="text/javascript" src="js/controller/freelancer/trabalho-analise.js"></script>
@@ -70,6 +87,9 @@
     <script type="text/javascript" src="js/controller/cliente/trabalho-aberto.js"></script>
     <script type="text/javascript" src="js/controller/cliente/trabalho-assinado.js"></script>
     <script type="text/javascript" src="js/controller/cliente/trabalho-concluido.js"></script>
+    
+    
+    <script type="text/javascript" src="js/controller/mporn/sobre.js"></script>
     
     
     <title>MporN</title>

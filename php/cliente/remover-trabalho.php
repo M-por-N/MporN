@@ -10,15 +10,6 @@ $input = @json_decode(file_get_contents("php://input"));
 
 $id = $token->data->id;
 
-//$trab = $input->trabalho;
-//$id = $_POST['id'];
-//$trab = $_POST['trabalho'];
-//$input = @json_decode(file_get_contents("php://input"));
-
-//if($input == null or !isset($input->trabalho)) {
-//    echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
-//    exit;
-//}
 
 try{
     $pdo = new PDO($config->bd->dsn, $config->bd->user, $config->bd->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
