@@ -24,4 +24,11 @@ app.controller("ClienteTrabalhoAssinadoController", function($scope, $location, 
 
     $scope.pesquisarAssinado();
     
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
+    
 })

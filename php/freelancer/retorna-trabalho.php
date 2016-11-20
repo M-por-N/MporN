@@ -16,11 +16,13 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.id, t.nome trabalhoNome, t.descricao, p.nome as planoNome, f.nome as freelancerNome, 
+    $stmt = $pdo->prepare('SELECT t.id, t.nome trabalhoNome, t.descricao, p.nome as planoNome, 
+                           f.nome as freelancerNome, c.nome as clienteNome,
                            f.email, t.id_situacao, a.descricao avaliacaoNome, s.nome situacaoNome
                            FROM trabalho t inner join plano p on t.id_plano=p.id 
                            left join freelancer f on t.id_freelancer = f.id 
                            left join avaliacao a on t.id_avaliacao = a.id
+                           left join cliente c on t.id_cliente = c.id
                            inner join situacao s on t.id_situacao = s.id
                            WHERE t.id_freelancer = :freelancer 
                            AND t.id_situacao in (:situacao)

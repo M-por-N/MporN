@@ -81,4 +81,11 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
 
         })
     };
+    
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
 })

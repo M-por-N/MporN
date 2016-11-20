@@ -39,6 +39,9 @@ th {
                         </br>
                         <p ng-show="trabalho.avaliacaoNome != null"><strong>Avaliação - {{trabalho.avaliacaoNome}}</strong></p>
                         <p ng-show="trabalho.avaliacaoNome == null"><strong>Aguardando avaliação...</strong></p>
+                         <button type="button" class="btn btn-primary" aria-label="Left Align" ng-click="mensagem(trabalho)">
+                                               <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem
+                                                 </button>
                     </div>
                 </td>
             </tr>

@@ -23,4 +23,10 @@ app.controller("FreelancerTrabalhoConcluidoController", function($scope, $locati
     };
 
     $scope.pesquisarConcluido();
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
 })

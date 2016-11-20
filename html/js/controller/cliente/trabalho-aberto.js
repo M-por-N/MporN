@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert) {
+app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $window, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert, MensagemService) {
     $scope.dataClienteTrabalhoAberto = {
         loading: 0,
         dados: [],
@@ -25,7 +25,7 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
             }
         });
     };
-    
+
     $scope.pesquisarAberto();
 
     $scope.removerTrabalho = function(trabalho) {
@@ -69,5 +69,12 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
 
         });
 
+    };
+
+
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
     };
 })

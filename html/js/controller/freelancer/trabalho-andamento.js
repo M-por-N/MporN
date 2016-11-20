@@ -68,4 +68,13 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
         });
 
     };
+    
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
+    
+    
 })
