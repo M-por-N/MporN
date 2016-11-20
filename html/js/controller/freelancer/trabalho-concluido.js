@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoConcluidoController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService) {
+app.controller("FreelancerTrabalhoConcluidoController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService, ModalService) {
     $scope.dataFreelancerTrabalhoConcluido = {
         loading: 0,
         dados: []
@@ -22,11 +22,22 @@ app.controller("FreelancerTrabalhoConcluidoController", function($scope, $locati
         });
     };
 
-    $scope.pesquisarConcluido();
-    
     $scope.mensagem = function(trabalho) {
 
-       alert('Em breve');
-       
+        ModalService.showModal({
+            templateUrl: "views/mensagem/mensagemModal.html",
+            controller: "ListarMensagemController",
+            inputs:{
+                trabalho: trabalho,
+                idt: 'F'
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
     };
 })

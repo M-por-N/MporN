@@ -1,3 +1,5 @@
+use mporn;
+
 -- CREATE ADMIN
 DROP TABLE IF EXISTS admin;
 

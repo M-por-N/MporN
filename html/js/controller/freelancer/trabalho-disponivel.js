@@ -61,9 +61,5 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
         });
     };
     
-    $scope.mensagem = function(trabalho) {
-
-       alert('Em breve');
-       
-    };
+    
 })

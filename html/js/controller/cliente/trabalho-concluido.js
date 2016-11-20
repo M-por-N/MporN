@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoConcluidoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, SweetAlert, toastr) {
+app.controller("ClienteTrabalhoConcluidoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, SweetAlert, toastr, ModalService) {
     $scope.dataClienteTrabalhoConcluido = {
         loading: 0,
         dados: [],
@@ -16,7 +16,7 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
         $scope.dataClienteTrabalhoConcluido.avaliacao = novaLista;
     });
 
-    
+
 
 
     $scope.pesquisarConcluido = function() {
@@ -36,7 +36,7 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
             }
         });
     };
-    
+
     $scope.pesquisarConcluido();
 
 
@@ -81,11 +81,24 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
 
         })
     };
-    
-    
+
+
     $scope.mensagem = function(trabalho) {
 
-       alert('Em breve');
-       
+        ModalService.showModal({
+            templateUrl: "views/mensagem/mensagemModal.html",
+            controller: "ListarMensagemController",
+            inputs: {
+                trabalho: trabalho,
+                idt: 'C'
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+
+            });
+        });
+
     };
 })
