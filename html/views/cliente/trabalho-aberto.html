@@ -1,27 +1,31 @@
 <style type="text/css">
-th, td {
-    border-bottom: 1px solid #ddd;
-}
-tr:hover {background-color: #f5f5f5}
-
-th {
-    background-color: #31B0D5;
-    color: white;
-}
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5
+    }
+    
+    th {
+        background-color: #31B0D5;
+        color: white;
+    }
 </style>
 <div ng-show="dataClienteTrabalhoAberto.loading != 0">loading</div>
 <div ng-hide="dataClienteTrabalhoAberto.loading != 0">
     <div class="alert alert-danger" ng-show="dataClienteTrabalhoAberto.erro.mensagem">
         <span>{{dataClienteTrabalhoAberto.erro.mensagem}}</span>
     </div>
-    
-    
+
+
     <p>Buscar <input type="text" ng-model="trabalho"></p>
-    
+
     <div class="panel panel-default">
-        
-        
-        
+
+
+
         <table class="table">
             <tr>
                 <th>Nome</th>
@@ -35,6 +39,9 @@ th {
                 <td>{{trabalho.planoNome}}</td>
                 <td><button type="button" class="btn btn-info" aria-label="Left Align" ng-click="removerTrabalho(trabalho)">
                       <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                        </button>
+                    <button type="button" class="btn btn-primary" aria-label="Left Align" ng-click="mensagem(trabalho)">
+                      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem
                         </button></td>
             </tr>
         </table>

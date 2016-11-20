@@ -107,4 +107,12 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
         });
     };
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
+    
+    
 })

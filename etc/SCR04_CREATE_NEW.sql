@@ -11,3 +11,22 @@ CREATE TABLE admin (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
+-- CREATE MENSAGEM
+DROP TABLE IF EXISTS mensagem;
+
+CREATE TABLE mensagem (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  texto varchar(400) NOT NULL,
+  id_trabalho int (10) unsigned NOT NULL,
+  datahora TIMESTAMP DEFAULT NOW() NOT NULL,
+  idtusuario varchar(1) NOT NULL,
+  PRIMARY KEY (id),
+  KEY id_trabalho (id_trabalho)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Chave estrangeira de trabalho
+ALTER TABLE mensagem
+    ADD CONSTRAINT mensagem_ibfk_1 FOREIGN KEY (id_trabalho) REFERENCES trabalho (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+

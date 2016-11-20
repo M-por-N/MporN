@@ -27,6 +27,12 @@ app.controller("FreelancerTrabalhoAnaliseController", function($scope, $location
     };
 
     $scope.pesquisarAnalise();
+    
+    $scope.mensagem = function(trabalho) {
+
+       alert('Em breve');
+       
+    };
 
 })
 
