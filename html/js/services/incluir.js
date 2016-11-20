@@ -1,12 +1,12 @@
-app.factory('ListarService', function($http) {
-    var urlListarAdmin = "/php/admin/listar-admin.php";
-    var urlListarCliente = "/php/admin/listar-cliente.php";
-    var urlListarFreelancer = "/php/admin/listar-freelancer.php";
-    var urlListarTrabalho = "/php/admin/listar-trabalho.php";
-    var urlListarPlano = "/php/admin/listar-plano.php";
-    
-    var listarAdmin = function() {
-        return $http.get(urlListarAdmin).then(
+app.factory('IncluirService', function($http) {
+    var urlIncluirAdmin = "/php/admin/incluir-admin.php";
+    var urlIncluirCliente = "/php/admin/incluir-cliente.php";
+    var urlIncluirFreelancer = "/php/admin/incluir-freelancer.php";
+    var urlIncluirPlano = "/php/admin/incluir-plano.php";
+
+
+    var incluirAdmin = function(admin) {
+        return $http.post(urlIncluirAdmin, admin).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -18,8 +18,8 @@ app.factory('ListarService', function($http) {
             });
     };
 
-    var listarCliente = function() {
-        return $http.get(urlListarCliente).then(
+    var incluirCliente = function(cliente) {
+        return $http.post(urlIncluirCliente, cliente).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -30,9 +30,9 @@ app.factory('ListarService', function($http) {
                 };
             });
     };
-    
-    var listarFreelancer = function() {
-        return $http.get(urlListarFreelancer).then(
+
+    var incluirFreelancer = function(freelancer) {
+        return $http.post(urlIncluirFreelancer, freelancer).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -43,9 +43,9 @@ app.factory('ListarService', function($http) {
                 };
             });
     };
-    
-    var listarTrabalho = function() {
-        return $http.get(urlListarTrabalho).then(
+
+    var incluirPlano = function(plano) {
+        return $http.post(urlIncluirPlano, plano).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -56,26 +56,12 @@ app.factory('ListarService', function($http) {
                 };
             });
     };
-    
-    
-    var listarPlano = function() {
-        return $http.get(urlListarPlano).then(
-            function sucesso(respostaServidor) {
-                return respostaServidor.data;
-            },
-            function erro(respostaServidor) {
-                return {
-                    resultado: false,
-                    mensagem: "Erro ao se comunicar com o servidor"
-                };
-            });
-    };
+
 
     return {
-        listarAdmin: listarAdmin,
-        listarCliente: listarCliente,
-        listarFreelancer: listarFreelancer,
-        listarTrabalho: listarTrabalho,
-        listarPlano: listarPlano
+        incluirAdmin: incluirAdmin,
+        incluirCliente: incluirCliente,
+        incluirFreelancer: incluirFreelancer,
+        incluirPlano: incluirPlano
     };
 });

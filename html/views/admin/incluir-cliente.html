@@ -1,0 +1,65 @@
+<!-- TODO: Tela de loading -->
+<div ng-show="dataClienteIncluir.loading != 0">loading</div>
+<div ng-hide="dataClienteIncluir.loading != 0">
+
+    <h1>Incluir Cliente</h1>
+
+    <form name="incluirForm" novalidate class="simple-form">
+
+        <div class="alert alert-danger" ng-show="dataClienteIncluir.erro.mensagem">
+            <span>{{dataClienteIncluir.erro.mensagem}}</span>
+        </div>
+
+        <div class="form-group row" ng-class="{'has-error': dataClienteIncluir.erro.nome.requerido || dataClienteIncluir.erro.nome.tamanho}">
+            <label for="nomeInput" class="col-md-3">Nome:</label>
+            <div class="col-md-2">
+                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataClienteIncluir.data.nome">
+                <span class="help-block" ng-show="dataClienteIncluir.erro.nome.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataClienteIncluir.erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-class="{'has-error': dataClienteIncluir.erro.email.requerido || dataClienteIncluir.erro.email.invalido}">
+            <label for="emailInput" class="col-md-3">Email:</label>
+            <div class="col-md-2">
+                <input type="email" id="emailInput" name="emailInput" class="form-control" placeholder="Email" required ng-model="dataClienteIncluir.data.email">
+                <span class="help-block" ng-show="dataClienteIncluir.erro.email.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataClienteIncluir.erro.email.invalido">Email Invalido</span>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-class="{'has-error': dataClienteIncluir.erro.cpfcnpj.requerido || dataClienteIncluir.erro.cpfcnpj.invalido}">
+            <label for="cpfcnpjInput" class="col-md-3">CPF:</label>
+            <!-- TODO: CPF/CNPJ -->
+            <div class="col-md-2">
+                <input id="cpfcnpjInput" name="cpfcnpjInput" class="form-control" required ng-cpf ui-mask="999.999.999-99" ng-model="dataClienteIncluir.data.cpfcnpj">
+                <span class="help-block" ng-show="dataClienteIncluir.erro.cpfcnpj.requerido">CPF Requerido</span>
+                <span class="help-block" ng-show="dataClienteIncluir.erro.cpfcnpj.invalido">CPF Invalido</span>
+            </div>
+        </div>
+
+
+        <div class="form-group row" ng-class="{'has-error': dataClienteIncluir.erro.senha.requerido || dataClienteIncluir.erro.senha.tamanho || dataClienteIncluir.erro.senha.difere}">
+            <label for="senhaInput" class="col-md-3">Senha:</label>
+            <div class="col-md-2">
+                <input type="password" id="senhaInput" name="senhaInput" class="form-control" placeholder="Senha" required minlength="5" ng-model="dataClienteIncluir.data.senha">
+            </div>
+        </div>
+        <div class="form-group row" ng-class="{'has-error': dataClienteIncluir.erro.senha.requerido || dataClienteIncluir.erro.senha.tamanho || dataClienteIncluir.erro.senha.difere}">
+            <label for="senhaInput2" class="col-md-3">Confirmar Senha:</label>
+            <div class="col-md-2">
+                <input type="password" id="senhaInput2" class="form-control" placeholder="Confirmar Senha" required ng-model="dataClienteIncluir.senha2">
+                <span class="help-block" ng-show="dataClienteIncluir.erro.senha.requerido">Senhas Requeridas</span>
+                <span class="help-block" ng-show="dataClienteIncluir.erro.senha.tamanho">Senha tem tamanho minimo de 5 caracteres</span>
+                <span class="help-block" ng-show="dataClienteIncluir.erro.senha.difere">Senhas Diferentes</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-9">
+                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="incluir(dataClienteIncluir.data)">Incluir</button>
+            </div>
+        </div>
+
+    </form>
+</div>

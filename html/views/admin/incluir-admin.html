@@ -1,12 +1,65 @@
 <!-- TODO: Tela de loading -->
 <div ng-show="dataAdminIncluir.loading != 0">loading</div>
 <div ng-hide="dataAdminIncluir.loading != 0">
-
-    <form name="criarTrabalhoForm" novalidate class="simple-form">
+    
+    <h1>Incluir Administrador</h1>
+    
+    <form name="incluirForm" novalidate class="simple-form">
 
         <div class="alert alert-danger" ng-show="dataAdminIncluir.erro.mensagem">
             <span>{{dataAdminIncluir.erro.mensagem}}</span>
         </div>
+        
+        <div class="form-group" ng-class="{'has-error': dataAdminIncluir.erro.nome.requerido || dataAdminIncluir.erro.nome.tamanho}">
+            <label for="nomeInput" class="col-md-3">Nome:</label>
+            <div class="col-md-9">
+                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataAdminIncluir.data.nome">
+                <span class="help-block" ng-show="dataAdminIncluir.erro.nome.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataAdminIncluir.erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': dataAdminIncluir.erro.email.requerido || dataAdminIncluir.erro.email.invalido}">
+            <label for="emailInput" class="col-md-3">Email:</label>
+            <div class="col-md-9">
+                <input type="email" id="emailInput" name="emailInput" class="form-control" placeholder="Email" required ng-model="dataAdminIncluir.data.email">
+                <span class="help-block" ng-show="dataAdminIncluir.erro.email.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataAdminIncluir.erro.email.invalido">Email Invalido</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': dataAdminIncluir.erro.cpfcnpj.requerido || dataAdminIncluir.erro.cpfcnpj.invalido}">
+            <label for="cpfcnpjInput" class="col-md-3">CPF:</label>
+            <!-- TODO: CPF/CNPJ -->
+            <div class="col-md-9">
+                <input id="cpfcnpjInput" name="cpfcnpjInput" class="form-control" required ng-cpf ui-mask="999.999.999-99" ng-model="dataAdminIncluir.data.cpfcnpj">
+                <span class="help-block" ng-show="dataAdminIncluir.erro.cpfcnpj.requerido">CPF Requerido</span>
+                <span class="help-block" ng-show="dataAdminIncluir.erro.cpfcnpj.invalido">CPF Invalido</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" ng-class="{'has-error': dataAdminIncluir.erro.senha.requerido || dataAdminIncluir.erro.senha.tamanho || dataAdminIncluir.erro.senha.difere}">
+            <label for="senhaInput" class="col-md-3">Senha:</label>
+            <div class="col-md-9">
+                <input type="password" id="senhaInput" name="senhaInput" class="form-control" placeholder="Senha" required minlength="5" ng-model="dataAdminIncluir.data.senha">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': dataAdminIncluir.erro.senha.requerido || dataAdminIncluir.erro.senha.tamanho || dataAdminIncluir.erro.senha.difere}">
+            <label for="senhaInput2" class="col-md-3">Confirmar Senha:</label>
+            <div class="col-md-9">
+                <input type="password" id="senhaInput2" class="form-control" placeholder="Confirmar Senha" required ng-model="dataAdminIncluir.senha2">
+                <span class="help-block" ng-show="dataAdminIncluir.erro.senha.requerido">Senhas Requeridas</span>
+                <span class="help-block" ng-show="dataAdminIncluir.erro.senha.tamanho">Senha tem tamanho minimo de 5 caracteres</span>
+                <span class="help-block" ng-show="dataAdminIncluir.erro.senha.difere">Senhas Diferentes</span>
+            </div>
+        </div>
+        
+        <div class="row">
+                <div class="col-md-offset-2 col-md-9">
+                    <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="incluir(dataAdminIncluir.data)">Incluir</button>
+                </div>
+            </div>
         
     </form>
 </div>

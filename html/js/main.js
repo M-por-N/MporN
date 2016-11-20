@@ -68,7 +68,16 @@ app.config(['$routeProvider', function($routeProvider) {
         redirectTo: '/admin/incluir-admin'
     }).when('/admin/incluir-admin', {
         templateUrl: 'views/admin/incluir-admin.html',
-        controller: 'AdminIncluirAdminsController'
+        controller: 'IncluirAdminController'
+    }).when('/admin/incluir-cliente', {
+        templateUrl: 'views/admin/incluir-cliente.html',
+        controller: 'IncluirClienteController'
+    }).when('/admin/incluir-freelancer', {
+        templateUrl: 'views/admin/incluir-freelancer.html',
+        controller: 'IncluirFreelancerController'
+    }).when('/admin/incluir-plano', {
+        templateUrl: 'views/admin/incluir-plano.html',
+        controller: 'IncluirPlanoController'
     }).when('/admin/dados', {
         templateUrl: 'views/admin/dados.html',
         controller: 'AdminDadosController'
@@ -84,6 +93,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/admin/listar-trabalho', {
         templateUrl: 'views/admin/listar-trabalho.html',
         controller: 'ListarTrabalhoController'
+    }).when('/admin/listar-plano', {
+        templateUrl: 'views/admin/listar-plano.html',
+        controller: 'ListarPlanoController'
     }).when('/mporn/sobre', {
         templateUrl: 'views/mporn/sobre.html',
         controller: 'SobreController'

@@ -13,24 +13,24 @@
         color: white;
     }
 </style>
-<div ng-show="dataListarCliente.loading != 0">loading</div>
-<div ng-hide="dataListarCliente.loading != 0">
-    <div class="alert alert-danger" ng-show="dataListarCliente.erro.mensagem">
-        <span>{{dataListarCliente.erro.mensagem}}</span>
+<div ng-show="dataListarPlano.loading != 0">loading</div>
+<div ng-hide="dataListarPlano.loading != 0">
+    <div class="alert alert-danger" ng-show="dataListarPlano.erro.mensagem">
+        <span>{{dataListarPlano.erro.mensagem}}</span>
     </div>
     <div class="panel panel-default">
         <table class="table">
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Email</th>
+                <th>Valor</th>
                 <th>Ações</th>
             </tr>
-            <tr ng-repeat="cliente in dataListarCliente.dados">
-                <td>{{cliente.id}}</td>
-                <td>{{cliente.nome}}</td>
-                <td>{{cliente.email}}</td>
-                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarCliente(cliente)">
+            <tr ng-repeat="plano in dataListarPlano.dados">
+                <td>{{plano.id}}</td>
+                <td>{{plano.nome}}</td>
+                <td>{{plano.valor | currency:"R$ "}}</td>
+                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarPlano(plano)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
                         </button></td>
             </tr>

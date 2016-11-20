@@ -1,0 +1,47 @@
+<!-- TODO: Tela de loading -->
+<div ng-show="dataPlanoIncluir.loading != 0">loading</div>
+<div ng-hide="dataPlanoIncluir.loading != 0">
+
+    <h1>Incluir Plano</h1>
+    
+    <form name="incluirForm" novalidate class="simple-form">
+
+        <div class="alert alert-danger" ng-show="dataPlanoIncluir.erro.mensagem">
+            <span>{{dataPlanoIncluir.erro.mensagem}}</span>
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error': dataPlanoIncluir.erro.nome.requerido || dataPlanoIncluir.erro.nome.tamanho}">
+            <label for="nomeInput" class="col-md-3">Nome:</label>
+            <div class="col-md-9">
+                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataPlanoIncluir.data.nome">
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.nome.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error': dataPlanoIncluir.erro.descricao.requerido || dataPlanoIncluir.erro.descricao.tamanho}">
+            <label for="descricaoInput" class="col-md-3">Descrição:</label>
+            <div class="col-md-9">
+                <input type="text" id="descricaoInput" name="descricaoInput" class="form-control" placeholder="Descricao" required autofocus minlength="2" ng-model="dataPlanoIncluir.data.descricao">
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.descricao.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.descricao.tamanho">Descrição Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error': dataPlanoIncluir.erro.valor.requerido}">
+            <label for="valorInput" class="col-md-3">Valor:</label>
+            <div class="col-md-9">
+                <input type="number" id="valorInput" name="valorInput" class="form-control" placeholder="Valor" required autofocus minlength="2" ng-model="dataPlanoIncluir.data.valor">
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.valor.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataPlanoIncluir.erro.valor.tamanho">Valor Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-9">
+                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="incluir(dataPlanoIncluir.data)">Incluir</button>
+            </div>
+        </div>
+        
+    </form>
+</div>
