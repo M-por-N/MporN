@@ -1,14 +1,43 @@
-<div ng-controller="ModalInstanceCtrl">
-    <div class="modal-header">
-        <h3>I am a modal!</h3>
-    </div>
-    <div class="modal-body">
-        <ul>
-            <li>Teste</li>
-        </ul>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{titulo}}</h4>
+            </div>
+            <div class="modal-body">
+
+     
+                <div ng-show="listaMensagem == ''">
+                    <p>Nenhuma mensagem pra exibir</p>
+                </div>
+
+                <div ng-show="listaMensagem != ''">
+
+                    <div ng-repeat="mensagem in listaMensagem">
+                        
+                        <br />
+                        <h4><em>{{mensagem.datahora }} - {{mensagem.usuario}}</em></h4>
+                        
+                        <p>{{mensagem.texto}}</p>
+                        
+                        
+                    </div>
+
+
+                </div>
+
+                <hr>
+
+                <textarea rows="4" cols="50" id="mensagemInput" name="mensagemInput" class="form-control" placeholder="Mensagem" required autofocus minlength="5" ng-model="mensagem"></textarea>
+                <br />
+                <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="enviar()">Enviar</button>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+            </div>
+        </div>
     </div>
 </div>

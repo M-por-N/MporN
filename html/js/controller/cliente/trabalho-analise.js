@@ -1,4 +1,4 @@
-app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert) {
+app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, toastr, SweetAlert, ModalService) {
     $scope.dataClienteTrabalhoAnalise = {
         loading: 0,
         dados: []
@@ -110,8 +110,21 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
     
     $scope.mensagem = function(trabalho) {
 
-       alert('Em breve');
-       
+        ModalService.showModal({
+            templateUrl: "views/mensagem/mensagemModal.html",
+            controller: "ListarMensagemController",
+            inputs:{
+                trabalho: trabalho,
+                idt: 'C'
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
     };
     
     

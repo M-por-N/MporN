@@ -1,4 +1,4 @@
-app.controller("FreelancerTrabalhoAnaliseController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr) {
+app.controller("FreelancerTrabalhoAnaliseController", function($scope, $location, $window, store, jwtHelper, TrabalhoFreelancerService, toastr, ModalService) {
     $scope.dataFreelancerTrabalhoAnalise = {
         loading: 0,
         dados: [],
@@ -30,8 +30,21 @@ app.controller("FreelancerTrabalhoAnaliseController", function($scope, $location
     
     $scope.mensagem = function(trabalho) {
 
-       alert('Em breve');
-       
+        ModalService.showModal({
+            templateUrl: "views/mensagem/mensagemModal.html",
+            controller: "ListarMensagemController",
+            inputs:{
+                trabalho: trabalho,
+                idt: 'F'
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
     };
 
 })
