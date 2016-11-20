@@ -1,0 +1,12 @@
+<!-- TODO: Tela de loading -->
+<div ng-show="dataAdminIncluir.loading != 0">loading</div>
+<div ng-hide="dataAdminIncluir.loading != 0">
+
+    <form name="criarTrabalhoForm" novalidate class="simple-form">
+
+        <div class="alert alert-danger" ng-show="dataAdminIncluir.erro.mensagem">
+            <span>{{dataAdminIncluir.erro.mensagem}}</span>
+        </div>
+        
+    </form>
+</div>

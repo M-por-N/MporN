@@ -64,6 +64,26 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/freelancer/dados', {
         templateUrl: 'views/freelancer/dados.html',
         controller: 'FreelancerDadosController'
+    }).when('/admin/', {
+        redirectTo: '/admin/incluir-admin'
+    }).when('/admin/incluir-admin', {
+        templateUrl: 'views/admin/incluir-admin.html',
+        controller: 'AdminIncluirAdminsController'
+    }).when('/admin/dados', {
+        templateUrl: 'views/admin/dados.html',
+        controller: 'AdminDadosController'
+    }).when('/admin/listar-admin', {
+        templateUrl: 'views/admin/listar-admin.html',
+        controller: 'ListarAdminController'
+    }).when('/admin/listar-cliente', {
+        templateUrl: 'views/admin/listar-cliente.html',
+        controller: 'ListarClienteController'
+    }).when('/admin/listar-freelancer', {
+        templateUrl: 'views/admin/listar-freelancer.html',
+        controller: 'ListarFreelancerController'
+    }).when('/admin/listar-trabalho', {
+        templateUrl: 'views/admin/listar-trabalho.html',
+        controller: 'ListarTrabalhoController'
     }).when('/mporn/sobre', {
         templateUrl: 'views/mporn/sobre.html',
         controller: 'SobreController'

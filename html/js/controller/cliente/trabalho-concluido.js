@@ -43,7 +43,7 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
     $scope.avaliarTrabalho = function(trabalho) {
 
         SweetAlert.swal({
-            title: 'Avaliace o trabalho do Freelancer',
+            title: 'Avalie o trabalho do Freelancer',
             input: 'radio',
             inputOptions: $scope.dataClienteTrabalhoConcluido.avaliacao,
             inputValidator: function(result) {

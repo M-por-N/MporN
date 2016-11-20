@@ -1,0 +1,39 @@
+<style type="text/css">
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5
+    }
+    
+    th {
+        background-color: #31B0D5;
+        color: white;
+    }
+</style>
+<div ng-show="dataListarAdmin.loading != 0">loading</div>
+<div ng-hide="dataListarAdmin.loading != 0">
+    <div class="alert alert-danger" ng-show="dataListarAdmin.erro.mensagem">
+        <span>{{dataListarAdmin.erro.mensagem}}</span>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+            <tr ng-repeat="admin in dataListarAdmin.dados">
+                <td>{{admin.id}}</td>
+                <td>{{admin.nome}}</td>
+                <td>{{admin.email}}</td>
+                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarAdmin(admin)">
+                      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Editar
+                        </button></td>
+            </tr>
+        </table>
+    </div>
+</div>

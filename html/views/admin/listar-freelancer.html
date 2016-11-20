@@ -1,0 +1,39 @@
+<style type="text/css">
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5
+    }
+    
+    th {
+        background-color: #31B0D5;
+        color: white;
+    }
+</style>
+<div ng-show="dataListarFreelancer.loading != 0">loading</div>
+<div ng-hide="dataListarFreelancer.loading != 0">
+    <div class="alert alert-danger" ng-show="dataListarFreelancer.erro.mensagem">
+        <span>{{dataListarFreelancer.erro.mensagem}}</span>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+            <tr ng-repeat="freelancer in dataListarFreelancer.dados">
+                <td>{{freelancer.id}}</td>
+                <td>{{freelancer.nome}}</td>
+                <td>{{freelancer.email}}</td>
+                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarFreelancer(freelancer)">
+                      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Editar
+                        </button></td>
+            </tr>
+        </table>
+    </div>
+</div>
