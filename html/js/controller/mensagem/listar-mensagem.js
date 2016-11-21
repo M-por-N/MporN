@@ -53,6 +53,8 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
                 
 
                 $scope.listaMensagem.push(angular.copy(newMensagem))
+                
+                $scope.mensagem = "";
 
 
             }
