@@ -40,4 +40,6 @@ app.controller("FreelancerTrabalhoConcluidoController", function($scope, $locati
         });
 
     };
+    
+    $scope.pesquisarConcluido();
 })
