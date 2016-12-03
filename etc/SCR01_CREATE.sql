@@ -42,6 +42,7 @@ CREATE TABLE cliente (
   email varchar(128) NOT NULL,
   cpfcnpj varchar(11) NOT NULL,
   senha varchar(65) NOT NULL,
+  bloqueado int(1) DEFAULT 0,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
@@ -66,6 +67,7 @@ CREATE TABLE freelancer (
   email varchar(128) NOT NULL,
   cpfcnpj varchar(11) NOT NULL,
   senha varchar(65) NOT NULL,
+  bloqueado int(1) DEFAULT 0,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -78,6 +80,7 @@ CREATE TABLE plano (
   nome varchar(64) NOT NULL,
   descricaocurta varchar(256) DEFAULT NULL,
   valor int(11) DEFAULT NULL,
+  bloqueado int(1) DEFAULT 0,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 

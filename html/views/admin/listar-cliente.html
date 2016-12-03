@@ -30,9 +30,17 @@
                 <td>{{cliente.id}}</td>
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.email}}</td>
-                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarCliente(cliente)">
+                <td>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarCliente(cliente)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
-                        </button></td>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="bloqueiaCliente(cliente)">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Bloquear
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="desbloqueiaCliente(cliente)">
+                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Desbloquear
+                    </button>
+                </td>
             </tr>
         </table>
     </div>

@@ -32,3 +32,6 @@ ALTER TABLE mensagem
 
 
 
+LOCK TABLES admin WRITE;
+INSERT INTO admin (nome, email, cpfcnpj, senha) VALUES ('Admin','admin@mporn.com.br','03939223912','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+UNLOCK TABLES;

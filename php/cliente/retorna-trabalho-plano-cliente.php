@@ -14,10 +14,8 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.id, t.nome as trabalhoNome, p.nome as planoNome, t.descricao, c.nome as nomeCliente, c.email
-                          FROM trabalho AS t INNER JOIN plano AS p on t.id_plano=p.id INNER JOIN cliente AS c on  t.id_cliente = c.id
-                          WHERE t.id_freelancer is null AND (SELECT bloqueado FROM cliente AS c where c.id = t.id_cliente ) = 0');
-    $stmt->bindValue(':idfreelancer', $id, PDO::PARAM_INT);
+    $stmt = $pdo->prepare('select * from trabalho t inner join cliente c inner join planos p where id_cliente = c.id and t.plano = p.id and c.id=:id_cliente');
+    $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros
     $trab = array();
