@@ -1,4 +1,7 @@
 app.controller("ClienteCriarTrabalhoController", function($scope, $location, store, jwtHelper, TrabalhoClienteService, PlanoService, toastr) {
+    $scope.selectedItem = 0;
+    $scope.plano = null;
+    
     $scope.dataClienteCriarTrabalho = {
         erro: {
                 mensagem: null,
@@ -36,9 +39,6 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
         $scope.dataClienteCriarTrabalho.erro.detalhado.invalido = $scope.criarTrabalhoForm.detalhadoInput.$error.invalido === true;
         $scope.dataClienteCriarTrabalho.erro.detalhado.tamanho = $scope.criarTrabalhoForm.detalhadoInput.$error.minlength === true; //evita undefined
         
-        $scope.dataClienteCriarTrabalho.erro.plano.requerido = $scope.criarTrabalhoForm.planoInput.$error.required === true;
-        $scope.dataClienteCriarTrabalho.erro.plano.invalido = $scope.criarTrabalhoForm.planoInput.$error.invalido === true;
-        
         if($scope.dataClienteCriarTrabalho.data.plano === ''){
             $scope.dataClienteCriarTrabalho.erro.plano.requerido=true;
             return false;
@@ -50,6 +50,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
     
     $scope.criarTrabalhoDados = function(trabalho) {
         //verificações:
+        trabalho.plano = $scope.plano;
         if(!cadastraValido()) return;
         
         $scope.dataClienteCriarTrabalho.loading += 1;
@@ -75,6 +76,13 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
             $scope.dataClienteCriarTrabalho.loading = 0;
         }
     });
+    
+
+    $scope.selected = function(index) {
+        $scope.plano = $scope.dataClienteCriarTrabalho.todosPlanos[index];
+        //Seleciona o plano no array
+        $scope.selectedItem = index;
+    }
     
     
 })
