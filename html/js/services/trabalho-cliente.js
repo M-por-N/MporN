@@ -42,6 +42,7 @@ app.factory('TrabalhoClienteService', function($http) {
     var cadastrarTrabalho = function(trabalho) {
         return $http.post(urlCadastraTrabalho, trabalho).then(
             function sucesso(respostaServidor) {
+                console.log(respostaServidor);
                 return respostaServidor.data;
             },
             function erro(respostaServidor) {

@@ -1,5 +1,7 @@
 -- Start
 
+CREATE DATABASE mporn;
+
 -- Caso nao tenha criado um usuário
 CREATE USER 'mporn'@'localhost' IDENTIFIED BY '3U10euxnvsTKi6Ai';
 
@@ -7,6 +9,7 @@ CREATE USER 'mporn'@'localhost' IDENTIFIED BY '3U10euxnvsTKi6Ai';
 GRANT ALL PRIVILEGES ON mporn . * TO 'mporn'@'localhost';
 
 
-CREATE DATABASE mporn;
+
+
 
 

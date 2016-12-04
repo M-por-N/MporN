@@ -30,9 +30,17 @@
                 <td>{{plano.idPlano}}</td>
                 <td>{{plano.nomePlano}}</td>
                 <td>{{plano.valor | currency:"R$ "}}</td>
-                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarPlano(plano)">
+                <td>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarPlano(plano)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
-                        </button></td>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="bloqueiaPlano(plano)">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Bloquear
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="desbloqueiaPlano(plano)">
+                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Desbloquear
+                    </button>
+                </td>
             </tr>
         </table>
     </div>

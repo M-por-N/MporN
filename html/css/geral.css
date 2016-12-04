@@ -38,3 +38,8 @@ th {
 .radioButtondemoBasicUsage .ipsum {
   color: saddlebrown;
   font-size: 0.9em; }
+
+.selected-plan{
+  border-color: #31B0D5;
+  background-color: #D9EDF7;
+}
