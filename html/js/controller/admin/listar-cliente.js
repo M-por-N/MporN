@@ -1,4 +1,4 @@
-app.controller("ListarClienteController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert) {
+app.controller("ListarClienteController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert, ModalService) {
     $scope.dataListarCliente = {
         loading: 0,
         erro: {
@@ -79,5 +79,23 @@ app.controller("ListarClienteController", function($scope, $location, store, jwt
                 }
             });
         });
+    };
+    
+    $scope.editarCliente = function(admin) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/editarModal.html",
+            controller: "EditarClienteController",
+            inputs:{
+                usuario: admin
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
     };
 })

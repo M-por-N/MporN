@@ -70,6 +70,8 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
                 $scope.listaMensagem.push(angular.copy(newMensagem))
 
                 $scope.mensagem = "";
+                
+                toastr.success("Mensagem Postada");
 
                 $scope.disableButton = false;
             }

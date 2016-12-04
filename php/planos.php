@@ -9,7 +9,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT * FROM plano where bloqueado = 0');
+    $stmt = $pdo->prepare('SELECT * FROM plano');
     $stmt->execute();
     
     $dados = array();

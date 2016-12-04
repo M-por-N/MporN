@@ -18,7 +18,7 @@ UNLOCK TABLES;
 
 
 LOCK TABLES status WRITE;
-INSERT INTO status VALUES (1, 'Disponivel'), (2, 'Alertado'), (3, 'Banido');
+INSERT INTO status VALUES (1, 'Disponivel'), (2, 'Alertado'),(3, 'Bloqueado'), (4, 'Banido');
 UNLOCK TABLES;
 
 

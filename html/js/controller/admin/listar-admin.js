@@ -1,4 +1,4 @@
-app.controller("ListarAdminController", function($scope, $location, store, jwtHelper, ListarService, toastr) {
+app.controller("ListarAdminController", function($scope, $location, store, jwtHelper, ListarService, toastr, ModalService) {
     $scope.dataListarAdmin = {
         loading: 0,
         erro: {
@@ -19,4 +19,23 @@ app.controller("ListarAdminController", function($scope, $location, store, jwtHe
             $scope.dataListarAdmin.loading -= 1;
         }
     });
+    
+    
+    $scope.editarAdmin = function(admin) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/editarModal.html",
+            controller: "EditarAdminController",
+            inputs:{
+                usuario: admin
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
+    };
 })

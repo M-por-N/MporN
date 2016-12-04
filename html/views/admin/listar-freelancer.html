@@ -24,12 +24,14 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Email</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
             <tr ng-repeat="freelancer in dataListarFreelancer.dados">
                 <td>{{freelancer.idFreelancer}}</td>
                 <td>{{freelancer.nomeUsuario}}</td>
                 <td>{{freelancer.email}}</td>
+                <td>{{freelancer.nomeStatus}}</td>
                 <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarFreelancer(freelancer)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
                     </button>

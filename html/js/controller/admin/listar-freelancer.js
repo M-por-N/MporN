@@ -1,4 +1,4 @@
-app.controller("ListarFreelancerController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert) {
+app.controller("ListarFreelancerController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert, ModalService) {
     $scope.dataListarFreelancer = {
         loading: 0,
         erro: {
@@ -79,5 +79,23 @@ app.controller("ListarFreelancerController", function($scope, $location, store, 
                 }
             });
         });
+    };
+    
+    $scope.editarFreelancer = function(admin) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/editarModal.html",
+            controller: "EditarFreelancerController",
+            inputs:{
+                usuario: admin
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+            
+            });
+        });
+
     };
 })
