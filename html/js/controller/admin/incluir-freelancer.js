@@ -1,4 +1,4 @@
-app.controller("IncluirFreelancerController", function($scope, $location, store, jwtHelper, IncluirService, toastr, EspecialidadeService) {
+app.controller("IncluirFreelancerController", function($scope, $location, store, jwtHelper, CadastrarService, toastr, EspecialidadeService) {
     $scope.dataFreelancerIncluir = {
         erro: {
             mensagem: null,
@@ -56,7 +56,7 @@ app.controller("IncluirFreelancerController", function($scope, $location, store,
         if (!freelancerValido()) return;
 
         $scope.dataFreelancerIncluir.loading += 1;
-        var resposta = IncluirService.incluirFreelancer(usuario);
+        var resposta = CadastrarService.cadastraFreelancer(usuario);
         resposta.then(function(data) {
             if (data.resultado == true) {
                 $scope.dataFreelancerIncluir.loading -= 1;

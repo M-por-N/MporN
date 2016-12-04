@@ -27,8 +27,8 @@
                 <th>Ações</th>
             </tr>
             <tr ng-repeat="plano in dataListarPlano.dados">
-                <td>{{plano.id}}</td>
-                <td>{{plano.nome}}</td>
+                <td>{{plano.idPlano}}</td>
+                <td>{{plano.nomePlano}}</td>
                 <td>{{plano.valor | currency:"R$ "}}</td>
                 <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarPlano(plano)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar

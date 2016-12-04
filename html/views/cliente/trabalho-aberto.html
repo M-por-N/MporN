@@ -33,10 +33,11 @@
                 <th>Nome Plano</th>
                 <th>Ações</th>
             </tr>
+    
             <tr ng-repeat="trabalho in dataClienteTrabalhoAberto.dados | filter:trabalho">
-                <td>{{trabalho.trabalhoNome}}</td>
-                <td>{{trabalho.descricao}}</td>
-                <td>{{trabalho.planoNome}}</td>
+                <td>{{trabalho.nomeTrabalho}}</td>
+                <td>{{trabalho.descricaoTrabalho}}</td>
+                <td>{{trabalho.nomePlano}}</td>
                 <td><button type="button" class="btn btn-info" aria-label="Left Align" ng-click="removerTrabalho(trabalho)">
                       <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
                         </button>

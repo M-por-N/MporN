@@ -24,7 +24,9 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare("SELECT id FROM admin WHERE email = :login AND senha = :senha");
+    $stmt = $pdo->prepare("SELECT a.idAdmin id
+                            FROM usuario u inner join admin a on u.idUsuario = a.idUsuario 
+                            WHERE u.email = :login AND u.senha = :senha");
     $stmt->bindParam(':login', $input->login, PDO::PARAM_STR);
     $stmt->bindParam(':senha', hash('sha256', $input->senha, false), PDO::PARAM_STR);
     $stmt->execute();

@@ -20,7 +20,9 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare("SELECT id FROM freelancer WHERE email = :login AND senha = :senha");
+    $stmt = $pdo->prepare("SELECT f.idFreelancer id
+                            FROM usuario u inner join freelancer f on u.idUsuario = f.idUsuario 
+                            WHERE u.email = :login AND u.senha = :senha");
     $stmt->bindParam(':login', $input->login, PDO::PARAM_STR);
     $hash = hash('sha256', $input->senha, false);
     $stmt->bindParam(':senha', $hash, PDO::PARAM_STR);

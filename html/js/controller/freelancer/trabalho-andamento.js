@@ -32,7 +32,7 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
 
         SweetAlert.swal({
             title: "Você tem certeza?",
-            text: "Você irá concluir o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            text: "Você irá concluir o trabalho '" + trabalho.nomeTrabalho + "'. Tem certeza?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -40,7 +40,7 @@ app.controller("FreelancerTrabalhoAndamentoController", function($scope, $locati
             cancelButtonText: "Cancelar"
         }).then(function() {
             $scope.params = {
-                trabalho: trabalho.id,
+                trabalho: trabalho.idTrabalho,
                 situacao: 3
             };
 

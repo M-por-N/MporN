@@ -1,4 +1,4 @@
-app.controller("CadastroClienteController", function($scope, $location, store, jwtHelper, ClienteService) {
+app.controller("CadastroClienteController", function($scope, $location, store, jwtHelper, CadastrarService, toastr) {
     $scope.dataCadastraCliente = {
         erro: {
                 mensagem: null,
@@ -51,14 +51,16 @@ app.controller("CadastroClienteController", function($scope, $location, store, j
         if(!cadastraValido()) return;
         
         $scope.dataCadastraCliente.loading += 1;
-        var resposta = ClienteService.cadastra(usuario);
+        var resposta = CadastrarService.cadastraCliente(usuario);
             resposta.then(function(data) {
             if(data.resultado == true) {
                 $scope.dataCadastraCliente.loading -= 1;
                 $location.path('/login/cliente');
+                toastr.success('Cadastro feito com sucesso!');
             } else {
                 $scope.dataCadastraCliente.erro.mensagem = "Erro no Cadastro: " + data.mensagem;
                 $scope.dataCadastraCliente.loading -= 1;
+                toastr.error('Erro!');
             }
         });
     };

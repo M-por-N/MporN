@@ -8,7 +8,7 @@ include("../recebe-jwt.php");
 
 $input = @json_decode(file_get_contents("php://input"));
 
-if($input == null or !isset($input->nome) or !isset($input->email) or !isset($input->cpfcnpj) 
+if($input == null or !isset($input->nomeUsuario) or !isset($input->email) or !isset($input->cpfcnpj) 
         or !isset($input->especialidade)) {
     echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
     exit;
@@ -19,13 +19,13 @@ $id = $token->data->id;
 function esp($pdo, $esp, $id){
     
     try {
-        $sql = 'DELETE FROM freelancer_especialidade WHERE id_freelancer = :id';
+        $sql = 'DELETE FROM freelancer_especialidade WHERE idFreelancer = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         
         foreach($esp as $num){
-            $sql = 'INSERT INTO freelancer_especialidade(id_freelancer, id_especialidade) VALUES (:id_free, :id_esp)';
+            $sql = 'INSERT INTO freelancer_especialidade(idFreelancer, idEspecialidade) VALUES (:id_free, :id_esp)';
             $stmt = $pdo->prepare($sql);
             $stmt ->bindParam(':id_free', $id, PDO::PARAM_INT);
             $stmt ->bindParam(':id_esp', $num, PDO::PARAM_INT);
@@ -43,20 +43,15 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE freelancer SET nome = :nome, email = :email, cpfcnpj = :cpfcnpj';
-    if(isset($input->senha)) 
-         $query .= ', senha = :senha ';
-    
-    $query .= ' WHERE id = :id';
+    $query = 'UPDATE usuario SET nomeUsuario = :nome, email = :email, cpfcnpj = :cpfcnpj';
+    $query .= ' WHERE idUsuario = (SELECT idUsuario from freelancer where idFreelancer = :id)';
     
     $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':nome',$input->nome, PDO::PARAM_STR);
+    $stmt->bindParam(':nome',$input->nomeUsuario, PDO::PARAM_STR);
     $stmt->bindParam(':email', $input->email, PDO::PARAM_STR);
     $stmt->bindParam(':cpfcnpj', $input->cpfcnpj, PDO::PARAM_STR);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT, PDO::PARAM_STR);
     
-    if(isset($input->senha)) 
-        $stmt->bindParam(':senha', hash('sha256', $input->senha, false), PDO::PARAM_STR);
     
     $result = $stmt->execute();
     

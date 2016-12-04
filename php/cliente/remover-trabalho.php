@@ -18,7 +18,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
   
-    $sql = "DELETE FROM trabalho where id = :id and id_cliente = :id_cliente ";
+    $sql = "DELETE FROM trabalho where idTrabalho = :id and idCliente = :id_cliente ";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
     $stmt->bindValue(':id', $input->trabalho, PDO::PARAM_INT);

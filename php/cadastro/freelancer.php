@@ -2,41 +2,68 @@
 //header('Content-type: application/json; charset=utf-8');
 
 require_once("../config.php");
-$id = $token->data->id;
 
 $input = @json_decode(file_get_contents("php://input"));
 
 if($input == null or !isset($input->nome) or !isset($input->email) or !isset($input->cpfcnpj) 
-        or !isset($input->senha)) {
+        or !isset($input->senha) or !isset($input->especialidade)) {
     echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
     exit;
 }
 
 try{
     $pdo = new PDO($config->bd->dsn, $config->bd->user, $config->bd->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->beginTransaction();
+    
+    
     if($config->debug) {
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
   
-    $sql = "INSERT INTO cliente (nome, email, cpfcnpj, senha) VALUES (:nome, :email, :cpfcnpj, :senha)";
+    $sqlUsuario = "INSERT INTO usuario (nomeUsuario, email, cpfcnpj, senha) VALUES (:nome, :email, :cpfcnpj, :senha)";
     
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare($sqlUsuario);
     $stmt->bindParam(':nome', $input->nome, PDO::PARAM_STR);
     $stmt->bindParam(':email', $input->email, PDO::PARAM_STR);
     $stmt->bindParam(':cpfcnpj', $input->cpfcnpj, PDO::PARAM_STR);
     $stmt->bindParam(':senha', hash('sha256', $input->senha, false), PDO::PARAM_STR);
     $stmt->execute();
     
-    $id_cliente = $pdo->lastInsertId();
+    $id_usuario = $pdo->lastInsertId();
     
-    if($id_cliente == 0) {
+    if($id_usuario == 0) {
         //TODO: Enviar a mensagem de erro retornada pelo PDO
         echo json_encode(['resultado' => false, 'mensagem' => "Não foi possivel realizar o Cadastro"]);
         exit;
     }
     
+    $sqlFreelancer = "INSERT INTO freelancer (idUsuario) VALUES (:idUsuario)";
+    $stmt = $pdo->prepare($sqlFreelancer);
+    $stmt->bindParam(':idUsuario', $id_usuario, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $id_freelancer = $pdo->lastInsertId();
+    
+    if($id_freelancer == 0) {
+        //TODO: Enviar a mensagem de erro retornada pelo PDO
+        echo json_encode(['resultado' => false, 'mensagem' => "Não foi possivel realizar o Cadastro"]);
+        exit;
+    }
+   
+    foreach ($input->especialidade as $esp){
+        $sql = "INSERT INTO freelancer_especialidade VALUES (:free, :esp)";
+        
+        $stmt = $pdo->prepare( $sql );
+        $stmt->bindParam(':free', $id_freelancer, PDO::PARAM_INT);
+        $stmt->bindParam(':esp', $esp, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    
     echo json_encode(['resultado' => true]);
+    
+    $pdo->commit();
     
 } catch (PDOException $e) {
     //TODO: Enviar a mensagem de erro retornada pelo PDO

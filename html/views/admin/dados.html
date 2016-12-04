@@ -13,7 +13,7 @@
                     <label for="nomeInput" class="control-label col-md-5">Nome:</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataAdmin.dados.nome">
+                    <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataAdmin.dados.nomeUsuario">
                     <span class="help-block" ng-show="dataAdmin.erro.nome.requerido">Campo Requerido</span>
                     <span class="help-block" ng-show="dataAdmin.erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
                 </div>
@@ -43,27 +43,6 @@
                 </div>
             </div>
     
-    
-            <div class="form-group row" ng-class="{'has-error': dataAdmin.erro.senha.requerido || dataAdmin.erro.senha.tamanho || dataAdmin.erro.senha.difere}">
-                <div class="col-md-2">
-                    <label for="senhaInput" class="col-md-5 control-label">Senha:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="password" id="senhaInput" name="senhaInput" class="form-control" readonly placeholder="Senha" minlength="5" ng-model="dataAdmin.dados.senha">
-                </div>
-            </div>
-            <div class="form-group row" ng-class="{'has-error': dataAdmin.erro.senha.requerido || dataAdmin.erro.senha.tamanho || dataAdmin.erro.senha.difere}">
-                <div class="col-md-2">
-                    <label for="senhaInput2" class="col-md-9 control-label">Confirmar Senha:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="password" id="senhaInput2" class="form-control" readonly placeholder="Confirmar Senha" minlength="5" ng-model="dataAdmin.senha2">
-                    <span class="help-block" ng-show="dataAdmin.erro.senha.requerido">Senhas Requeridas</span>
-                    <span class="help-block" ng-show="dataAdmin.erro.senha.tamanho">Senha tem tamanho minimo de 5 caracteres</span>
-                    <span class="help-block" ng-show="dataAdmin.erro.senha.difere">Senhas Diferentes</span>
-                </div>
-            </div>
-            
             <div class="row">
                 <div class="col-md-offset-2 col-md-9">
                     <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="atualizaAdminDados()">Atualizar</button>

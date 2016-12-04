@@ -15,7 +15,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT id, nome, descricaocurta, valor FROM plano');
+    $stmt = $pdo->prepare('SELECT idPlano, nomePlano, descricaocurta, valor FROM plano');
 
     $stmt->execute(); //TDOO: verficar por erros
     $trab = array();

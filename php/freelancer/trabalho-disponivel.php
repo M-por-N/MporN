@@ -14,9 +14,16 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.id, t.nome as trabalhoNome, p.nome as planoNome, t.descricao, c.nome as nomeCliente, c.email
-                          FROM trabalho AS t INNER JOIN plano AS p on t.id_plano=p.id INNER JOIN cliente AS c on  t.id_cliente = c.id
-                          WHERE t.id_freelancer is null ');
+    $stmt = $pdo->prepare('SELECT t.idTrabalho, t.nomeTrabalho, t.descricaoTrabalho, p.nomePlano, uf.nomeUsuario as nomeFreelancer, uc.nomeUsuario as nomeCliente,
+                           s.nomeSituacao, uc.email as emailCliente, uf.email as emailFreelancer
+                           FROM trabalho t inner join plano p on t.idPlano=p.idPlano 
+                           left join freelancer f on t.idFreelancer = f.idFreelancer 
+                           left join usuario uf on f.idUsuario = uf.idUsuario
+                           left join cliente c on t.idCliente = c.idCliente
+                           left join usuario uc on c.idUsuario = uc.idUsuario
+                           left join avaliacao a on t.idAvaliacao = a.idAvaliacao
+                           inner join situacao s on t.idSituacao = s.idSituacao
+                           WHERE t.idFreelancer is null ');
     $stmt->bindValue(':idfreelancer', $id, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros

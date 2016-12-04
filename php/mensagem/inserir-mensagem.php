@@ -27,7 +27,7 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'INSERT INTO mensagem (texto, id_trabalho, idtusuario) VALUES (:mensagem, :trabalho, :idt)';
+    $query = 'INSERT INTO mensagem (texto, idTrabalho, idtusuario) VALUES (:mensagem, :trabalho, :idt)';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':mensagem',$mensagem, PDO::PARAM_STR);

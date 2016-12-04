@@ -16,9 +16,9 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.nome trabalhoNome, m.datahora, m.texto, if(m.idtusuario="C", "Cliente", "Freelancer") as usuario
-                            FROM trabalho t inner join mensagem m on t.id = m.id_trabalho
-                            WHERE t.id = :trabalho
+    $stmt = $pdo->prepare(' SELECT t.nomeTrabalho, m.datahora, m.texto, if(m.idtusuario="C", "Cliente", "Freelancer") as usuario
+                            FROM trabalho t inner join mensagem m on t.idTrabalho = m.idTrabalho
+                            WHERE t.idTrabalho = :trabalho
                             order by m.datahora');
     $stmt->bindValue(':trabalho', $trabalho, PDO::PARAM_INT);
     

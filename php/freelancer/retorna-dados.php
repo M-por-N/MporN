@@ -15,7 +15,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT nome,email,cpfcnpj FROM freelancer WHERE id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM freelancer f inner join usuario u on f.idUsuario = u.idUsuario WHERE f.idFreelancer = :id');
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     
     $stmt->execute();

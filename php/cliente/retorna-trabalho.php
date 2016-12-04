@@ -16,15 +16,18 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare('SELECT t.id, t.nome trabalhoNome, t.descricao, p.nome as planoNome, f.nome as freelancerNome, 
-                           f.email, t.id_situacao, a.descricao avaliacaoNome, s.nome situacaoNome
-                           FROM trabalho t inner join plano p on t.id_plano=p.id 
-                           left join freelancer f on t.id_freelancer = f.id 
-                           left join avaliacao a on t.id_avaliacao = a.id
-                           inner join situacao s on t.id_situacao = s.id
-                           WHERE t.id_cliente = :cliente 
-                           AND t.id_situacao in (:situacao)
-                           order by t.id_situacao desc');
+    $stmt = $pdo->prepare('SELECT t.idTrabalho, t.nomeTrabalho, t.descricaoTrabalho, p.nomePlano, uf.nomeUsuario as nomeFreelancer, uc.nomeUsuario as nomeCliente,
+                           s.nomeSituacao, uc.email as emailCliente, uf.email as emailFreelancer
+                           FROM trabalho t inner join plano p on t.idPlano=p.idPlano 
+                           left join freelancer f on t.idFreelancer = f.idFreelancer 
+                           left join usuario uf on f.idUsuario = uf.idUsuario
+                           left join cliente c on t.idCliente = c.idCliente
+                           left join usuario uc on c.idUsuario = uc.idUsuario
+                           left join avaliacao a on t.idAvaliacao = a.idAvaliacao
+                           inner join situacao s on t.idSituacao = s.idSituacao
+                           WHERE t.idCliente = :cliente 
+                           AND t.idSituacao in (:situacao)
+                           order by t.idSituacao desc');
     $stmt->bindValue(':cliente', $id, PDO::PARAM_INT);
     $stmt->bindValue(':situacao', $situacao, PDO::PARAM_INT);
     

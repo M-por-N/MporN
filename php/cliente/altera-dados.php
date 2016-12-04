@@ -11,7 +11,7 @@ $input = @json_decode(file_get_contents("php://input"));
 $id = $token->data->id;
 //$id = 1;
 
-if($input == null or !isset($input->nome) or !isset($input->email) or !isset($input->cpfcnpj)) {
+if($input == null or !isset($input->nomeUsuario) or !isset($input->email) or !isset($input->cpfcnpj)) {
     echo json_encode(['resultado' => false, 'mensagem' => "Requisição invalida"]);
     exit;
 }
@@ -24,20 +24,14 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE cliente SET nome = :nome, email = :email, cpfcnpj = :cpfcnpj';
-    if(isset($input->senha)) 
-         $query .= ', senha = :senha ';
-    
-    $query .= ' WHERE id = :id';
+    $query = 'UPDATE usuario SET nomeUsuario = :nome, email = :email, cpfcnpj = :cpfcnpj';
+    $query .= ' WHERE idUsuario = (SELECT idUsuario FROM cliente where idCliente = :id )';
     
     $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':nome',$input->nome, PDO::PARAM_STR);
+    $stmt->bindParam(':nome',$input->nomeUsuario, PDO::PARAM_STR);
     $stmt->bindParam(':email', $input->email, PDO::PARAM_STR);
     $stmt->bindParam(':cpfcnpj', $input->cpfcnpj, PDO::PARAM_STR);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT, PDO::PARAM_STR);
-    
-    if(isset($input->senha)) 
-        $stmt->bindParam(':senha', hash('sha256', $input->senha, false), PDO::PARAM_STR);
     
     $result = $stmt->execute();
     

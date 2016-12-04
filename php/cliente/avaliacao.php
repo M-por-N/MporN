@@ -17,7 +17,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT * FROM avaliacao order by id');
+    $stmt = $pdo->prepare('SELECT * FROM avaliacao order by idAvaliacao');
     $stmt->execute();
     
     $dados = array();

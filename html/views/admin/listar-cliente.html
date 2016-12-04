@@ -27,8 +27,8 @@
                 <th>Ações</th>
             </tr>
             <tr ng-repeat="cliente in dataListarCliente.dados">
-                <td>{{cliente.id}}</td>
-                <td>{{cliente.nome}}</td>
+                <td>{{cliente.idCliente}}</td>
+                <td>{{cliente.nomeUsuario}}</td>
                 <td>{{cliente.email}}</td>
                 <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarCliente(cliente)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar

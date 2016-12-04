@@ -14,14 +14,8 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
             cpfcnpj: {
                 requerido: false,
                 invalido: false
-                },
-            senha: {
-                requerido: false,
-                tamanho: false,
-                difere: false
                 }
             },
-        senha2:null,
         dados: {}
     };    
     
@@ -35,22 +29,6 @@ app.controller("ClienteDadosController", function($scope, $location, store, jwtH
         $scope.dataCliente.erro.cpfcnpj.requerido = $scope.cadastroForm.cpfcnpjInput.$error.required === true;
         $scope.dataCliente.erro.cpfcnpj.invalido = //se não for preenchido não verfica por validade
             (!$scope.dataCliente.erro.cpfcnpj.requerido && !$scope.cadastroForm.cpfcnpjInput.$valid);
-        
-        //senha não é obrigatorio
-        //$scope.dataCliente.erro.senha.requerido = $scope.cadastroForm.senhaInput.$error.required === true;
-        $scope.dataCliente.erro.senha.tamanho = $scope.cadastroForm.senhaInput.$error.minlength === true;
-
-        if($scope.dataCliente.senha2 !== $scope.dataCliente.dados.senha){
-            $scope.dataCliente.erro.senha.difere = true;
-            return false;
-        }
-            
-        
-        
-        //Verfica se as senhas são iguais, mas somente se a primeira é maior que o minimo
-        if($scope.dataCliente.dados.hasOwnProperty('senha') && $scope.dataCliente.dados.senha != null && $scope.dataCliente.dados.senha != '')
-            $scope.dataCliente.erro.senha.difere = !$scope.dataCliente.erro.senha.tamanho &&
-                ($scope.dataCliente.senha2 != $scope.dataCliente.dados.senha);
         
         return $scope.cadastroForm.$valid;
     }

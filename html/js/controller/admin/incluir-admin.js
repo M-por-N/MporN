@@ -1,4 +1,4 @@
-app.controller("IncluirAdminController", function($scope, $location, store, jwtHelper, IncluirService, toastr) {
+app.controller("IncluirAdminController", function($scope, $location, store, jwtHelper, CadastrarService, toastr) {
     $scope.dataAdminIncluir = {
         erro: {
             mensagem: null,
@@ -51,7 +51,7 @@ app.controller("IncluirAdminController", function($scope, $location, store, jwtH
         if (!adminValido()) return;
 
         $scope.dataAdminIncluir.loading += 1;
-        var resposta = IncluirService.incluirAdmin(usuario);
+        var resposta = CadastrarService.cadastraAdmin(usuario);
         resposta.then(function(data) {
             if (data.resultado == true) {
                 $scope.dataAdminIncluir.loading -= 1;

@@ -15,7 +15,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT nome,email,cpfcnpj FROM admin WHERE id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM admin a inner join usuario u on a.idUsuario = u.idUsuario WHERE idAdmin = :id');
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     
     $stmt->execute();
