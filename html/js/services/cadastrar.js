@@ -49,6 +49,7 @@ app.factory('CadastrarService', function($http) {
     return {
         cadastraAdmin: cadastraAdmin,
         cadastraCliente: cadastraCliente,
-        cadastraFreelancer: cadastraFreelancer
+        cadastraFreelancer: cadastraFreelancer,
+        cadastrarPlano: cadastrarPlano
     };
 });

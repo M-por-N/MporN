@@ -18,7 +18,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
   
-    $sql = "INSERT INTO plano (nome, descricaocurta, valor) VALUES (:nome, :descricao, :valor)";
+    $sql = "INSERT INTO plano (nomePlano, descricaocurta, valor) VALUES (:nome, :descricao, :valor)";
     
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $input->nome, PDO::PARAM_STR);
