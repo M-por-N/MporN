@@ -1,13 +1,17 @@
 <style type="text/css">
-th, td {
-    border-bottom: 1px solid #ddd;
-}
-tr:hover {background-color: #f5f5f5}
-
-th {
-    background-color: #FFB247;
-    color: white;
-}
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5
+    }
+    
+    th {
+        background-color: #FFB247;
+        color: white;
+    }
 </style>
 <div ng-show="dataFreelancerTrabalhoConcluido.loading != 0">loading</div>
 <div ng-hide="dataFreelancerTrabalhoConcluido.loading != 0">
@@ -21,10 +25,13 @@ th {
                 <th>Nome</th>
                 <th>Descrição</th>
             </tr>
-           
-            <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoConcluido.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle"
-                ng-init="trabalho.isOpen = false" ng-click="trabalho.isOpen = !trabalho.isOpen">
-                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}">  <span class="glyphicon glyphicon-plus"></span></a></td>
+            <tr ng-show="dataFreelancerTrabalhoConcluido.dados == ''">
+                <td colspan="3">Nenhum dado para exibir!</td>
+            </tr>
+            <tr ng-repeat-start="trabalho in dataFreelancerTrabalhoConcluido.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle" ng-init="trabalho.isOpen = false" ng-click="trabalho.isOpen = !trabalho.isOpen">
+                <td>
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}"> <span class="glyphicon glyphicon-plus"></span></a>
+                </td>
                 <td>{{trabalho.nomeTrabalho}}</td>
                 <td>{{trabalho.descricaoTrabalho}}</td>
             </tr>
@@ -40,7 +47,7 @@ th {
                         </br>
                         <p ng-show="trabalho.avaliacaoNome != null"><strong>Avaliação - {{trabalho.avaliacaoNome}}</strong></p>
                         <p ng-show="trabalho.avaliacaoNome == null"><strong>Aguardando avaliação...</strong></p>
-                         <button type="button" class="btn btn-primary" aria-label="Left Align" ng-click="mensagem(trabalho)">
+                        <button type="button" class="btn btn-primary" aria-label="Left Align" ng-click="mensagem(trabalho)">
                                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem
                                                  </button>
                     </div>

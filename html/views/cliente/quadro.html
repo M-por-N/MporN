@@ -1,0 +1,37 @@
+<style type="text/css">
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5
+    }
+    
+    th {
+        background-color: #31B0D5;
+        color: white;
+    }
+</style>
+<div ng-show="dataCliente.loading != 0">loading</div>
+<div ng-hide="dataCliente.loading != 0">
+    <div class="alert alert-danger" ng-show="dataCliente.erro.mensagem">
+        <span>{{dataCliente.erro.mensagem}}</span>
+    </div>
+    <div class="panel panel-default">
+
+        <h4>Seja bem vindo ao MporN,</h4>
+        <h4>Olá {{dataCliente.dados.nomeUsuario}}</h4>
+        <h4>Sua situação no momento: {{dataCliente.dados.nomeStatus}}</h4>
+        <h4>Trabalhos em desenvolvimento: {{dataCliente.dados.trabalhoNormal}}</h4>
+        <h4>Trabalhos Concluídos: {{dataCliente.dados.trabalhoConcluido}}</h4>
+
+
+        <hr>
+
+        <h3>Quadro de Avisos</h3>
+
+        <div></div>
+
+    </div>
+</div>

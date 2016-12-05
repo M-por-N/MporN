@@ -11,6 +11,20 @@ CREATE TABLE freelancer_especialidade (
   KEY idFreelancer (idFreelancer)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- CREATE REPORTES
+DROP TABLE IF EXISTS QUADRO;
+
+CREATE TABLE quadro (
+	idQuadro int(10) unsigned NOT NULL AUTO_INCREMENT,
+	idAdmin int(10) unsigned NOT NULL,
+	mensagemQuadro varchar(400) NOT NULL,
+	dataHora TIMESTAMP DEFAULT NOW() NOT NULL,
+    PRIMARY KEY (idQuadro),
+	KEY idAdmin (idAdmin),
+	KEY idQuadro (idQuadro)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
 
 -- CREATE REPORTES
 DROP TABLE IF EXISTS reporte;

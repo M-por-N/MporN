@@ -2,5 +2,6 @@ app.controller("BarraSuperiorController", function($scope, $location, store, jwt
     $scope.dataBarraSuperior = {
         dropDownLogin: false
     };
-    
+
+
 });

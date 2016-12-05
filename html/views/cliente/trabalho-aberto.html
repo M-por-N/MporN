@@ -33,7 +33,9 @@
                 <th>Nome Plano</th>
                 <th>Ações</th>
             </tr>
-    
+            <tr ng-show="dataClienteTrabalhoAberto.dados == ''">
+                <td colspan="4">Nenhum dado para exibir!</td>
+            </tr>
             <tr ng-repeat="trabalho in dataClienteTrabalhoAberto.dados | filter:trabalho">
                 <td>{{trabalho.nomeTrabalho}}</td>
                 <td>{{trabalho.descricaoTrabalho}}</td>

@@ -7,15 +7,18 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" ng-show="getTelaAtiva().startsWith('/freelancer/')">
+        <li ng-class="{'active' : isTelaAtiva('/freelancer/quadro')}"><a ng-href="#/freelancer/quadro">Quadro de Avisos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/disponivel')}"><a ng-href="#/freelancer/disponivel">Trabalhos Disponíveis</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/andamento')}"><a ng-href="#/freelancer/andamento">Trabalhos em Andamento</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/analise')}"><a ng-href="#/freelancer/analise">Em análise</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/concluido')}"><a ng-href="#/freelancer/concluido">Trabalhos Concluídos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/dados')}"><a ng-href="#/freelancer/dados">Alterar Info</a></li>
 
+
       </ul>
 
       <ul class="nav navbar-nav" ng-show="getTelaAtiva().startsWith('/cliente/')">
+        <li ng-class="{'active' : isTelaAtiva('/cliente/quadro')}"><a ng-href="#/cliente/quadro">Quadro de Avisos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/criar-trabalho')}"><a ng-href="#/cliente/criar-trabalho">Criar Trabalhos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/aberto')}"><a ng-href="#/cliente/aberto">Trabalho Aberto</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/assinado')}"><a ng-href="#/cliente/assinado">Trabalho Assinado</a></li>
@@ -23,10 +26,13 @@
         <li ng-class="{'active' : isTelaAtiva('/cliente/concluido')}"><a ng-href="#/cliente/concluido">Trabalho Concluido</a></li>
         <li ng-class="{'active' : isTelaAtiva('/cliente/dados')}"><a ng-href="#/cliente/dados">Alterar Info</a></li>
 
+
       </ul>
 
       <ul class="nav navbar-nav" ng-show="getTelaAtiva().startsWith('/admin/')">
 
+
+        <li ng-class="{'active' : isTelaAtiva('/admin/quadro')}"><a ng-href="#/admin/quadro">Quadro de Avisos</a></li>
         <li class="dropdown" ng-class="{open: dataBarraIncluir.dropDownIncluir}" ng-mouseleave="dataBarraIncluir.dropDownIncluir = false" ng-mouseenter="dataBarraIncluir.dropDownIncluir = true">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incluir <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -47,6 +53,7 @@
           </ul>
         </li>
         <li ng-class="{'active' : isTelaAtiva('/admin/dados')}"><a ng-href="#/admin/dados">Alterar Info</a></li>
+
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

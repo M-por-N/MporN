@@ -30,7 +30,9 @@
                 <th>Descrição</th>
                 <th>Nome Plano</th>
             </tr>
-
+            <tr ng-show="dataClienteTrabalhoAnalise.dados == ''">
+                <td colspan="4">Nenhum dado para exibir!</td>
+            </tr>
             <tr ng-repeat-start="trabalho in dataClienteTrabalhoAnalise.dados track by $index" data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle" ng-init="trabalho.isOpen = false" ng-click="trabalho.isOpen = !trabalho.isOpen">
                 <td>
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#demo{{$index}}"> <span class="glyphicon glyphicon-plus"></span></a>

@@ -28,12 +28,15 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/cadastro/admin.html',
         controller: 'CadastroAdminController'
     }).when('/freelancer', {
-        redirectTo: '/freelancer/disponivel'
+        redirectTo: '/freelancer/quadro'
     }).when('/cliente', {
-        redirectTo: '/cliente/aberto'
+        redirectTo: '/cliente/quadro'
     }).when('/cliente/criar-trabalho', {
         templateUrl: 'views/cliente/criar-trabalho.html',
         controller: 'ClienteCriarTrabalhoController'
+    }).when('/cliente/quadro', {
+        templateUrl: 'views/cliente/quadro.html',
+        controller: 'QuadroClienteController'
     }).when('/cliente/dados', {
         templateUrl: 'views/cliente/dados.html',
         controller: 'ClienteDadosController'
@@ -52,6 +55,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/freelancer/disponivel', {
         templateUrl: 'views/freelancer/trabalho-disponivel.html',
         controller: 'FreelancerTrabalhoDisponivelController'
+    }).when('/freelancer/quadro', {
+        templateUrl: 'views/freelancer/quadro.html',
+        controller: 'QuadroFreelancerController'
     }).when('/freelancer/analise', {
         templateUrl: 'views/freelancer/trabalho-analise.html',
         controller: 'FreelancerTrabalhoAnaliseController'
@@ -65,10 +71,13 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/freelancer/dados.html',
         controller: 'FreelancerDadosController'
     }).when('/admin/', {
-        redirectTo: '/admin/incluir-admin'
+        redirectTo: '/admin/quadro'
     }).when('/admin/incluir-admin', {
         templateUrl: 'views/admin/incluir-admin.html',
         controller: 'IncluirAdminController'
+    }).when('/admin/quadro', {
+        templateUrl: 'views/admin/quadro.html',
+        controller: 'QuadroAdminController'
     }).when('/admin/incluir-cliente', {
         templateUrl: 'views/admin/incluir-cliente.html',
         controller: 'IncluirClienteController'
@@ -113,16 +122,20 @@ app.config(function Config($httpProvider, jwtInterceptorProvider) {
 })
 
 app.controller("MainController", function($scope, $location, store, jwtHelper, LoginService) {
-    $scope.dataMain = {isLoged: false, loading: false, usuario: {}};
-    
-    $scope.isTelaAtiva = function (viewLocation) { 
+    $scope.dataMain = {
+        isLoged: false,
+        loading: false,
+        usuario: {}
+    };
+
+    $scope.isTelaAtiva = function(viewLocation) {
         return viewLocation === $location.path();
     };
-    
-    $scope.getTelaAtiva = function (viewLocation) { 
+
+    $scope.getTelaAtiva = function(viewLocation) {
         return $location.path();
     };
-    
+
     $scope.logout = function() {
         $scope.dataMain.isLoged = false;
         store.remove('jwt');
@@ -133,18 +146,20 @@ app.controller("MainController", function($scope, $location, store, jwtHelper, L
     $scope.login = function(usuario) {
         alert("Erro login não implementado");
     };
-    
+
     var jwt = store.get('jwt');
-    if(store.get('jwt') == null){
+    if (store.get('jwt') == null) {
         //não logado
         $scope.dataMain.isLoged = false;
         $scope.dataMain.usuario = {};
-    } else if(jwtHelper.isTokenExpired(jwt)) {
+    }
+    else if (jwtHelper.isTokenExpired(jwt)) {
         //logado, mas o login expirou
         $scope.dataMain.isLoged = false;
         $scope.dataMain.usuario = {};
         store.remove('jwt');
-    } else {
+    }
+    else {
         //logado e valido
         $scope.dataMain.usuario = jwtHelper.decodeToken(jwt).data;
         $scope.dataMain.isLoged = true;
