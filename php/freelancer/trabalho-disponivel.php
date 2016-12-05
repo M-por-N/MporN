@@ -15,15 +15,18 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
     $stmt = $pdo->prepare('SELECT t.idTrabalho, t.nomeTrabalho, t.descricaoTrabalho, p.nomePlano, uf.nomeUsuario as nomeFreelancer, uc.nomeUsuario as nomeCliente,
-                           s.nomeSituacao, uc.email as emailCliente, uf.email as emailFreelancer
+                           s.nomeSituacao, uc.email as emailCliente, uf.email as emailFreelancer,
+                           stf.nomeStatus statusFreelancer, stc.nomeStatus statusCliente
                            FROM trabalho t inner join plano p on t.idPlano=p.idPlano 
                            left join freelancer f on t.idFreelancer = f.idFreelancer 
                            left join usuario uf on f.idUsuario = uf.idUsuario
                            left join cliente c on t.idCliente = c.idCliente
                            left join usuario uc on c.idUsuario = uc.idUsuario
                            left join avaliacao a on t.idAvaliacao = a.idAvaliacao
+                           left join status stf on stf.idStatus = uf.idStatus
+                           left join status stc on stc.idStatus = uc.idStatus
                            inner join situacao s on t.idSituacao = s.idSituacao
-                           WHERE t.idFreelancer is null ');
+                           WHERE t.idFreelancer is null and uc.idStatus <> 0');
     $stmt->bindValue(':idfreelancer', $id, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros
