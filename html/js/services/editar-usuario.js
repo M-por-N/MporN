@@ -33,6 +33,7 @@ app.factory('EditarUsuarioService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     };
+    
 
     return {
         editarAdmin: editarAdmin,

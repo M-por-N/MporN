@@ -24,13 +24,23 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $stmt = $pdo->prepare("SELECT c.idCliente id 
+    $stmt = $pdo->prepare("SELECT c.idCliente id,  u.idStatus, s.nomeStatus 
                                   FROM usuario u inner join cliente c on u.idUsuario = c.idUsuario 
+                                  inner join status s on u.idStatus = s.idStatus
                                   WHERE u.email = :login AND u.senha = :senha");
     $stmt->bindParam(':login', $input->login, PDO::PARAM_STR);
     $stmt->bindParam(':senha', hash('sha256', $input->senha, false), PDO::PARAM_STR);
     $stmt->execute();
     $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $idStatus = $resultado[0]['idStatus'];
+    
+    if($idStatus == 3 or $idStatus == 4){
+        
+        echo json_encode(['resultado' => false, 'mensagem' => $resultado[0]['nomeStatus']]);
+        exit;
+    }
+    
     $id = $resultado[0]['id'];
     //TODO: verficar se o id é null
 } catch(PDOException $e){
