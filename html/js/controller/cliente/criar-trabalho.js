@@ -50,7 +50,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
 
     $scope.criarTrabalhoDados = function(trabalho) {
         //verificações:
-        //trabalho.plano = $scope.plano;
+        trabalho.plano = $scope.plano;
         if (!cadastraValido()) return;
         console.log(trabalho);
 

@@ -46,16 +46,20 @@
                 <div class="col-md-2">
                     <label for="planoInput" class="col-md-12 control-label">Planos:</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div ng-show="dataClienteCriarTrabalho.loading != 0">Carregando...</div>
                     <div class="row" ng-hide="dataClienteCriarTrabalho.loading != 0">
-                        <div class=" col-md-12">
-                            <select id="planoInput" name="planoInput" class="selectpicker form-control" required ng-model="dataClienteCriarTrabalho.data.plano">
-                                <option  value="">Selecione um plano</option>
-                                <option ng-repeat="plano in dataClienteCriarTrabalho.todosPlanos" value="{{plano.idPlano}}">{{plano.nomePlano}}</option>
-                            </select>
-                            <span class="help-block" ng-show="dataClienteCriarTrabalho.erro.plano.requerido">Plano Requerido</span>
-
+                         <div ng-repeat="plano in dataClienteCriarTrabalho.todosPlanos" class="col-sm-6 col-md-4">
+                            <div class="thumbnail planoSelect" id="planoInputz" ng-class="{'selected-plan' : selectedItem === $index}" ng-click="selected($index)" required ng-model="dataClienteCriarTrabalho.data.plano" style="height:250px">
+                                <img src="imgs/logo-media.png" alt="plano1" height="100" width="100">
+                                <div class="caption">
+                                    <center>
+                                        <h4>{{plano.nome}}</h4>
+                                        <h5>Valor: R${{plano.valor}}</h5>
+                                        <h5>{{plano.descricaoCurta}}</h5>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -66,10 +70,8 @@
 
         </div>
         <div class="form-group">
-            <div class="col-md-offset-3 col-md-9">
-                <div class="col-md-offset-2 col-md-10">
-                    <button id="btn-signup" type="button" class="btn btn-info" ng-click="criarTrabalhoDados(dataClienteCriarTrabalho.data)">Criar Trabalho</button>
-                </div>
+            <div class="col-md-offset-2 col-md-5" style="text-align: center">
+                <button id="btn-signup" style="width:160px; height:60px" type="button" class="btn btn-info" ng-click="criarTrabalhoDados(dataClienteCriarTrabalho.data)">Criar Trabalho</button>
             </div>
         </div>
     </form>

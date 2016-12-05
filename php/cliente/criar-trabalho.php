@@ -33,7 +33,7 @@ try{
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':nome',$input->nome, PDO::PARAM_STR);
-    $stmt->bindParam(':plano', $input->plano, PDO::PARAM_INT);
+    $stmt->bindParam(':plano', $input->plano->idPlano, PDO::PARAM_INT, PDO::PARAM_STR);
     $stmt->bindParam(':descricao', $input->descricao, PDO::PARAM_STR);
     $stmt->bindParam(':id_cliente', $id, PDO::PARAM_INT, PDO::PARAM_STR);
     $stmt->bindParam(':detalhado',$input->detalhado, PDO::PARAM_STR);
