@@ -52,6 +52,7 @@ app.controller("ClienteCriarTrabalhoController", function($scope, $location, sto
         //verificações:
         trabalho.plano = $scope.plano;
         if(!cadastraValido()) return;
+        console.log(trabalho);
         
         $scope.dataClienteCriarTrabalho.loading += 1;
         var resposta = TrabalhoClienteService.cadastrarTrabalho(trabalho);
