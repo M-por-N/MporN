@@ -1,4 +1,4 @@
-app.controller("ListarPlanoController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert) {
+app.controller("ListarPlanoController", function($scope, $location, store, jwtHelper, ListarService, AdminService, toastr, SweetAlert, ModalService) {
     $scope.dataListarPlano = {
         loading: 0,
         erro: {
@@ -30,6 +30,27 @@ app.controller("ListarPlanoController", function($scope, $location, store, jwtHe
     }
 
     $scope.listarPlano();
+    
+    
+    $scope.editarPlano = function(plano) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/editarPlanoModal.html",
+            controller: "EditarPlanoController",
+            inputs: {
+                plano: plano
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+
+                $scope.listarPlano();
+
+            });
+        });
+
+    };
 
 
 })

@@ -1,4 +1,4 @@
-app.controller("EditarAdminController", function($scope, close, usuario, toastr, SweetAlert, EditarUsuarioService, StatusService) {
+app.controller("EditarAdminController", function($scope, close, usuario, toastr, SweetAlert, EditarService, StatusService) {
 
    $scope.usuario = usuario;
 
@@ -35,7 +35,7 @@ app.controller("EditarAdminController", function($scope, close, usuario, toastr,
 
    $scope.atualizaDados = function() {
 
-      EditarUsuarioService.editarAdmin($scope.usuario).then(function(data) {
+      EditarService.editarAdmin($scope.usuario).then(function(data) {
          if (data.resultado) {
 
             toastr.success("Dados alterados com sucesso!");

@@ -1,4 +1,4 @@
-app.controller("FreelancerDadosController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService, FreelancerService, EspecialidadeService, toastr) {
+app.controller("FreelancerDadosController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService, FreelancerService, EspecialidadeService, toastr, ModalService) {
     $scope.dataFreelancer = {
         loading: 0,
         erro: {
@@ -6,35 +6,35 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
             nome: {
                 requerido: false,
                 tamanho: false
-                },
+            },
             email: {
                 requerido: false,
                 invalido: false
-                },
+            },
             cpfcnpj: {
                 requerido: false,
                 invalido: false
-                },
+            },
             especialidade: {
                 requerido: false
-                }
-            },
+            }
+        },
         dados: {}
-    };    
-    
+    };
+
     function cadastraValido() {
         $scope.dataFreelancer.erro.nome.requerido = $scope.cadastroForm.nomeInput.$error.required === true;
         $scope.dataFreelancer.erro.nome.tamanho = $scope.cadastroForm.nomeInput.$error.minlength === true; //evita undefined
-        
+
         $scope.dataFreelancer.erro.email.requerido = $scope.cadastroForm.emailInput.$error.required === true;
         $scope.dataFreelancer.erro.email.invalido = $scope.cadastroForm.emailInput.$error.invalido === true;
-        
+
         $scope.dataFreelancer.erro.cpfcnpj.requerido = $scope.cadastroForm.cpfcnpjInput.$error.required === true;
         $scope.dataFreelancer.erro.cpfcnpj.invalido = //se não for preenchido não verfica por validade
             (!$scope.dataFreelancer.erro.cpfcnpj.requerido && !$scope.cadastroForm.cpfcnpjInput.$valid);
-       
+
         $scope.dataFreelancer.erro.especialidade.requerido = $scope.cadastroForm.especialidadeInput.$error.required === true;
-        
+
         return $scope.cadastroForm.$valid;
     }
 
@@ -48,7 +48,8 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
                 $location.path('/freelancer/disponivel');
                 toastr.success("Dados alterados com sucesso!");
                 $scope.dataFreelancer.loading -= 1;
-            } else {
+            }
+            else {
                 $scope.dataFreelancer.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
                 $scope.dataFreelancer.loading -= 1;
             }
@@ -61,7 +62,8 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
             $scope.dataFreelancer.dados = data;
             $scope.dataFreelancer.senha2 = $scope.dataFreelancer.dados.senha;
             $scope.dataFreelancer.loading -= 1;
-        } else {
+        }
+        else {
             $scope.dataFreelancer.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
             $scope.dataFreelancer.loading -= 1;
         }
@@ -70,9 +72,28 @@ app.controller("FreelancerDadosController", function($scope, $location, store, j
         if (data.especialidades) {
             $scope.dataFreelancer.todasEspecialidades = data.especialidades;
             $scope.dataFreelancer.loading -= 1;
-        } else {
+        }
+        else {
             $scope.dataFreelancer.erro.mensagem = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
             $scope.dataFreelancer.loading -= 1;
         }
     });
+
+
+    $scope.alterarSenha = function(usuario) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/alterarSenha.html",
+            controller: "AlterarSenhaController",
+            inputs: {
+                usuario: usuario
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+
+            });
+        });
+    }
 })

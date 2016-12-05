@@ -1,4 +1,4 @@
-app.controller("ListarTrabalhoController", function($scope, $location, store, jwtHelper, ListarService, toastr) {
+app.controller("ListarTrabalhoController", function($scope, $location, store, jwtHelper, ListarService, toastr, ModalService) {
     $scope.dataListarTrabalho = {
         loading: 0,
         erro: {
@@ -23,6 +23,27 @@ app.controller("ListarTrabalhoController", function($scope, $location, store, jw
     }
 
     $scope.listarTrabalho();
+    
+    
+    $scope.editarTrabalho = function(trabalho) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/editarTrabalhoModal.html",
+            controller: "EditarTrabalhoController",
+            inputs: {
+                trabalho: trabalho
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+
+                $scope.listarTrabalho();
+
+            });
+        });
+
+    };
 
 
 })

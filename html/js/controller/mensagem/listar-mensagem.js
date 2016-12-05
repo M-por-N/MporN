@@ -25,11 +25,12 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
     };
 
 
+
     $scope.enviar = function(result) {
 
-        if (!$scope.mensagem || !$scope.mensagem.length) {
+        if (!$scope.mensagem || !$scope.mensagem.length || $scope.mensagem.length<=5) {
             SweetAlert.swal(
-                'Está vazio!',
+                'Está estranho!',
                 'Você está tentando se comunicar com o quê?',
                 'error'
             )
@@ -70,7 +71,7 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
                 $scope.listaMensagem.push(angular.copy(newMensagem))
 
                 $scope.mensagem = "";
-                
+
                 toastr.success("Mensagem Postada");
 
                 $scope.disableButton = false;

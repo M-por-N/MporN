@@ -1,4 +1,4 @@
-app.controller("AdminDadosController", function($scope, $location, store, jwtHelper, AdminService, toastr) {
+app.controller("AdminDadosController", function($scope, $location, store, jwtHelper, AdminService, toastr, ModalService) {
     $scope.dataAdmin = {
         loading: 0,
         erro: {
@@ -63,4 +63,21 @@ app.controller("AdminDadosController", function($scope, $location, store, jwtHel
             $scope.dataAdmin.loading = 0;
         }
     });
+    
+    $scope.alterarSenha = function(usuario) {
+
+        ModalService.showModal({
+            templateUrl: "views/modal/alterarSenha.html",
+            controller: "AlterarSenhaController",
+            inputs: {
+                usuario: usuario
+            }
+        }).then(function(modal) {
+
+            modal.element.modal();
+            modal.close.then(function(result) {
+
+            });
+        });
+    }
 })

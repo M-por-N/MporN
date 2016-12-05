@@ -1,0 +1,68 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{trabalho.nomeTrabalho}}</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form name="cadastroForm" novalidate class="simple-form">
+
+                    <div class="form-group">
+                        <div class="alert alert-danger" ng-show="erro.mensagem">
+                            <span>{{erro.mensagem}}</span>
+                        </div>
+
+                        <div class="form-group row" ng-class="{'has-error': erro.nome.requerido || erro.nome.tamanho}">
+                            <div class="col-md-2">
+                                <label for="nomeInput" class="control-label col-md-5">Nome:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="trabalho.nomeTrabalho">
+                                <span class="help-block" ng-show="erro.nome.requerido">Campo Requerido</span>
+                                <span class="help-block" ng-show="erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="descricaoInput" class="col-md-12 control-label">Descrição Trabalho:</label>
+                            </div>
+                            <div class="col-md-5" ng-class="{'has-error': erro.descricao.requerido || erro.descricao.tamanho || erro.descricao.difere}">
+                                <input type="text" id="descricaoInput" name="descricaoInput" class="form-control" placeholder="Descrição" required autofocus minlength="5" ng-model="trabalho.descricaoTrabalho">
+                                <span class="help-block" ng-show="erro.descricao.requerido">Campo Requerido</span>
+                                <span class="help-block" ng-show="erro.descricao.tamanho">Descrição Precisa ter no minimo 5 Caracteres</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="detalhadoInput" class="col-md-12 control-label">Detalhado Trabalho:</label>
+                            </div>
+                            <div class="col-md-5" ng-class="{'has-error': erro.detalhado.requerido || erro.detalhado.tamanho || erro.detalhado.difere}">
+                                <textarea rows="4" cols="50" id="detalhadoInput" name="detalhadoInput" class="form-control" placeholder="Detalhado" required autofocus minlength="5" ng-model="trabalho.detalhadoTrabalho"></textarea>
+                                <span class="help-block" ng-show="erro.detalhado.requerido">Campo Requerido</span>
+                                <span class="help-block" ng-show="erro.detalhado.tamanho">Detalhado Precisa ter no minimo 5 Caracteres</span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="atualizarTrabalho(trabalho)">Atualizar</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
