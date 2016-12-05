@@ -10,7 +10,7 @@ app.controller("IncluirQuadroController", function($scope, $location, store, jwt
     $scope.incluir = function(quadro) {
         
         
-        if (!quadro) {
+        if (!quadro || !quadro.mensagem || quadro.mensagem<=5) {
             SweetAlert.swal(
                 'Está estranho!',
                 'Você está tentando se comunicar com o quê?',
