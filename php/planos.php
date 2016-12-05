@@ -9,7 +9,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT * FROM plano');
+    $stmt = $pdo->prepare('SELECT * FROM plano p where p.idStatus not in (3)');
     $stmt->execute();
     
     $dados = array();

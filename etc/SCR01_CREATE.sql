@@ -65,13 +65,15 @@ CREATE TABLE trabalho (
   idFreelancer int(10) unsigned DEFAULT NULL,
   idSituacao int(10) unsigned NOT NULL,
   idAvaliacao int(10) unsigned DEFAULT NULL,
+  idStatus int(10) unsigned DEFAULT 1,
   anexo blob default null,
   PRIMARY KEY (idTrabalho),
   KEY idCliente (idCliente),
   KEY idFreelancer (idFreelancer),
   KEY idPlano (idPlano),
   KEY idAvaliacao (idAvaliacao),
-  KEY idSituacao (idSituacao)
+  KEY idSituacao (idSituacao),
+  KEY idStatus (idStatus)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -143,8 +145,11 @@ CREATE TABLE plano (
   nomePlano varchar(64) NOT NULL,
   descricaoCurta varchar(256) DEFAULT NULL,
   valor int(11) DEFAULT NULL,
+  idStatus int(10) unsigned DEFAULT 1,
   imagem blob default null,
-  PRIMARY KEY (idPlano)
+  PRIMARY KEY (idPlano),
+  KEY idPlano (idPlano),
+  KEY idStatus (idStatus)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 

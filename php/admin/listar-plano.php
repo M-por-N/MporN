@@ -15,7 +15,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT idPlano, nomePlano, descricaocurta, valor FROM plano');
+    $stmt = $pdo->prepare('SELECT idPlano, nomePlano, descricaocurta, valor, p.idStatus, s.nomeStatus FROM plano p inner join status s on p.idStatus = s.idStatus');
 
     $stmt->execute(); //TDOO: verficar por erros
     $trab = array();

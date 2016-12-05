@@ -1,4 +1,4 @@
-app.controller("IncluirQuadroController", function($scope, $location, store, jwtHelper, QuadroService, toastr) {
+app.controller("IncluirQuadroController", function($scope, $location, store, jwtHelper, QuadroService, toastr, SweetAlert) {
     $scope.dataAdmin = {
         erro: {
             mensagem: null
@@ -8,7 +8,18 @@ app.controller("IncluirQuadroController", function($scope, $location, store, jwt
     };
 
     $scope.incluir = function(quadro) {
+        
+        
+        if (!quadro || !quadro.length || quadro.length<=5) {
+            SweetAlert.swal(
+                'Está estranho!',
+                'Você está tentando se comunicar com o quê?',
+                'error'
+            )
 
+            return;
+        }
+        
         $scope.dataAdmin.loading += 1;
         var resposta = QuadroService.setQuadro(quadro);
         resposta.then(function(data) {

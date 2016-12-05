@@ -24,12 +24,14 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Valor</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
             <tr ng-repeat="plano in dataListarPlano.dados">
                 <td>{{plano.idPlano}}</td>
                 <td>{{plano.nomePlano}}</td>
                 <td>{{plano.valor | currency:"R$ "}}</td>
+                <td>{{plano.nomeStatus}}</td>
                 <td>
                     <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editarPlano(plano)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar

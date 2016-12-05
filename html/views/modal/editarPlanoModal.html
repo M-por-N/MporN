@@ -58,6 +58,17 @@
 
                 </form>
 
+                <hr>
+                <div>
+                    <label for="repeatSelect"> Status: </label>
+                    <select name="statusSelect" id="statusSelect" ng-model="idStatus">
+      <option ng-repeat="status in listaStatus" value="{{status.idStatus}}">{{status.nomeStatus}}</option>
+    </select>
+                    <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="setStatusPlano()">Alterar</button>
+
+
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">Fechar</button>

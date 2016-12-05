@@ -30,6 +30,7 @@ try{
                            inner join situacao s on t.idSituacao = s.idSituacao
                            WHERE t.idFreelancer = :freelancer 
                            AND t.idSituacao in (:situacao)
+                           
                            order by t.idFreelancer desc');
     $stmt->bindValue(':freelancer', $id, PDO::PARAM_INT);
     $stmt->bindValue(':situacao', $situacao, PDO::PARAM_INT);

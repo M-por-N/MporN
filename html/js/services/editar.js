@@ -4,6 +4,7 @@ app.factory('EditarService', function($http) {
     var urlEditarCliente = "/php/admin/editar-usuario/freelancer.php";
     var urlEditarTrabalho = "/php/admin/alterar-trabalho.php";
     var urlEditarPlano = "/php/admin/alterar-plano.php";
+    var urlEditarSenha = "/php/login/editarSenha.php";
 
 
     var editarAdmin = function(usuario) {
@@ -34,6 +35,19 @@ app.factory('EditarService', function($http) {
 
     var editarFreelancer = function(usuario) {
         return $http.post(urlEditarCliente, usuario).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {
+                    resultado: false,
+                    mensagem: "Erro ao se comunicar com a servidor"
+                };
+            });
+    };
+    
+    var atualizarSenha = function(dados) {
+        return $http.post(urlEditarSenha, dados).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -77,7 +91,8 @@ app.factory('EditarService', function($http) {
         editarFreelancer: editarFreelancer,
         editarCliente: editarCliente,
         editarPlano: editarPlano,
-        editarTrabalho: editarTrabalho
+        editarTrabalho: editarTrabalho,
+        atualizarSenha: atualizarSenha
     };
 
 });

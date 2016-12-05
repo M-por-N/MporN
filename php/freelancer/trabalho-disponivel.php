@@ -26,7 +26,9 @@ try{
                            left join status stf on stf.idStatus = uf.idStatus
                            left join status stc on stc.idStatus = uc.idStatus
                            inner join situacao s on t.idSituacao = s.idSituacao
-                           WHERE t.idFreelancer is null and uc.idStatus not in (3,4)');
+                           WHERE t.idFreelancer is null and uc.idStatus not in (3)
+                           and t.idStatus not in (3)
+                           and p.idStatus not in (3)');
     $stmt->bindValue(':idfreelancer', $id, PDO::PARAM_INT);
     
     $stmt->execute(); //TDOO: verficar por erros
