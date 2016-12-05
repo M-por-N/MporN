@@ -1,14 +1,16 @@
-app.controller("ListarMensagemController", function($scope, close, trabalho, idt, MensagemService) {
+app.controller("ListarMensagemController", function($scope, close, trabalho, idt, MensagemService, toastr, SweetAlert) {
 
     $scope.titulo = {};
     $scope.mensagem = "";
-    $scope.titulo = trabalho.trabalhoNome;
+    $scope.titulo = trabalho.nomeTrabalho;
+
+    $scope.disableButton = false;
 
     $scope.listaMensagem = [];
 
     $scope.filtro = {
 
-        trabalho: trabalho.id
+        trabalho: trabalho.idTrabalho
     };
 
     MensagemService.getMensagem($scope.filtro).then(function(data) {
@@ -19,30 +21,43 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
 
 
     $scope.close = function(result) {
-        close(result, 500); // close, but give 500ms for bootstrap to animate
+        close(result, 500);
     };
 
 
     $scope.enviar = function(result) {
 
+        if (!$scope.mensagem || !$scope.mensagem.length) {
+            SweetAlert.swal(
+                'Está vazio!',
+                'Você está tentando se comunicar com o quê?',
+                'error'
+            )
+
+            return;
+        }
+
+        $scope.disableButton = true;
+
         $scope.params = {
             mensagem: $scope.mensagem,
-            trabalho: trabalho.id,
+            trabalho: trabalho.idTrabalho,
             idt: idt
         };
 
         MensagemService.setMensagem($scope.params).then(function(data) {
 
             if (data.resultado == true) {
-                
+
                 var txt = '';
-                if(idt=='C'){
+                if (idt == 'C') {
                     txt = 'Cliente';
-                }else{
+                }
+                else {
                     txt = 'Freelancer';
                 }
 
-               var newMensagem = {
+                var newMensagem = {
                     texto: $scope.mensagem,
                     datahora: new Date(),
                     usuario: txt
@@ -50,15 +65,20 @@ app.controller("ListarMensagemController", function($scope, close, trabalho, idt
 
                 var index = $scope.listaMensagem.indexOf(newMensagem);
 
-                
+
 
                 $scope.listaMensagem.push(angular.copy(newMensagem))
 
+                $scope.mensagem = "";
+                
+                toastr.success("Mensagem Postada");
 
+                $scope.disableButton = false;
             }
             else {
                 $scope.dataClienteTrabalhoAberto.erro.mensagem = "Erro no Remover: " + data.mensagem;
                 toastr.error("Error");
+                $scope.disableButton = false;
             }
         });
 

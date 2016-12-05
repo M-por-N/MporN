@@ -1,4 +1,4 @@
-app.controller("CadastroAdminController", function($scope, $location, store, jwtHelper, AdminService, toastr) {
+app.controller("CadastroAdminController", function($scope, $location, store, jwtHelper, CadastrarService, toastr) {
     $scope.dataCadastraAdmin = {
         erro: {
             mensagem: null,
@@ -51,7 +51,7 @@ app.controller("CadastroAdminController", function($scope, $location, store, jwt
         if (!cadastraValido()) return;
 
         $scope.dataCadastraAdmin.loading += 1;
-        var resposta = AdminService.cadastra(usuario);
+        var resposta = CadastrarService.cadastraAdmin(usuario);
         resposta.then(function(data) {
             if (data.resultado == true) {
                 $scope.dataCadastraAdmin.loading -= 1;

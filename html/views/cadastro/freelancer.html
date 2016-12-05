@@ -74,7 +74,7 @@ label {
                     <label for="especialidadeInput" class="col-md-3">Especialidades:</label>
                     <div class="col-md-9">
                         <select id="especialidadeInput" name="especialidadeInput" class="selectpicker form-control" required multiple ng-model="dataCadastraFreelancer.data.especialidade">
-                            <option ng-repeat="especialidade in dataCadastraFreelancer.todasEspecialidades" value="{{especialidade.id}}">{{especialidade.nome}}</option>
+                            <option ng-repeat="especialidade in dataCadastraFreelancer.todasEspecialidades" value="{{especialidade.idEspecialidade}}">{{especialidade.nomeEspecialidade}}</option>
                         </select>
                         <span class="help-block" ng-show="dataCadastraFreelancer.erro.especialidade.requerido">Especialidade Requerida</span>
                     </div>

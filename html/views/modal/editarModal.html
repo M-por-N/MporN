@@ -1,0 +1,78 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{usuario.nomeUsuario}}</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form name="cadastroForm" novalidate class="simple-form">
+
+                    <div class="form-group">
+                        <div class="alert alert-danger" ng-show="erro.mensagem">
+                            <span>{{erro.mensagem}}</span>
+                        </div>
+                        <div class="form-group row" ng-class="{'has-error': erro.nome.requerido || erro.nome.tamanho}">
+                            <div class="col-md-2">
+                                <label for="nomeInput" class="control-label col-md-5">Nome:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="usuario.nomeUsuario">
+                                <span class="help-block" ng-show="erro.nome.requerido">Campo Requerido</span>
+                                <span class="help-block" ng-show="erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row" ng-class="{'has-error': erro.email.requerido || erro.email.invalido}">
+                            <div class="col-md-2">
+                                <label for="emailInput" class="control-label col-md-5">Email:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="email" id="emailInput" name="emailInput" class="form-control" placeholder="Email" required ng-model="usuario.email">
+                                <span class="help-block" ng-show="erro.email.requerido">Campo Requerido</span>
+                                <span class="help-block" ng-show="erro.email.invalido">Email Invalido</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" ng-class="{'has-error': erro.cpfcnpj.requerido || erro.cpfcnpj.invalido}">
+                            <div class="col-md-2">
+                                <label for="cpfcnpjInput" class="control-label col-md-5">CPF:</label>
+                            </div>
+                            <!-- TODO: CPF/CNPJ -->
+                            <div class="col-md-4">
+                                <input id="cpfcnpjInput" name="cpfcnpjInput" class="form-control" required ng-cpf ui-mask="999.999.999-99" ng-model="usuario.cpfcnpj">
+                                <span class="help-block" ng-show="erro.cpfcnpj.requerido">CPF Requerido</span>
+                                <span class="help-block" ng-show="erro.cpfcnpj.invalido">CPF Invalido</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="atualizaDados()">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                <div>
+                    <label for="repeatSelect"> Status: </label>
+                    <select name="statusSelect" id="statusSelect" ng-model="idStatus">
+      <option ng-repeat="status in listaStatus" value="{{status.idStatus}}">{{status.nomeStatus}}</option>
+    </select> 
+                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="setStatus()">Alterar</button>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+            </div>
+        </div>
+    </div>
+</div>

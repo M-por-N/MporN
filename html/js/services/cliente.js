@@ -33,6 +33,7 @@ app.factory('ClienteService', function($http) {
             });
     };
     
+    
     return {
         getDados: getDados,
         setDados: setDados,

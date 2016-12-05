@@ -1,4 +1,4 @@
-app.controller("IncluirClienteController", function($scope, $location, store, jwtHelper, IncluirService, toastr) {
+app.controller("IncluirClienteController", function($scope, $location, store, jwtHelper, CadastrarService, toastr) {
     $scope.dataClienteIncluir = {
         erro: {
             mensagem: null,
@@ -51,7 +51,7 @@ app.controller("IncluirClienteController", function($scope, $location, store, jw
         if (!clienteValido()) return;
 
         $scope.dataClienteIncluir.loading += 1;
-        var resposta = IncluirService.incluirCliente(usuario);
+        var resposta = CadastrarService.cadastraCliente(usuario);
         resposta.then(function(data) {
             if (data.resultado == true) {
                 $scope.dataClienteIncluir.loading -= 1;

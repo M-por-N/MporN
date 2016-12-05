@@ -18,7 +18,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $query = 'UPDATE trabalho SET id_avaliacao = :avaliacao WHERE id_cliente = :id_cliente AND id = :id';
+    $query = 'UPDATE trabalho SET idAvaliacao = :avaliacao WHERE idCliente = :id_cliente AND idTrabalho = :id';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':avaliacao', $avaliacao, PDO::PARAM_INT);

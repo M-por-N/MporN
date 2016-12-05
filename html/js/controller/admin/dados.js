@@ -14,14 +14,8 @@ app.controller("AdminDadosController", function($scope, $location, store, jwtHel
             cpfcnpj: {
                 requerido: false,
                 invalido: false
-                },
-            senha: {
-                requerido: false,
-                tamanho: false,
-                difere: false
                 }
             },
-        senha2:null,
         dados: {}
     };    
     
@@ -36,21 +30,7 @@ app.controller("AdminDadosController", function($scope, $location, store, jwtHel
         $scope.dataAdmin.erro.cpfcnpj.invalido = //se não for preenchido não verfica por validade
             (!$scope.dataAdmin.erro.cpfcnpj.requerido && !$scope.cadastroForm.cpfcnpjInput.$valid);
         
-        //senha não é obrigatorio
-        //$scope.dataAdmin.erro.senha.requerido = $scope.cadastroForm.senhaInput.$error.required === true;
-        $scope.dataAdmin.erro.senha.tamanho = $scope.cadastroForm.senhaInput.$error.minlength === true;
-
-        if($scope.dataAdmin.senha2 !== $scope.dataAdmin.dados.senha){
-            $scope.dataAdmin.erro.senha.difere = true;
-            return false;
-        }
-            
-        
-        
-        //Verfica se as senhas são iguais, mas somente se a primeira é maior que o minimo
-        if($scope.dataAdmin.dados.hasOwnProperty('senha') && $scope.dataAdmin.dados.senha != null && $scope.dataAdmin.dados.senha != '')
-            $scope.dataAdmin.erro.senha.difere = !$scope.dataAdmin.erro.senha.tamanho &&
-                ($scope.dataAdmin.senha2 != $scope.dataAdmin.dados.senha);
+    
         
         return $scope.cadastroForm.$valid;
     }

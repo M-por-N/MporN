@@ -29,7 +29,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
         SweetAlert.swal({
             title: "Você tem certeza?",
-            text: "Você irá concluir o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            text: "Você irá concluir o trabalho '" + trabalho.nomeTrabalho + "'. Tem certeza?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -39,7 +39,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
 
             $scope.params = {
-                trabalho: trabalho.id,
+                trabalho: trabalho.idTrabalho,
                 situacao: 4
             };
 
@@ -70,7 +70,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
         SweetAlert.swal({
             title: "Você tem certeza?",
-            text: "Você irá devolver o trabalho '" + trabalho.trabalhoNome + "' para o freelancer. Tem certeza?",
+            text: "Você irá devolver o trabalho '" + trabalho.nomeTrabalho + "' para o freelancer. Tem certeza?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -80,7 +80,7 @@ app.controller("ClienteTrabalhoAnaliseController", function($scope, $location, s
 
 
             $scope.params = {
-                trabalho: trabalho.id,
+                trabalho: trabalho.idTrabalho,
                 situacao: 2
             };
 

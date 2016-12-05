@@ -24,7 +24,7 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
 
         SweetAlert.swal({
             title: "Você tem certeza?",
-            text: "Você irá associar o trabalho '" + trabalho.trabalhoNome + "'. Tem certeza?",
+            text: "Você irá associar o trabalho '" + trabalho.nomeTrabalho + "'. Tem certeza?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -33,7 +33,7 @@ app.controller("FreelancerTrabalhoDisponivelController", function($scope, $locat
         }).then(function() {
 
             $scope.params = {
-                trabalho: trabalho.id,
+                trabalho: trabalho.idTrabalho,
                 situacao: 2
             };
 

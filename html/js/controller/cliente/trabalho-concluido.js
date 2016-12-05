@@ -61,7 +61,7 @@ app.controller("ClienteTrabalhoConcluidoController", function($scope, $location,
             var avaliacao = parseInt(result) + 1;
 
             $scope.params = {
-                trabalho: trabalho.id,
+                trabalho: trabalho.idTrabalho,
                 avaliacao: avaliacao
             };
 

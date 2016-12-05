@@ -32,7 +32,7 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
 
         SweetAlert.swal({
             title: "Você tem certeza?",
-            text: "Você irá deletar o trabalho '" + trabalho.trabalhoNome + "' do sistema. Tem certeza?",
+            text: "Você irá deletar o trabalho '" + trabalho.nomeTrabalho + "' do sistema. Tem certeza?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -42,7 +42,7 @@ app.controller("ClienteTrabalhoAbertoController", function($scope, $location, $w
 
 
             $scope.params = {
-                trabalho: trabalho.id
+                trabalho: trabalho.idTrabalho
             };
 
 

@@ -1,4 +1,4 @@
-app.controller("IncluirPlanoController", function($scope, $location, store, jwtHelper, IncluirService, toastr) {
+app.controller("IncluirPlanoController", function($scope, $location, store, jwtHelper, CadastrarService, toastr) {
     $scope.dataPlanoIncluir = {
         erro: {
             mensagem: null,
@@ -37,7 +37,7 @@ app.controller("IncluirPlanoController", function($scope, $location, store, jwtH
         if (!planoValido()) return;
 
         $scope.dataPlanoIncluir.loading += 1;
-        var resposta = IncluirService.incluirPlano(usuario);
+        var resposta = CadastrarService.cadastrarPlano(usuario);
         resposta.then(function(data) {
             if (data.resultado == true) {
                 $scope.dataPlanoIncluir.loading -= 1;

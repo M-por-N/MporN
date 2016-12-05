@@ -25,9 +25,9 @@ try{
         //permite que mensagens de erro sejam mostradas
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    $query = 'UPDATE trabalho SET id_situacao = :situacao ,';
-    $query .= 'id_freelancer= :id_freelancer ';
-    $query .= ' WHERE id = :id';
+    $query = '  UPDATE trabalho SET idSituacao = :situacao , ';
+    $query .= ' idFreelancer = :id_freelancer ';
+    $query .= ' WHERE idTrabalho = :id';
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':id_freelancer',$id, PDO::PARAM_INT);

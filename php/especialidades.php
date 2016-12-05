@@ -20,7 +20,7 @@ try{
    
    
    
-    $stmt = $pdo->prepare('SELECT id, nome, descricao as descricaoCurta FROM especialidade');
+    $stmt = $pdo->prepare('SELECT idEspecialidade, nomeEspecialidade, descricaoEspecialidade FROM especialidade');
     
     $stmt->execute();
     $esp = ['especialidades'=>[]];
