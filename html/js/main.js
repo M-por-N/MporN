@@ -1,4 +1,4 @@
-var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr', 'ngSweetAlert', 'angularModalService']);
+var app = angular.module('mporn', ['ngRoute', 'angular-storage', 'angular-jwt', 'ui.mask', 'ngCpfCnpj', 'toastr', 'ngSweetAlert', 'angularModalService', 'chart.js']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
@@ -93,6 +93,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/admin/listar-admin', {
         templateUrl: 'views/admin/listar-admin.html',
         controller: 'ListarAdminController'
+    }).when('/admin/grafico-trabalho', {
+        templateUrl: 'views/admin/grafico-trabalho.html',
+        controller: 'GraficoTrabalhoController'
     }).when('/admin/listar-cliente', {
         templateUrl: 'views/admin/listar-cliente.html',
         controller: 'ListarClienteController'

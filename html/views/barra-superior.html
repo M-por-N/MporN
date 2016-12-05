@@ -53,6 +53,12 @@
             <li><a href="#/admin/listar-plano">Plano</a></li>
           </ul>
         </li>
+        <li class="dropdown" ng-class="{open: dataBarraListar.dropDownGraficos}" ng-mouseleave="dataBarraListar.dropDownGraficos = false" ng-mouseenter="dataBarraListar.dropDownGraficos = true">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Graficos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/admin/grafico-trabalho">Trabalhos</a></li>
+          </ul>
+        </li>
         <li ng-class="{'active' : isTelaAtiva('/admin/dados')}"><a ng-href="#/admin/dados">Alterar Info</a></li>
 
       </ul>
