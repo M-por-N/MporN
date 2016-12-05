@@ -40,6 +40,8 @@ try{
     
     $result = $stmt->execute();
     
+   
+    
     if(!$result){
         //TODO: Enviar a mensagem de erro retornada pelo PDO
         echo json_encode(['resultado' => false, 'mensagem' => 'Erro no Banco de Dados']);
