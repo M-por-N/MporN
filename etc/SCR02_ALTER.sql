@@ -50,5 +50,8 @@ ALTER TABLE mensagem
 	
 ALTER TABLE reporte
     ADD CONSTRAINT reporte_ibfk_1 FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario) ON DELETE CASCADE ON UPDATE CASCADE;
+    
+ALTER TABLE quadro
+    ADD CONSTRAINT quadro_ibfk_1 FOREIGN KEY (idAdmin) REFERENCES admin (idAdmin) ON DELETE CASCADE ON UPDATE CASCADE;
 	
 	
