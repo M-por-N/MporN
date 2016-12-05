@@ -3,6 +3,8 @@ app.controller("QuadroFreelancerController", function($scope, $location, $window
         loading: 0,
         dados: []
     };
+    
+    $scope.listaMensagem = [];
 
     $scope.listarQuadro = function() {
 
@@ -15,11 +17,15 @@ app.controller("QuadroFreelancerController", function($scope, $location, $window
             else {
                 $scope.dataFreelancer.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
             }
+
         });
-        
-        
-        
-        
+
+
+        QuadroService.getQuadro().then(function(data) {
+
+            $scope.listaMensagem = data.quadro;
+        });
+
     };
 
     $scope.listarQuadro();

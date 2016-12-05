@@ -15,7 +15,7 @@ try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
    
-    $stmt = $pdo->prepare('SELECT * FROM usuario u inner join admin a on u.idUsuario = a.idUsuario
+    $stmt = $pdo->prepare('SELECT u.nomeUsuario, q.mensagemQuadro, q.dataHora FROM usuario u inner join admin a on u.idUsuario = a.idUsuario
                             inner join quadro q on a.idAdmin = q.idAdmin');
 
     $stmt->execute(); //TDOO: verficar por erros

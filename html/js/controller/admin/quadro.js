@@ -6,6 +6,8 @@ app.controller("QuadroAdminController", function($scope, $location, $window, sto
             mensagem: null
         }
     };
+    
+    $scope.listaMensagem = [];
 
     $scope.listarQuadro = function() {
 
@@ -19,6 +21,13 @@ app.controller("QuadroAdminController", function($scope, $location, $window, sto
                 $scope.dataAdmin.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
             }
         });
+        
+        
+        QuadroService.getQuadro().then(function(data) {
+            
+            $scope.listaMensagem = data.quadro;
+        });
+        
     };
 
     $scope.listarQuadro();

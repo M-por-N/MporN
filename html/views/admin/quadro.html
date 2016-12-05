@@ -27,6 +27,24 @@
 
         <h3>Quadro de Avisos</h3>
 
-        <div></div>
+
+        <div ng-show="listaMensagem == ''">
+            <p>Nenhuma mensagem pra exibir</p>
+        </div>
+
+        <div ng-show="listaMensagem != ''">
+
+            <div ng-repeat="mensagem in listaMensagem">
+
+                <br />
+                <h4><em>{{mensagem.dataHora}} - {{mensagem.nomeUsuario}}</em></h4>
+
+                <p>{{mensagem.mensagemQuadro}}</p>
+
+
+            </div>
+
+
+        </div>
     </div>
 </div>

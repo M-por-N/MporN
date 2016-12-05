@@ -4,6 +4,8 @@ app.controller("QuadroClienteController", function($scope, $location, $window, s
         dados: []
     };
 
+    $scope.listaMensagem = [];
+
     $scope.listarQuadro = function() {
 
         $scope.dataCliente.loading += 1;
@@ -15,6 +17,11 @@ app.controller("QuadroClienteController", function($scope, $location, $window, s
             else {
                 $scope.dataCliente.erro = "Erro ao receber dados do servidor"; //TODO: mensagem de erro do servidor
             }
+        });
+
+        QuadroService.getQuadro().then(function(data) {
+
+            $scope.listaMensagem = data.quadro;
         });
     };
 

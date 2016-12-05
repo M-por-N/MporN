@@ -1,0 +1,30 @@
+<!-- TODO: Tela de loading -->
+<div ng-show="dataAdmin.loading != 0">loading</div>
+<div ng-hide="dataAdmin.loading != 0">
+
+    <h1>Incluir Quadro</h1>
+
+    <form name="incluirForm" novalidate class="simple-form">
+
+        <div class="alert alert-danger" ng-show="dataAdmin.erro.mensagem">
+            <span>{{dataAdmin.erro.mensagem}}</span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label for="mensagemInput" class="col-md-12 control-label">Mensagem:</label>
+            </div>
+            <div class="col-md-5">
+                <textarea rows="4" cols="50" id="mensagemInput" name="mensagemInput" class="form-control" placeholder="Mensagem" required autofocus minlength="5" ng-model="dataAdmin.data.mensagem"></textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-9">
+                <button id="btn-signup" type="button" class="btn btn-info btn-lg" ng-click="incluir(dataAdmin.data)">Incluir</button>
+            </div>
+        </div>
+
+    </form>
+</div>

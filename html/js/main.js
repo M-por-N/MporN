@@ -99,6 +99,9 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/admin/listar-freelancer', {
         templateUrl: 'views/admin/listar-freelancer.html',
         controller: 'ListarFreelancerController'
+    }).when('/admin/incluir-quadro', {
+        templateUrl: 'views/admin/incluir-quadro.html',
+        controller: 'IncluirQuadroController'
     }).when('/admin/listar-trabalho', {
         templateUrl: 'views/admin/listar-trabalho.html',
         controller: 'ListarTrabalhoController'
