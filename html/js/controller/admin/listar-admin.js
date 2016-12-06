@@ -1,4 +1,4 @@
-app.controller("ListarAdminController", function($scope, $location, store, jwtHelper, ListarService, toastr, ModalService) {
+app.controller("ListarAdminController", function($scope, $location, store, jwtHelper, ListarService, toastr, ModalService, SweetAlert, ApagarService) {
     $scope.dataListarAdmin = {
         loading: 0,
         erro: {
@@ -21,7 +21,7 @@ app.controller("ListarAdminController", function($scope, $location, store, jwtHe
             }
         });
 
-    }
+    };
 
     $scope.listarAdmin();
     $scope.editarAdmin = function(admin) {
@@ -37,9 +37,56 @@ app.controller("ListarAdminController", function($scope, $location, store, jwtHe
             modal.element.modal();
             modal.close.then(function(result) {
 
-            $scope.listarAdmin();
+                $scope.listarAdmin();
 
             });
+        });
+
+    };
+
+
+    $scope.apagarAdmin = function(admin) {
+
+
+
+        SweetAlert.swal({
+            title: "Você tem certeza?",
+            text: "Você irá deletar o administrador '" + admin.nomeUsuario + "' do sistema. Tem certeza?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, remover agora!",
+            cancelButtonText: "Cancelar"
+        }).then(function() {
+
+
+            $scope.params = {
+                idAdmin: admin.idAdmin,
+                idUsuario: admin.idUsuario
+            };
+
+
+            var resposta = ApagarService.deleteAdmin($scope.params);
+            resposta.then(function(data) {
+                if (data.resultado == true) {
+
+                    var index = $scope.dataListarAdmin.dados.indexOf(admin);
+                    $scope.dataListarAdmin.dados.splice(index, 1);
+
+                    SweetAlert.swal("Removido!", "Trabalho removido com sucesso.", "success");
+
+                    toastr.success("Trabalho removido com sucesso");
+                }
+                else {
+                    $scope.dataListarAdmin.erro.mensagem = "Erro no Remover: " + data.mensagem;
+                    toastr.error("Error");
+                }
+            });
+
+        }, function(dismiss) {
+
+            SweetAlert.swal("O administrador está salvo!");
+
         });
 
     };
